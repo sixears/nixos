@@ -54,6 +54,8 @@
           boot.kernelModules = [ "kvm-intel" ];
           boot.extraModulePackages = [ ];
 
+          nix.settings.max-jobs = lib.mkDefault 12;
+
           imports = [
             ./boot/efi.nix
 
@@ -75,8 +77,6 @@
 #X# in
 #X#   {
 #X#
-#X#
-#X#     nix.maxJobs = lib.mkDefault 12;
 #X#
 #X#     nix.nixPath =
 #X#       [ # Prepend default nixPath values.
