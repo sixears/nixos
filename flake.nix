@@ -102,12 +102,13 @@
           (settings-std  { inherit hostname domainname etherMac stateVersion
                                    logicalCores; })
         ];
-    in
-      {
-        nixosConfigurations = {
-          red = nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
 
+      nixos-system = { modules, system ? "x86_64-linux" }:
+        nixpkgs.lib.nixosSystem { inherit system modules; };
+    in {
+      nixosConfigurations = {
+        red =
+          nixos-system {
             modules =
               (dell-xps-13-9310 {
                 hostname     = "red";
@@ -118,8 +119,8 @@
                 stateVersion = "22.05";
               });
           };
-        };
       };
+    };
 }
 
 #X# # repository: /nix/var/nixpkgs/nixos-22.05.2022-10-15.be44bf67
