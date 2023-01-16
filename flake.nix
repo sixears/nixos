@@ -25,7 +25,9 @@
       };
 
       settings-std = { hostname, domainname, etherMac, stateVersion
-                     , logicalCores, boot ? ./boot/efi.nix }:
+                     , logicalCores, boot ? ./boot/efi.nix
+                     , sshPubKey ? ./sshkeys + "/${hostname}.pub"
+                     }:
         let
           filesystems = [ ./filesystems/std.nix ];
         in
@@ -68,6 +70,12 @@
 
             boot.initrd.availableKernelModules = [ "xhci_pci" "usb_storage"
                                                    "sd_mod" ];
+
+            programs.ssh.knownHosts =
+              { "localhost" = { publicKeyFile = sshPubKey; }; };
+
+            # create a symlink to /etc/X11/xorg.conf for visibility
+            services.xserver.exportConfiguration = true;
 
             imports = [ boot ] ++ filesystems;
         };
@@ -123,30 +131,8 @@
     };
 }
 
-#X# # repository: /nix/var/nixpkgs/nixos-22.05.2022-10-15.be44bf67
-#X# # repository: /nix/var/nixpkgs/nixos-22.05.2022-09-12.bf014cad
-#X# # repository: /nix/var/nixpkgs/nixos-21.11.2022-04-22.9887f024
-#X#
 #X# { config ? import ./nullcfg.nix, lib, options, modulesPath, pkgs, specialArgs ? {} }:
-#X#
 #X#   {
-#X#
-#X#
-#X#     nix.nixPath =
-#X#       [ # Prepend default nixPath values.
-#X#   #      "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos-18.09"
-#X#   #      "nixos-config=/etc/nixos/configuration.nix"
-#X#   #      "/nix/var/nix/profiles/per-user/root/channels"
-#X#         # Append our nixpkgs-overlays.
-#X#   #      "nixpkgs-overlays=/etc/nixos/overlays"
-#X#       ];
-#X#
-#X#     programs.ssh.knownHosts =
-#X#       { "localhost" = { publicKeyFile = ../sshkeys + "/${hostname}.pub"; }; };
-#X#
-#X#     # create a symlink to /etc/X11/xorg.conf for visibility
-#X#     services.xserver.exportConfiguration = true;
-#X#
 #X#     environment.systemPackages = with pkgs; [ mkopenvpnconfs wifi ];
 #X#
 #X#     imports =
