@@ -36,12 +36,6 @@ in
     # `nixos-generate-config`.
     hardware.enableRedistributableFirmware = lib.mkDefault true;
 
-    networking.hostName = hostname;
-    networking.extraHosts =
-      "127.0.0.1 " + hostname + "." + domainname + " " + hostname;
-    # note that this won't effect until ethernet is actually connected
-    networking.networkmanager.ethernet.macAddress = etherMac;
-
     boot.initrd.availableKernelModules = [ "xhci_pci" "usb_storage"
                                            "sd_mod" ];
 
@@ -56,20 +50,32 @@ in
     imports = [ boot ] ++ filesystems;
 
   #-#  nixpkgs.config.allowUnfree = true;
-  #-#
-  #-##  nix.extraOptions = ''
-  #-##    experimental-features = nix-command flakes
-  #-##  '';
-  #-#  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  #-#
-  #-#  networking = {
-  #-#    networkmanager.enable = true;
-  #-#
-  #-#    enableIPv6 = false;
-  #-#    nameservers = [ "103.247.36.36" "103.247.37.37" ];
-  #-#    search = [ "sixears.co.uk" ];
-  #-#    domain = "sixears.co.uk";
-  #-#  };
+    nixpkgs.config.allowUnfreePredicate = pkg:
+        builtins.elem (pkgs.lib.getName pkg)
+          [ "hplip" "nvidia-x11" "nvidia-settings" "plexmediaserver" ];
+
+    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+    # -- networking ------------------------------------------------------------
+
+    networking = {
+      hostName = hostname;
+      extraHosts =
+        "127.0.0.1 " + hostname + "." + domainname + " " + hostname;
+
+      networkmanager = { enable = true;
+                         # note that this won't effect until ethernet is
+                         # actually connected
+                         ethernet.macAddress = etherMac; };
+
+      enableIPv6 = false;
+      nameservers = [
+        "103.247.36.36" # dns1.dnsfilter.com
+        "103.247.37.37" # dns2.dnsfilter.com
+      ];
+      search = [ "sixears.co.uk" ];
+      domain = "sixears.co.uk";
+    };
   #-#
   #-#  # Enable acpilight.  This wilnl allow brightness control via xbacklight from
   #-#  # users in the video group.
