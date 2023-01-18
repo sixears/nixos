@@ -4,7 +4,6 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "nixpkgs": [
-          "mkopenvpnconfs",
           "nixpkgs"
         ]
       },
@@ -55,36 +54,17 @@
         "type": "github"
       }
     },
-    "mkopenvpnconfs": {
-      "inputs": {
-        "bash-header": "bash-header",
-        "flake-utils": "flake-utils_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-0XUn7uG2J6WDSj+KNPgxe4oQwQZh1Vp4PA5rCtqETDs=",
-        "path": "/nix/store/sfr490yk0lv9mdjfnp29sqvfjqk1lvvy-source/pkgs/mkopenvpnconfs",
-        "type": "path"
-      },
-      "original": {
-        "path": "/nix/store/sfr490yk0lv9mdjfnp29sqvfjqk1lvvy-source/pkgs/mkopenvpnconfs",
-        "type": "path"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1673681449,
         "narHash": "sha256-0Sd00uFoVsO7xgd15FZst7wlw6Wvt7rJ7y7Q5BWKMgA=",
-        "owner": "NixOS",
+        "owner": "nixos",
         "repo": "nixpkgs",
         "rev": "3ae365afb80773c3bb67e52294a82e329a9e5be0",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
+        "owner": "nixos",
         "ref": "3ae365af",
         "repo": "nixpkgs",
         "type": "github"
@@ -92,7 +72,8 @@
     },
     "root": {
       "inputs": {
-        "mkopenvpnconfs": "mkopenvpnconfs",
+        "bash-header": "bash-header",
+        "flake-utils": "flake-utils_2",
         "nixpkgs": "nixpkgs"
       }
     }
