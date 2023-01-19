@@ -87,24 +87,34 @@ in
       substituters = [
         "http://nixos-bincache.sixears.co.uk:5000/"
         "http://night.sixears.co.uk:5000/"
-        # See
-        # https://input-output-hk.github.io/haskell.nix/tutorials/getting-started-flakes.html
-        "https://cache.iog.io"
+        "https://cache.iog.io" # See ref (01)
+
       ];
 
-      trusted-public-keys = [
-        "nixos-bincache.sixears.co.uk:qdbId5CKN01tH6SWL0YUsIG5fUmdZKRgYQ8Hh2C3STg="
-        "trance.sixears.co.uk:M2ebZ15Yk6V9Pi81MldTgNY7KdLukDj2rhzLibwq0t0="
-        "night.sixears.co.uk:uPZcQccenrbEivJ3vEHZtoybCQYxOQOJqQg4H6aQJm8="
-        # See
-        # https://input-output-hk.github.io/haskell.nix/tutorials/getting-started-flakes.html
-        "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
-      ];
+      #
+
+      trusted-public-keys = lib.mapAttrsToList (x: y: x + ":" + y) ({
+        # See ref (01)
+        "hydra.iohk.io" = "f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=";
+     } // (with lib.attrsets;
+           mapAttrs' (k: v: nameValuePair (k + ".sixears.co.uk") v) {
+        "nixos-bincache" = "qdbId5CKN01tH6SWL0YUsIG5fUmdZKRgYQ8Hh2C3STg=";
+        "trance"         = "M2ebZ15Yk6V9Pi81MldTgNY7KdLukDj2rhzLibwq0t0=";
+        "night"          = "uPZcQccenrbEivJ3vEHZtoybCQYxOQOJqQg4H6aQJm8=";
+      }));
     };
 
     # ----------------------------------------------------
 
     imports = [ boot ] ++ filesystems;
+  }
+
+# ==============================================================================
+
+# References
+# (01) https://input-output-hk.github.io/haskell.nix/tutorials/getting-started-flakes.html
+
+# -- that's all, folks! --------------------------------------------------------
 
   #-#  systemd.services.nix-daemon.environment.TMPDIR = "/local/tmp/nix-daemon";
   #-#
@@ -192,4 +202,3 @@ in
   #-#  environment.etc.nixos-cfg.source = "${pkgs.nixos-cfg}";
   #-#
   #-#  programs.sysdig.enable = true;
-  }
