@@ -6,7 +6,10 @@
 { lib, pkgs, ... }:
 
 let
-  filesystems = [ ./filesystems/std.nix ];
+  filesystems    = [ ./filesystems/std.nix ];
+  domain         = "sixears.co.uk";
+  cache-port     = 5000;
+  cache-port-str = toString cache-port;
 in
   {
     # Every once in a while, a new NixOS release may change configuration
@@ -68,8 +71,8 @@ in
         "103.247.36.36" # dns1.dnsfilter.com
         "103.247.37.37" # dns2.dnsfilter.com
       ];
-      search = [ "sixears.co.uk" ];
-      domain = "sixears.co.uk";
+      search = [ domain ];
+      inherit domain;
     };
 
     # -- display -----------------------------------------
@@ -85,19 +88,17 @@ in
 
     nix.settings = {
       substituters = [
-        "http://nixos-bincache.sixears.co.uk:5000/"
-        "http://night.sixears.co.uk:5000/"
         "https://cache.iog.io" # See ref (01)
-
-      ];
-
-      #
+      ] ++ (map (x: "http://" + x + "." + domain + ":" + cache-port-str + "/") [
+        "nixos-bincache"
+        "night"
+      ]);
 
       trusted-public-keys = lib.mapAttrsToList (x: y: x + ":" + y) ({
         # See ref (01)
         "hydra.iohk.io" = "f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=";
-     } // (with lib.attrsets;
-           mapAttrs' (k: v: nameValuePair (k + ".sixears.co.uk") v) {
+      } // (with lib.attrsets;
+            mapAttrs' (k: v: nameValuePair (k + "." + domain) v) {
         "nixos-bincache" = "qdbId5CKN01tH6SWL0YUsIG5fUmdZKRgYQ8Hh2C3STg=";
         "trance"         = "M2ebZ15Yk6V9Pi81MldTgNY7KdLukDj2rhzLibwq0t0=";
         "night"          = "uPZcQccenrbEivJ3vEHZtoybCQYxOQOJqQg4H6aQJm8=";
