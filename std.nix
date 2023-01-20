@@ -105,6 +105,10 @@ in
       }));
     };
 
+    # -- nix-daemon ----------------------------------------
+
+    systemd.services.nix-daemon.environment.TMPDIR = "/local/tmp/nix-daemon";
+
     # ----------------------------------------------------
 
     imports = [ boot ] ++ filesystems;
@@ -117,7 +121,6 @@ in
 
 # -- that's all, folks! --------------------------------------------------------
 
-  #-#  systemd.services.nix-daemon.environment.TMPDIR = "/local/tmp/nix-daemon";
   #-#
   #-#  security.pki.certificateFiles = [ ./cert.pem ];
   #-#
