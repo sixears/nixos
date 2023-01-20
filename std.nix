@@ -109,6 +109,27 @@ in
 
     systemd.services.nix-daemon.environment.TMPDIR = "/local/tmp/nix-daemon";
 
+    # -- locate --------------------------------------------
+
+    services.locate.enable = true;
+
+    # -- acme ssl certificate generation -------------------
+
+    # 22.05
+    security.acme = { defaults.email = "root@sixears.co.uk";
+                      acceptTerms    = true;
+                    };
+
+    # -- keyboard ------------------------------------------
+
+    # Select internationalisation properties.
+    console.keyMap     = ./keys.map; # "dvorak";
+    i18n.defaultLocale = "en_GB.UTF-8";
+
+    # -- time-zone -----------------------------------------
+
+    time.timeZone = "Etc/GMT";
+
     # ----------------------------------------------------
 
     imports = [ boot ] ++ filesystems;
@@ -130,19 +151,6 @@ in
   #-##    enable = true;
   #-#  };
   #-#
-  #-#  services.locate.enable = true;
-  #-#
-  #-## 22.05
-  #-#  security.acme.defaults.email = "root@sixears.co.uk";
-  #-##  security.acme.email = "root@sixears.co.uk";
-  #-#  security.acme.acceptTerms    = true;
-  #-#
-  #-#  # Select internationalisation properties.
-  #-#  console.keyMap     = ./keys.map; # "dvorak";
-  #-#  i18n.defaultLocale = "en_GB.UTF-8";
-  #-#
-  #-#  # Set your time zone.
-  #-#  time.timeZone = "Etc/GMT";
   #-#
   #-#  imports = [
   #-#              ./overlays.nix
