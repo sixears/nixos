@@ -30,6 +30,7 @@
 
       settings-wifi = { wifiMac }: { ... }: {
         # note that this won't effect until wifi is actually connected
+        networking.networkmanager.enable          = true;
         networking.networkmanager.wifi.macAddress = wifiMac;
       };
 
@@ -55,7 +56,8 @@
                          , etherMac, wifiMac, systemPackages }:
         settingses-dell-xps-13-9310 ++ [
           (settings-wifi { inherit wifiMac; })
-          (import ./std.nix { inherit hostname domainname etherMac stateVersion
+          (import ./ethernet.nix { inherit etherMac; })
+          (import ./std.nix { inherit hostname domainname stateVersion
                                       logicalCores systemPackages; })
         ];
 

@@ -1,4 +1,4 @@
-{ hostname, domainname, etherMac, stateVersion, systemPackages, logicalCores
+{ hostname, domainname, stateVersion, systemPackages, logicalCores
 , boot      ? ./boot/efi.nix
 , sshPubKey ? ./sshkeys + "/${hostname}.pub"
 }:
@@ -61,10 +61,10 @@ in
       extraHosts =
         "127.0.0.1 " + hostname + "." + domainname + " " + hostname;
 
-      networkmanager = { enable = true;
-                         # note that this won't effect until ethernet is
-                         # actually connected
-                         ethernet.macAddress = etherMac; };
+##      networkmanager = { enable = true;
+##                         # note that this won't effect until ethernet is
+##                         # actually connected
+##                         ethernet.macAddress = etherMac; };
 
       enableIPv6 = false;
       nameservers = [
