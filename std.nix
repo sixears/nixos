@@ -105,34 +105,16 @@ in
       }));
     };
 
-    # -- nix-daemon ----------------------------------------
-
-    systemd.services.nix-daemon.environment.TMPDIR = "/local/tmp/nix-daemon";
-
-    # -- locate --------------------------------------------
-
-    services.locate.enable = true;
-
-    # -- acme ssl certificate generation -------------------
-
-    # 22.05
-    security.acme = { defaults.email = "root@sixears.co.uk";
-                      acceptTerms    = true;
-                    };
-
-    # -- keyboard ------------------------------------------
-
-    # Select internationalisation properties.
-    console.keyMap     = ./keys.map; # "dvorak";
-    i18n.defaultLocale = "en_GB.UTF-8";
-
-    # -- time-zone -----------------------------------------
-
-    time.timeZone = "Etc/GMT";
-
     # ----------------------------------------------------
 
-    imports = [ boot ] ++ filesystems;
+    imports = [
+      boot
+      ./tz-gmt.nix
+      ./nix-daemon.nix
+      ./keyboard.nix
+      ./locate.nix
+      ./acme.nix
+    ] ++ filesystems;
   }
 
 # ==============================================================================
