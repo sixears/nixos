@@ -28,12 +28,6 @@
         boot.kernelParams = [ "i915.enable_psr=0" "i915.enable_fbc=1" ];
       };
 
-      settings-wifi = { wifiMac }: { ... }: {
-        # note that this won't effect until wifi is actually connected
-        networking.networkmanager.enable          = true;
-        networking.networkmanager.wifi.macAddress = wifiMac;
-      };
-
       settings-nvme0 = { ... }: {
         services.smartd.devices =
           [ { device="/dev/nvme0"; options = "-d nvme -W 0,70,75"; } ];
@@ -55,10 +49,10 @@
       dell-xps-13-9310 = { hostname, domainname, stateVersion, logicalCores
                          , etherMac, wifiMac, systemPackages }:
         settingses-dell-xps-13-9310 ++ [
-          (settings-wifi { inherit wifiMac; })
           (import ./ethernet.nix { inherit etherMac; })
-          (import ./std.nix { inherit hostname domainname stateVersion
-                                      logicalCores systemPackages; })
+          (import ./wifi.nix     { inherit wifiMac; })
+          (import ./std.nix      { inherit hostname domainname stateVersion
+                                           logicalCores systemPackages; })
         ];
 
       nixos-system = { modules, system ? "x86_64-linux" }:

@@ -61,11 +61,6 @@ in
       extraHosts =
         "127.0.0.1 " + hostname + "." + domainname + " " + hostname;
 
-##      networkmanager = { enable = true;
-##                         # note that this won't effect until ethernet is
-##                         # actually connected
-##                         ethernet.macAddress = etherMac; };
-
       enableIPv6 = false;
       nameservers = [
         "103.247.36.36" # dns1.dnsfilter.com
