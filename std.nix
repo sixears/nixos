@@ -7,7 +7,6 @@
 
 let
   filesystems    = [ ./filesystems/std.nix ];
-  domain         = "sixears.co.uk";
   cache-port     = 5000;
   cache-port-str = toString cache-port;
 in
@@ -54,28 +53,12 @@ in
     programs.ssh.knownHosts =
       { "localhost" = { publicKeyFile = sshPubKey; }; };
 
-    # -- networking ----------------------------------------
-
-    networking = {
-      hostName = hostname;
-      extraHosts =
-        "127.0.0.1 " + hostname + "." + domainname + " " + hostname;
-
-      enableIPv6 = false;
-      nameservers = [
-        "103.247.36.36" # dns1.dnsfilter.com
-        "103.247.37.37" # dns2.dnsfilter.com
-      ];
-      search = [ domain ];
-      inherit domain;
-    };
-
     # -- nixos caches ------------------------------------
 
     nix.settings = {
       substituters = [
         "https://cache.iog.io" # See ref (01)
-      ] ++ (map (x: "http://" + x + "." + domain + ":" + cache-port-str + "/") [
+      ] ++ (map (x: "http://" + x + "." + domainname + ":" + cache-port-str + "/") [
         "nixos-bincache"
         "night"
       ]);
@@ -84,7 +67,7 @@ in
         # See ref (01)
         "hydra.iohk.io" = "f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=";
       } // (with lib.attrsets;
-            mapAttrs' (k: v: nameValuePair (k + "." + domain) v) {
+            mapAttrs' (k: v: nameValuePair (k + "." + domainname) v) {
         "nixos-bincache" = "qdbId5CKN01tH6SWL0YUsIG5fUmdZKRgYQ8Hh2C3STg=";
         "trance"         = "M2ebZ15Yk6V9Pi81MldTgNY7KdLukDj2rhzLibwq0t0=";
         "night"          = "uPZcQccenrbEivJ3vEHZtoybCQYxOQOJqQg4H6aQJm8=";
@@ -95,6 +78,7 @@ in
 
     imports = [
       boot
+      (import ./networking.nix { inherit hostname domainname; })
       ./tz-gmt.nix
       ./nix-daemon.nix
       ./keyboard.nix
