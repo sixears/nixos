@@ -24,13 +24,6 @@ in
     # is affected by this option.
     system.stateVersion = stateVersion;
 
-    # This option defines the maximum number of jobs that Nix will try to build
-    # in parallel. The default is auto, which means it will use all available
-    # logical cores. It is recommend to set it to the total number of logical
-    # cores in your system (e.g., 16 for two CPUs with 4 cores each and
-    # hyper-threading).
-    nix.settings.max-jobs = lib.mkDefault logicalCores;
-
     # from nixpkgs/nixos/modules/installer/scan/not-detected.nix
     # Enables non-free firmware on devices not recognized by
     # `nixos-generate-config`.
@@ -54,7 +47,7 @@ in
       boot
       (import ./networking.nix { inherit hostname domainname; })
       ./tz-gmt.nix
-      ./nix-daemon.nix
+      (import ./nix-daemon.nix { inherit logicalCores; })
       ./keyboard.nix
       ./display.nix
       ./locate.nix
