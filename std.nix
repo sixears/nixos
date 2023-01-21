@@ -40,18 +40,12 @@ in
 
     environment.systemPackages = systemPackages pkgs;
 
-    nixpkgs.config.allowUnfreePredicate = pkg:
-        builtins.elem (pkgs.lib.getName pkg)
-          [ "hplip" "nvidia-x11" "nvidia-settings" "plexmediaserver" ];
-
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
     # -- ssh -----------------------------------------------
 
     programs.ssh.knownHosts =
       { "localhost" = { publicKeyFile = sshPubKey; }; };
-
-    # -- nixos caches ------------------------------------
 
     # ----------------------------------------------------
 
@@ -65,6 +59,7 @@ in
       ./display.nix
       ./locate.nix
       ./acme.nix
+      ./unfree.nix
     ] ++ filesystems;
   }
 
