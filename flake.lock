@@ -66,11 +66,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-0XUn7uG2J6WDSj+KNPgxe4oQwQZh1Vp4PA5rCtqETDs=",
-        "path": "/nix/store/yxfxmmcz09ngzx9fh1phg7lhrqia10df-source/pkgs/mkopenvpnconfs",
+        "path": "/nix/store/2qsp7xlz11izpv1v64by5zvsgqjpwwlb-source/pkgs/mkopenvpnconfs",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/yxfxmmcz09ngzx9fh1phg7lhrqia10df-source/pkgs/mkopenvpnconfs",
+        "path": "/nix/store/2qsp7xlz11izpv1v64by5zvsgqjpwwlb-source/pkgs/mkopenvpnconfs",
         "type": "path"
       }
     },

@@ -1,4 +1,4 @@
-{ hostname, domainname, stateVersion, systemPackages, logicalCores
+{ hostname, domainname, stateVersion, systemPackages, logicalCores, system
 , boot      ? ./boot/efi.nix
 , sshPubKey ? ./sshkeys + "/${hostname}.pub"
 }:
@@ -6,7 +6,8 @@
 { lib, pkgs, ... }:
 
 let
-  filesystems    = [ ./filesystems/std.nix ];
+  filesystems = [ ./filesystems/std.nix ];
+  nixos-cfg   = import ./nixos-cfg { inherit pkgs system; };
 in
   {
     # Every once in a while, a new NixOS release may change configuration
@@ -31,9 +32,11 @@ in
 
     boot.initrd.availableKernelModules = [ "xhci_pci" "usb_storage" "sd_mod" ];
 
-    environment.systemPackages = systemPackages pkgs;
+    environment.systemPackages = systemPackages pkgs ++ [ nixos-cfg ];
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+    environment.etc.nixos-cfg.source = "${nixos-cfg}";
 
     # -- ssh -----------------------------------------------
 
@@ -129,6 +132,5 @@ in
   #-#    setuid = true;
   #-#  };
   #-#
-  #-#  environment.etc.nixos-cfg.source = "${pkgs.nixos-cfg}";
   #-#
   #-#  programs.sysdig.enable = true;

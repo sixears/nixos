@@ -47,12 +47,13 @@
         [ settings-i915 settings-intel settings-laptop settings-nvme0 ];
 
       dell-xps-13-9310 = { hostname, domainname, stateVersion, logicalCores
-                         , etherMac, wifiMac, systemPackages }:
+                         , etherMac, wifiMac, systemPackages, system }:
         settingses-dell-xps-13-9310 ++ [
           (import ./ethernet.nix { inherit etherMac; })
           (import ./wifi.nix     { inherit wifiMac; })
           (import ./std.nix      { inherit hostname domainname stateVersion
-                                           logicalCores systemPackages; })
+                                           logicalCores systemPackages system;
+                                 })
         ];
 
       nixos-system = { modules, system ? "x86_64-linux" }:
@@ -67,6 +68,7 @@
               inherit system;
               modules =
                 (dell-xps-13-9310 {
+                  inherit system;
                   hostname     = "red";
                   domainname   = "sixears.co.uk";
                   logicalCores = 12;
