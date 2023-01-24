@@ -1,12 +1,16 @@
 {
-  inputs.nixpkgs.url = github:NixOS/nixpkgs/3ae365af; # 2023-01-14
-  inputs.mkopenvpnconfs =
-    { url = "./pkgs/mkopenvpnconfs";
-      inputs = { nixpkgs.follows = "nixpkgs"; }; };
-
+  inputs = {
+    nixpkgs.url = github:NixOS/nixpkgs/3ae365af; # 2023-01-14
+    bash-header    = { url    = github:sixears/bash-header/5206b087;
+                       inputs = { nixpkgs.follows = "nixpkgs"; }; };
+    mkopenvpnconfs = { url    = "./pkgs/mkopenvpnconfs";
+                       inputs = { nixpkgs.follows = "nixpkgs";
+                                  bash-header.follows = "bash-header"; };
+                     };
+  };
 #  inputs.home-manager.url = github:nix-community/home-manager;
 
-  outputs = { self, nixpkgs, mkopenvpnconfs, ... }:
+  outputs = { self, nixpkgs, mkopenvpnconfs, bash-header, ... }:
     let
       settings-i915 = { pkgs, ... }: {
         # we need linux 5.19+ for sound support, but with 5.19.8 at least;
@@ -52,7 +56,8 @@
           (import ./ethernet.nix { inherit etherMac; })
           (import ./wifi.nix     { inherit wifiMac; })
           (import ./std.nix      { inherit hostname domainname stateVersion
-                                           logicalCores systemPackages system;
+                                           logicalCores systemPackages system
+                                           bash-header;
                                  })
         ];
 

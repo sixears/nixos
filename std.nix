@@ -1,4 +1,5 @@
 { hostname, domainname, stateVersion, systemPackages, logicalCores, system
+, bash-header
 , boot      ? ./boot/efi.nix
 , sshPubKey ? ./sshkeys + "/${hostname}.pub"
 }:
@@ -58,7 +59,7 @@ in
       ./acme.nix
       ./unfree.nix
 
-./std-pkgs.nix
+      (import ./std-pkgs.nix { inherit pkgs bash-header; })
       # !!! red-specific services
       ./deluge-killer.nix
     ] ++ filesystems;

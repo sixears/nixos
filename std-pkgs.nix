@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, bash-header, ... }:
 
 #-#{ config, lib, pkgs, ... }:
 #-#
@@ -14,12 +14,13 @@ let
 in
   {
     environment.systemPackages = with pkgs; [
-      (import ./pkgs/acme-cert.nix { inherit pkgs; })
+      # !!! Do we really need these everywhere?
+      (import ./pkgs/acme-cert.nix   { inherit pkgs; })
       (import ./pkgs/cert-expiry.nix { inherit pkgs; })
+
+      (import ./pkgs/lumix-copy.nix  { inherit pkgs bash-header; })
+
 #-#      [
-#-#        cert-expiry
-#-#        hello-world
-#-#        lumix-copy
 #-#        pic-reduce
 #-#
 #-#        nixos-cfg
