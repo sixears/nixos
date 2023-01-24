@@ -6,8 +6,9 @@
 { lib, pkgs, ... }:
 
 let
-  filesystems = [ ./filesystems/std.nix ];
-  nixos-cfg   = import ./nixos-cfg { inherit pkgs system; };
+  filesystems   = [ ./filesystems/std.nix ];
+  nixos-cfg     = import ./nixos-cfg { inherit pkgs system; };
+  ip-public     = import ./pkgs/ip-public.nix { inherit pkgs; };
 in
   {
     # Every once in a while, a new NixOS release may change configuration
@@ -32,7 +33,7 @@ in
 
     boot.initrd.availableKernelModules = [ "xhci_pci" "usb_storage" "sd_mod" ];
 
-    environment.systemPackages = systemPackages pkgs ++ [ nixos-cfg ];
+    environment.systemPackages = systemPackages pkgs ++ [ nixos-cfg ip-public ];
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -56,6 +57,10 @@ in
       ./locate.nix
       ./acme.nix
       ./unfree.nix
+
+./std-pkgs.nix
+      # !!! red-specific services
+      ./deluge-killer.nix
     ] ++ filesystems;
   }
 
@@ -76,7 +81,6 @@ in
   #-#  imports = [
   #-#              ./overlays.nix
   #-##              ./overlays2.nix
-  #-#              ./packages.nix
   #-#
   #-#              ./sixears-hosts.nix
   #-#

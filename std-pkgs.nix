@@ -1,8 +1,8 @@
-{}:
+{ pkgs, ... }:
 
 #-#{ config, lib, pkgs, ... }:
 #-#
-#-#let
+let
 #-#  header          = import ../../nixpkgs/configs/scripts/src/header.nix { inherit pkgs; };
 #-#  hello-world-src = import ./scripts/hello-world { inherit pkgs; };
 #-#  hello-world     = pkgs.writers.writeBashBin "hello-world" hello-world-src;
@@ -11,11 +11,13 @@
 #-#                      src = import ./scripts/pic-reduce.nix { inherit pkgs; };
 #-#                    in
 #-#                      pkgs.writers.writeBashBin "pic-reduce" src;
-#-# in
+in
   {
     environment.systemPackages = with pkgs; [
+      (import ./pkgs/acme-cert.nix { inherit pkgs; })
+      (import ./pkgs/cert-expiry.nix { inherit pkgs; })
 #-#      [
-#-#        acme-cert cert-expiry
+#-#        cert-expiry
 #-#        hello-world
 #-#        lumix-copy
 #-#        pic-reduce
