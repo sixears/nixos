@@ -19,6 +19,7 @@ in
       (import ./pkgs/cert-expiry.nix { inherit pkgs; })
 
       (import ./pkgs/lumix-copy.nix  { inherit pkgs bash-header; })
+      (import ./pkgs/pic-reduce.nix  { inherit pkgs bash-header; })
 
 #-#      [
 #-#        pic-reduce
