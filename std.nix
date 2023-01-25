@@ -9,7 +9,6 @@
 let
   filesystems   = [ ./filesystems/std.nix ];
   nixos-cfg     = import ./nixos-cfg { inherit pkgs system; };
-  ip-public     = import ./pkgs/ip-public.nix { inherit pkgs; };
 in
   {
     # Every once in a while, a new NixOS release may change configuration
@@ -34,7 +33,7 @@ in
 
     boot.initrd.availableKernelModules = [ "xhci_pci" "usb_storage" "sd_mod" ];
 
-    environment.systemPackages = systemPackages pkgs ++ [ nixos-cfg ip-public ];
+    environment.systemPackages = systemPackages pkgs;
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

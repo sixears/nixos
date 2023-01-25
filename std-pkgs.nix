@@ -2,33 +2,20 @@
 
 #-#{ config, lib, pkgs, ... }:
 #-#
-let
-#-#  header          = import ../../nixpkgs/configs/scripts/src/header.nix { inherit pkgs; };
-#-#  hello-world-src = import ./scripts/hello-world { inherit pkgs; };
-#-#  hello-world     = pkgs.writers.writeBashBin "hello-world" hello-world-src;
-#-#  lumix-copy      = import ./scripts/lumix-copy { inherit header pkgs; };
-#-#  pic-reduce      = let
-#-#                      src = import ./scripts/pic-reduce.nix { inherit pkgs; };
-#-#                    in
-#-#                      pkgs.writers.writeBashBin "pic-reduce" src;
-in
-  {
-    environment.systemPackages = with pkgs; [
-      # !!! Do we really need these everywhere?
-      (import ./pkgs/acme-cert.nix   { inherit pkgs; })
-      (import ./pkgs/cert-expiry.nix { inherit pkgs; })
+{
+  environment.systemPackages = with pkgs; [
+    # !!! Do we really need these everywhere?
+    (import ./pkgs/acme-cert.nix   { inherit pkgs; })
+    (import ./pkgs/cert-expiry.nix { inherit pkgs; })
 
-      (import ./pkgs/lumix-copy.nix  { inherit pkgs bash-header; })
-      (import ./pkgs/pic-reduce.nix  { inherit pkgs bash-header; })
+    (import ./pkgs/ip-public.nix { inherit pkgs; })
+
+    (import ./pkgs/lumix-copy.nix  { inherit pkgs bash-header; })
+    (import ./pkgs/pic-reduce.nix  { inherit pkgs bash-header; })
 
 #-#      [
-#-#        pic-reduce
-#-#
-#-#        nixos-cfg
-#-#
 #-#        alsaUtils
 #-#        coreutils
-#-#        dkill-scripts
 #-#        dmidecode
 #-#        emacs
 #-#        # shouldn't be necessary with kernel >= 5.18; indeed, won't build
@@ -81,5 +68,5 @@ in
 #-#
 #-#        sysdig
 #-#        cryptsetup
-    ];
-  }
+  ];
+}
