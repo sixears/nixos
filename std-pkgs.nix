@@ -13,17 +13,17 @@
     (import ./pkgs/lumix-copy.nix  { inherit pkgs bash-header; })
     (import ./pkgs/pic-reduce.nix  { inherit pkgs bash-header; })
 
+    alsaUtils
+    coreutils
+    dmidecode
+    emacs
+    fatrace
+    file
+    flameshot
+    (import ./pkgs/fstab-check.nix { inherit pkgs; })
+
+
 #-#      [
-#-#        alsaUtils
-#-#        coreutils
-#-#        dmidecode
-#-#        emacs
-#-#        # shouldn't be necessary with kernel >= 5.18; indeed, won't build
-#-#        # (pkgs/os-specific/linux/exfat/default.nix)
-#-#        # exfat
-#-#        fatrace
-#-#        file
-#-#        flameshot
 #-#        fstab-check
 #-#        gptfdisk
 #-#        # emacsWithPackages
