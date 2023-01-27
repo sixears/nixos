@@ -61,6 +61,7 @@ in
 
       (import ./std-pkgs.nix { inherit pkgs bash-header; })
       # !!! red-specific services
+      ./laptop.nix
       ./deluge-killer.nix
     ] ++ filesystems;
   }
