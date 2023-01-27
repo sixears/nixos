@@ -1,0 +1,52 @@
+-- xmobar config
+Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
+       , bgColor = "black"
+       , fgColor = "grey"
+       , position = TopW L 100 -- 100 == 100% width
+       , commands = [ -- EGRB is London Weather Centre, EGGW is Luton Airport
+                      Run Weather "EGGW" ["-t"," <tempC>C","-L","5","-H","20"
+                                         ,"--normal","green","--high","red"
+                                         ,"--low","lightblue"] 600
+                    , Run Cpu [ "-L","60", "-H","95"
+                              , "-l", "grey", "-n","orange", "-h" ,"red"
+                              ] 10
+                    , Run Memory [ -- "-S" -- display optional suffices
+                                  "-t", "Mem: <freeratio>% free (<free>MiB)"
+                                 ] 10
+                    , Run Swap [ "-S" -- display optional suffices
+                               -- thresholds seem to apply to total as well as
+                               -- usedratio :-(
+                               -- , "-L", "20", "-H", "80"
+                               , "-l", "lightblue", "-n","grey", "-h","red"
+                               , "-t", "Swap: <usedratio>% (<used>MiB)"
+                               ] 10
+                    , Run Date "%a %b %_d %l:%M" "date" 10
+                    , Run StdinReader
+                    , Run Wireless "wlp6s0"
+                          [ "-t", "<essid> <quality> <qualitybar> <qualityvbar>"
+                          ] 10
+--	            , Run MarqueePipeReader "i3status:/tmp/${USER}/i3status" (70,7," + ") "i3status"
+	            , Run PipeReader "i3status:/tmp/${USER}/i3status" "i3status"
+                    , Run Battery [ "--template" , "Batt: <acstatus>"
+                                  , "--Low"      , "15"  -- units: %
+                                  , "--High"     , "80"  -- units: %
+                                  , "--low"      , "darkred"
+                                  , "--normal"   , "blue"
+                                  , "--high"     , "green"
+                                  , "--" -- battery specific options
+                                  -- discharging status
+                                  , "-o"  , "<left>% (<timeleft>)"
+                                  -- AC "on" status
+                                  , "-O"  , "<fc=#dAA520>Charging</fc> <left>% (<timeleft>)"
+                                  -- charged status
+                                  , "-i"  , "<fc=#006000>Charged</fc>"
+				  -- charging colour
+				  , "-p"  , "orange"
+
+                                  ] 100 -- in tenths of a second, i.e., 10s
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{ %battery% | %i3status% | %cpu% | %memory% * %swap%    <fc=#ee9a00>%date%</fc> | %EGGW%"
+       , overrideRedirect = False
+       }

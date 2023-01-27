@@ -53,6 +53,7 @@ in
       ./tz-gmt.nix
       (import ./nix-daemon.nix { inherit logicalCores; })
       ./keyboard.nix
+      (import ./xserver.nix { inherit pkgs bash-header; })
       ./display.nix
       ./locate.nix
       ./acme.nix
