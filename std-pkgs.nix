@@ -28,45 +28,42 @@ in
 
       patdiff
 
-  #-#      [
-  #-#        # emacsWithPackages
-  #-#        haskellPackages.xmobar
   #-#        # xmonad needs ghc in its path to compile
   #-#        ghc
-  #-#        hddtemp
-  #-#        hdparm
-  #-#        inetutils
-  #-#        git
-  #-#        gnumake
-  #-#        less
-  #-#        lm_sensors
-  #-#        lshw
-  #-#        lsof
-  #-#        man
-  #-#        man-pages
-  #-#        networkmanager
+        hddtemp
+        hdparm
+        inetutils
+        git
+        gnumake
+        less
+        lm_sensors
+        lshw
+        lsof
+        man
+        man-pages
+        networkmanager
   #-#        parted
-  #-#        pciutils
-  #-#        psmisc
-  #-#        smartmontools
-  #-#        sox
-  #-#        sudo
-  #-#        sysstat
+        pciutils
+        psmisc
+        smartmontools
+        sox
+        sudo
+        sysstat
   #-#        thttpd
-  #-#        xkeyboard_config
-  #-#        vim
-  #-#        unzip
+          xkeyboard_config
+          vim
+        unzip
   #-#
-  #-#        atop
-  #-#        htop
+        atop
+        htop
   #-#    # doesn't build with 19.03.f29d398
-  #-#    #    ntopng
-  #-#        s-tui
+    #    ntopng
+        s-tui
   #-#
   #-#        # user assistance
-  #-#        xsession
+      (import ./pkgs/xsession.nix { inherit pkgs; })
   #-#
-  #-#        sysdig
-  #-#        cryptsetup
+        sysdig
+        cryptsetup
     ];
   }
