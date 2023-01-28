@@ -1,13 +1,21 @@
 { pkgs, bash-header, ... }:
 
 let
- touchpad = import ./pkgs/touchpad.nix { inherit pkgs bash-header; };
+  touchpad = import ./pkgs/touchpad.nix { inherit pkgs bash-header; };
+  xkb      = import ./pkgs/xkb.nix      { inherit pkgs; };
+  xmonad-with-pkgs =
+    pkgs.xmonad-with-packages.override
+      { packages = hPkgs: with hPkgs; [ xmonad-contrib ]; };
 in
   {
     environment.systemPackages = with pkgs; [
-     rxvt_unicode-with-plugins i3status touchpad
-      (xmonad-with-packages.override
-        { packages = hPkgs: with hPkgs; [ xmonad-contrib ]; })
+      rxvt_unicode-with-plugins
+      i3status
+      touchpad
+      xkb
+      xkeyboard_config
+      xmonad-with-pkgs
+      (import ./pkgs/xsession.nix { inherit pkgs xkb xmonad-with-pkgs; })
     ];
 
   services.xserver = {

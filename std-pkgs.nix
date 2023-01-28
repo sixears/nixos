@@ -26,44 +26,36 @@ in
       flameshot
       (import ./pkgs/fstab-check.nix { inherit pkgs; })
 
+      # xmonad needs ghc in its path to compile
+      ghc
+      hddtemp
+      hdparm
+      inetutils
+      git
+      gnumake
+      less
+      lm_sensors
+      lshw
+      lsof
+      man
+      man-pages
+      networkmanager
       patdiff
-
-  #-#        # xmonad needs ghc in its path to compile
-  #-#        ghc
-        hddtemp
-        hdparm
-        inetutils
-        git
-        gnumake
-        less
-        lm_sensors
-        lshw
-        lsof
-        man
-        man-pages
-        networkmanager
-  #-#        parted
-        pciutils
-        psmisc
-        smartmontools
-        sox
-        sudo
-        sysstat
-  #-#        thttpd
-          xkeyboard_config
-          vim
-        unzip
-  #-#
-        atop
-        htop
-  #-#    # doesn't build with 19.03.f29d398
-    #    ntopng
-        s-tui
-  #-#
-  #-#        # user assistance
-      (import ./pkgs/xsession.nix { inherit pkgs; })
-  #-#
-        sysdig
-        cryptsetup
+      pciutils
+      psmisc
+      ripgrep
+      silver-searcher
+      smartmontools
+      sox
+      sudo
+      sysstat
+      vim
+      unzip
+      atop
+      htop
+      ntopng
+      s-tui
+      sysdig
+      cryptsetup
     ];
   }

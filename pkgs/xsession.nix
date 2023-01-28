@@ -1,16 +1,15 @@
-{ pkgs }: pkgs.writers.writeBashBin "xsession" ''
+{ pkgs, xkb, xmonad-with-pkgs }: pkgs.writers.writeBashBin "xsession" ''
 
 cat=${pkgs.coreutils}/bin/cat
 hostname=${pkgs.nettools}/bin/hostname
 mv=${pkgs.coreutils}/bin/mv
-xrandr=__xrandr__/bin/xrandr
-xset=__xset__/bin/xset
-xkb=__xkb__/bin/xkb
-xrdb=__xrdb__/bin/xrdb
-trackpad=_#trackpad#_/bin/trackpad
-xmonad=__myXmonad__/bin/xmonad
+xrandr=${pkgs.xorg.xrandr}/bin/xrandr
+xset=${pkgs.xorg.xset}/bin/xset
+xkb=${xkb}/bin/xkb
+xrdb=${pkgs.xorg.xrdb}/bin/xrdb
+xmonad=${xmonad-with-pkgs}/bin/xmonad
 xscreensaver=${pkgs.xscreensaver}/bin/xscreensaver
-xmodmap=__xmodmap__/bin/xmodmap
+xmodmap=${pkgs.xorg.xmodmap}/bin/xmodmap
 
 # ------------------------------------------------------------------------------
 
@@ -56,7 +55,6 @@ if [[ -e $xmm ]]; then
 else
   echo "no $xmm found" 1>&2
 fi
-# $trackpad disable
 $xscreensaver &
 # i3status in nixos-18.09 barfs on non-C locales
 export LANG=en_GB.UTF-8 # LANG=C
