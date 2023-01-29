@@ -60,6 +60,7 @@ in
       ./unfree.nix
       (import ./std-pkgs.nix { inherit pkgs bash-header; })
       ./sixears-hosts.nix
+      ./fcron.nix
 
       # !!! red-specific services
       ./laptop.nix
@@ -86,7 +87,6 @@ in
   #-##              ./overlays2.nix
   #-#
   #-#
-  #-#              ./fcron.nix
   #-#              ./msmtp.nix
   #-#
   #-#              ./prometheus.nix
