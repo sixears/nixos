@@ -9,8 +9,10 @@ let
 in
   {
     environment.systemPackages = with pkgs; [
-      rxvt_unicode-with-plugins
+      # xmonad needs ghc in its path to compile
+      # ghc
       i3status
+      rxvt_unicode-with-plugins
       touchpad
       xkb
       xkeyboard_config
@@ -21,9 +23,9 @@ in
   services.xserver = {
     enable = true;
 
-    # at the time of writing, this was literally the only thing that
-    # worked :-(
-    # see also displayManager.session
+    # at the time of writing (2023-01-27, creating first full nixos flake), this
+    # was literally the only thing that built :-(
+    # but maybe displayManager.session can help?
     displayManager.defaultSession = "none+xmonad";
 
     windowManager = {

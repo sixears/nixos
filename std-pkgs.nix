@@ -26,8 +26,6 @@ in
       flameshot
       (import ./pkgs/fstab-check.nix { inherit pkgs; })
 
-      # xmonad needs ghc in its path to compile
-      ghc
       hddtemp
       hdparm
       inetutils

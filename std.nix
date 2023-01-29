@@ -58,8 +58,9 @@ in
       ./locate.nix
       ./acme.nix
       ./unfree.nix
-
       (import ./std-pkgs.nix { inherit pkgs bash-header; })
+      ./sixears-hosts.nix
+
       # !!! red-specific services
       ./laptop.nix
       ./deluge-killer.nix
@@ -84,7 +85,6 @@ in
   #-#              ./overlays.nix
   #-##              ./overlays2.nix
   #-#
-  #-#              ./sixears-hosts.nix
   #-#
   #-#              ./fcron.nix
   #-#              ./msmtp.nix
