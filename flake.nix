@@ -3,14 +3,10 @@
     nixpkgs.url = github:NixOS/nixpkgs/3ae365af; # 2023-01-14
     bash-header    = { url    = github:sixears/bash-header/5206b087;
                        inputs = { nixpkgs.follows = "nixpkgs"; }; };
-    mkopenvpnconfs = { url    = "./pkgs/mkopenvpnconfs";
-                       inputs = { nixpkgs.follows = "nixpkgs";
-                                  bash-header.follows = "bash-header"; };
-                     };
   };
 #  inputs.home-manager.url = github:nix-community/home-manager;
 
-  outputs = { self, nixpkgs, mkopenvpnconfs, bash-header, ... }:
+  outputs = { self, nixpkgs, bash-header, ... }:
     let
       settings-i915 = { pkgs, ... }: {
         # we need linux 5.19+ for sound support, but with 5.19.8 at least;
@@ -82,7 +78,9 @@
                   wifiMac      = "Dell XPS 9315 Laptop Wireless";
                   stateVersion = "22.05";
                   systemPackages = pkgs: [
-                    mkopenvpnconfs.defaultPackage.${system}
+                    # mkopenvpnconfs.defaultPackage.${system}
+                    (import ./pkgs/mkopenvpnconfs { inherit pkgs bash-header; })
+
                     (import ./pkgs/wifi.nix { inherit pkgs; })
                   ];
                 });

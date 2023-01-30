@@ -38,43 +38,6 @@
         "type": "github"
       }
     },
-    "flake-utils_2": {
-      "locked": {
-        "lastModified": 1659877975,
-        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "ref": "c0e246b9",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "mkopenvpnconfs": {
-      "inputs": {
-        "bash-header": [
-          "bash-header"
-        ],
-        "flake-utils": "flake-utils_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-0XUn7uG2J6WDSj+KNPgxe4oQwQZh1Vp4PA5rCtqETDs=",
-        "path": "/nix/store/nxi0iv9xrp0zgina7csscdbpgpbs6mjj-source/pkgs/mkopenvpnconfs",
-        "type": "path"
-      },
-      "original": {
-        "path": "/nix/store/nxi0iv9xrp0zgina7csscdbpgpbs6mjj-source/pkgs/mkopenvpnconfs",
-        "type": "path"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1673681449,
@@ -94,7 +57,6 @@
     "root": {
       "inputs": {
         "bash-header": "bash-header",
-        "mkopenvpnconfs": "mkopenvpnconfs",
         "nixpkgs": "nixpkgs"
       }
     }
