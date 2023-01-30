@@ -75,6 +75,7 @@ in
 
       # !!! red-specific services - MOVE THESE TO red.nix? !!!
       ./laptop.nix
+      ./printing.nix
       ./deluge-killer.nix
       # this doesn't easily co-exist with home-backup.nix
       ./local-home-backup.nix
@@ -100,17 +101,6 @@ in
   #-##  nixpkgs.config.firefox.enableAdobeFlash = true;
   #-##  nixpkgs.config.chromium.enableAdobeFlash = true;
   #-##  nixpkgs.config.chromium.enablePepperFlash = true;
-  #-#
-  #-#  sound.enable = true;
-  #-#
-  #-#  security.sudo.extraRules =
-  #-#    [
-  #-#      { commands = [ { command  = "/run/current-system/sw/bin/cupsenable";
-  #-#                       options  = [ "NOPASSWD" ]; }
-  #-#                   ];
-  #-#        users    = [ "martyn" "abigail" "heather" "xander" "jj" ];
-  #-#      }
-  #-#    ];
   #-#
   #-#  # regrettably, this seems to be destined never to be supported in nixos
   #-#  # https://github.com/NixOS/nixpkgs/issues/9848
