@@ -69,7 +69,7 @@ in
       ./sysstat.nix
       ./disthttpd.nix
 
-      # !!! red-specific services
+      # !!! red-specific services - MOVE THESE TO red.nix? !!!
       ./laptop.nix
       ./deluge-killer.nix
       # this doesn't easily co-exist with home-backup.nix
@@ -92,13 +92,6 @@ in
   #-#
   #-#  imports = [
   #-#              ./overlays.nix
-  #-##              ./overlays2.nix
-  #-#
-  #-#
-  #-#              ./xresources.nix
-  #-#
-  #-##             removed from nix :-(
-  #-##              ./osquery.nix
   #-#            ];
   #-##  nixpkgs.config.firefox.enableAdobeFlash = true;
   #-##  nixpkgs.config.chromium.enableAdobeFlash = true;

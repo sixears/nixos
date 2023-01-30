@@ -34,15 +34,21 @@ in
     };
   };
 
-    environment.etc =
-      {
-        xmonad-hs =
-          {
-            source = import ./pkgs/xmonad-hs.nix { inherit pkgs touchpad; };
-            target = "xmonad.hs";
-          };
+  environment.etc =
+    {
+      xmonad-hs =
+        {
+          source = import ./pkgs/xmonad-hs.nix { inherit pkgs touchpad; };
+          target = "xmonad.hs";
+        };
 
-        xmobarrc = { source = ./pkgs/xmobarrc; };
-        i3status = { source = ./pkgs/i3status; };
-      };
+      xmobarrc = { source = ./pkgs/xmobarrc; };
+      i3status = { source = ./pkgs/i3status; };
+
+      xresources-urxvt =
+        {
+          source = import ./pkgs/xresources/urxvt.nix { inherit pkgs; };
+          target = "Xresources/urxvt";
+        };
+    };
   }
