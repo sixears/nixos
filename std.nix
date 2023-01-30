@@ -61,6 +61,7 @@ in
       (import ./std-pkgs.nix { inherit pkgs bash-header; })
       ./sixears-hosts.nix
       ./fcron.nix
+      ./msmtp.nix
 
       # !!! red-specific services
       ./laptop.nix
