@@ -62,6 +62,7 @@ in
       ./sixears-hosts.nix
       ./fcron.nix
       ./msmtp.nix
+      ./prometheus.nix
 
       # !!! red-specific services
       ./laptop.nix
@@ -88,9 +89,7 @@ in
   #-##              ./overlays2.nix
   #-#
   #-#
-  #-#              ./msmtp.nix
   #-#
-  #-#              ./prometheus.nix
   #-#              ./openssh.nix
   #-#              ./sshkeys.nix
   #-#
