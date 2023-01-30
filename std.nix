@@ -65,6 +65,9 @@ in
       ./prometheus.nix
       ./openssh.nix
       ./sshkeys.nix
+      ./smartd.nix
+      ./sysstat.nix
+      ./disthttpd.nix
 
       # !!! red-specific services
       ./laptop.nix
@@ -85,18 +88,9 @@ in
   #-##    enable = true;
   #-#  };
   #-#
-  #-#
   #-#  imports = [
   #-#              ./overlays.nix
   #-##              ./overlays2.nix
-  #-#
-  #-#
-  #-#
-  #-#
-  #-#              ./smartd.nix
-  #-#              ./sysstat.nix
-  #-#
-  #-#              ./disthttpd.nix
   #-#
   #-##             this doesn't easily co-exist with home-backup.nix
   #-##              ./local-home-backup.nix
