@@ -44,7 +44,11 @@ in
     programs.ssh.knownHosts =
       { "localhost" = { publicKeyFile = sshPubKey; }; };
 
-    # ----------------------------------------------------
+    # -- audio ---------------------------------------------
+
+    sound.enable = true;
+
+    # ------------------------------------------------------
 
     imports = [
       ./remote-nixos-caches.nix
