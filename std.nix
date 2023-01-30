@@ -48,6 +48,19 @@ in
 
     sound.enable = true;
 
+    # -- (u)mount ------------------------------------------
+
+    # regrettably, this seems to be destined never to be supported in nixos
+    # https://github.com/NixOS/nixpkgs/issues/9848
+    security.wrappers.mount = {
+      source = "${pkgs.utillinux}/bin/mount";
+      owner = "root"; group = "root"; setuid = true;
+    };
+    security.wrappers.umount = {
+      source = "${pkgs.utillinux}/bin/umount";
+      owner = "root"; group = "root"; setuid = true;
+    };
+
     # ------------------------------------------------------
 
     imports = [
@@ -102,22 +115,6 @@ in
   #-##  nixpkgs.config.chromium.enableAdobeFlash = true;
   #-##  nixpkgs.config.chromium.enablePepperFlash = true;
   #-#
-  #-#  # regrettably, this seems to be destined never to be supported in nixos
-  #-#  # https://github.com/NixOS/nixpkgs/issues/9848
-  #-#  security.wrappers.mount = {
-  #-#    source = "${pkgs.utillinux}/bin/mount";
-  #-#    owner = "root";
-  #-#    group = "root";
-  #-##    setgid = true;
-  #-#    setuid = true;
-  #-#  };
-  #-#  security.wrappers.umount = {
-  #-#    source = "${pkgs.utillinux}/bin/umount";
-  #-#    owner = "root";
-  #-#    group = "root";
-  #-##    setgid = true;
-  #-#    setuid = true;
-  #-#  };
   #-#
   #-#
   #-#  programs.sysdig.enable = true;
