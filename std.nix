@@ -39,6 +39,8 @@ in
 
     environment.etc.nixos-cfg.source = "${nixos-cfg}";
 
+    programs.sysdig.enable = true;
+
     # -- ssh -----------------------------------------------
 
     programs.ssh.knownHosts =
@@ -99,22 +101,5 @@ in
 
 # -- that's all, folks! --------------------------------------------------------
 
-  #-#
-  #-#  security.pki.certificateFiles = [ ./cert.pem ];
-  #-#
-  #-#  services.emacs = {
-  #-#    defaultEditor = true;
-  #-##    no good - doesn't have (e.g.,) ssh keys, or the right tmpdir
-  #-##    enable = true;
-  #-#  };
-  #-#
-  #-#  imports = [
-  #-#              ./overlays.nix
-  #-#            ];
-  #-##  nixpkgs.config.firefox.enableAdobeFlash = true;
-  #-##  nixpkgs.config.chromium.enableAdobeFlash = true;
-  #-##  nixpkgs.config.chromium.enablePepperFlash = true;
-  #-#
-  #-#
-  #-#
-  #-#  programs.sysdig.enable = true;
+#  security.pki.certificateFiles = [ ./cert.pem ];
+#  imports = [ ./overlays.nix ];
