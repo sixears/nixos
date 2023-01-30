@@ -63,6 +63,8 @@ in
       ./fcron.nix
       ./msmtp.nix
       ./prometheus.nix
+      ./openssh.nix
+      ./sshkeys.nix
 
       # !!! red-specific services
       ./laptop.nix
@@ -90,8 +92,6 @@ in
   #-#
   #-#
   #-#
-  #-#              ./openssh.nix
-  #-#              ./sshkeys.nix
   #-#
   #-#              ./smartd.nix
   #-#              ./sysstat.nix
