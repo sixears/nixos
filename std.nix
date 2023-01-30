@@ -72,6 +72,8 @@ in
       # !!! red-specific services
       ./laptop.nix
       ./deluge-killer.nix
+      # this doesn't easily co-exist with home-backup.nix
+      ./local-home-backup.nix
     ] ++ filesystems;
   }
 
@@ -92,8 +94,6 @@ in
   #-#              ./overlays.nix
   #-##              ./overlays2.nix
   #-#
-  #-##             this doesn't easily co-exist with home-backup.nix
-  #-##              ./local-home-backup.nix
   #-#
   #-#              ./xresources.nix
   #-#
