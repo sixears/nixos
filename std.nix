@@ -1,5 +1,5 @@
 { hostname, domainname, stateVersion, systemPackages, logicalCores, system
-, filesystems
+, filesystems, imports
 , bash-header
 , boot      ? ./boot/efi.nix
 , sshPubKey ? ./sshkeys + "/${hostname}.pub"
@@ -66,7 +66,7 @@ in
 
     # ------------------------------------------------------
 
-    imports = [
+    imports = (imports pkgs) ++ [
       ./remote-nixos-caches.nix
       boot
       (import ./networking.nix { inherit hostname domainname; })
@@ -89,12 +89,6 @@ in
       ./disthttpd.nix
 
       # !!! red-specific services - MOVE THESE TO red.nix? !!!
-      (import ./xserver.nix { inherit pkgs bash-header; })
-      ./laptop.nix
-      ./printing.nix
-      ./deluge-killer.nix
-      # this doesn't easily co-exist with home-backup.nix
-      ./local-home-backup.nix
     ] ++ filesystems ++ std-filesystems;
   }
 

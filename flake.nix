@@ -48,13 +48,13 @@
 
       dell-xps-13-9310 = { hostname, domainname, stateVersion, logicalCores
                          , etherMac, wifiMac, systemPackages, system
-                         , filesystems }:
+                         , filesystems, imports }:
         settingses-dell-xps-13-9310 ++ [
           (import ./ethernet.nix { inherit etherMac; })
           (import ./wifi.nix     { inherit wifiMac; })
           (import ./std.nix      { inherit hostname domainname stateVersion
                                            logicalCores systemPackages system
-                                           bash-header filesystems;
+                                           bash-header filesystems imports;
                                  })
         ];
 
@@ -88,6 +88,17 @@
                     ./filesystems/local.nix
                     ./filesystems/usb-sda.nix
                   ];
+                  imports = pkgs: [
+                    (import ./xserver.nix { inherit pkgs bash-header; })
+                    ./xserver-dvorak.nix
+                    ./xserver-intel.nix
+
+                    ./laptop.nix
+                    ./printing.nix
+                    ./deluge-killer.nix
+                    # this doesn't easily co-exist with home-backup.nix
+                    ./local-home-backup.nix
+                  ];
                 });
 
           };
@@ -100,9 +111,6 @@
 #X#     imports =
 #X#       [
 #X#
-#X#         ../xserver.nix
-#X#         ../xserver-dvorak.nix
-#X#         ../xserver-intel.nix
 #X#
 #X#         ../desktop.nix
 #X#         ../printing.nix
