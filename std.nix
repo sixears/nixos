@@ -1,4 +1,5 @@
 { hostname, domainname, stateVersion, systemPackages, logicalCores, system
+, filesystems
 , bash-header
 , boot      ? ./boot/efi.nix
 , sshPubKey ? ./sshkeys + "/${hostname}.pub"
@@ -7,8 +8,8 @@
 { lib, pkgs, ... }:
 
 let
-  filesystems   = [ ./filesystems/std.nix ];
-  nixos-cfg     = import ./nixos-cfg { inherit pkgs system; };
+  std-filesystems = [ ./filesystems/std.nix ];
+  nixos-cfg       = import ./nixos-cfg { inherit pkgs system; };
 in
   {
     # Every once in a while, a new NixOS release may change configuration
@@ -72,7 +73,6 @@ in
       ./tz-gmt.nix
       (import ./nix-daemon.nix { inherit logicalCores; })
       ./keyboard.nix
-      (import ./xserver.nix { inherit pkgs bash-header; })
       ./display.nix
       ./locate.nix
       ./acme.nix
@@ -89,12 +89,13 @@ in
       ./disthttpd.nix
 
       # !!! red-specific services - MOVE THESE TO red.nix? !!!
+      (import ./xserver.nix { inherit pkgs bash-header; })
       ./laptop.nix
       ./printing.nix
       ./deluge-killer.nix
       # this doesn't easily co-exist with home-backup.nix
       ./local-home-backup.nix
-    ] ++ filesystems;
+    ] ++ filesystems ++ std-filesystems;
   }
 
 # ==============================================================================

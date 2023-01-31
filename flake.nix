@@ -47,13 +47,14 @@
         [ settings-i915 settings-intel settings-laptop settings-nvme0 ];
 
       dell-xps-13-9310 = { hostname, domainname, stateVersion, logicalCores
-                         , etherMac, wifiMac, systemPackages, system }:
+                         , etherMac, wifiMac, systemPackages, system
+                         , filesystems }:
         settingses-dell-xps-13-9310 ++ [
           (import ./ethernet.nix { inherit etherMac; })
           (import ./wifi.nix     { inherit wifiMac; })
           (import ./std.nix      { inherit hostname domainname stateVersion
                                            logicalCores systemPackages system
-                                           bash-header;
+                                           bash-header filesystems;
                                  })
         ];
 
@@ -78,10 +79,14 @@
                   wifiMac      = "Dell XPS 9315 Laptop Wireless";
                   stateVersion = "22.05";
                   systemPackages = pkgs: [
-                    # mkopenvpnconfs.defaultPackage.${system}
                     (import ./pkgs/mkopenvpnconfs { inherit pkgs bash-header; })
-
                     (import ./pkgs/wifi.nix { inherit pkgs; })
+                  ];
+                  filesystems = [
+                    ./filesystems/efi.nix
+                    ./filesystems/mobile-music.nix
+                    ./filesystems/local.nix
+                    ./filesystems/usb-sda.nix
                   ];
                 });
 
@@ -93,13 +98,7 @@
 #X# { config ? import ./nullcfg.nix, lib, options, modulesPath, pkgs, specialArgs ? {} }:
 #X#   {
 #X#     imports =
-#X#       [ ../std.nix
-#X#         ../versions/unstable.nix
-#X#
-#X#         ../filesystems/efi.nix
-#X#         ../filesystems/mobile-music.nix
-#X#         ../filesystems/local.nix
-#X#         ../filesystems/usb-sda.nix
+#X#       [
 #X#
 #X#         ../xserver.nix
 #X#         ../xserver-dvorak.nix
