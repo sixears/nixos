@@ -1,0 +1,24 @@
+--- a/t/def-trans.t	2019-06-27 16:55:15.885246518 +0000
++++ b/t/def-trans.t	2019-06-27 16:56:03.952694567 +0000
+@@ -12,9 +12,9 @@
+ use Fcntl                 qw( SEEK_END );
+ use File::Glob            qw( );
+ use File::Spec::Functions qw( catdir updir );
++use File::Temp            qw( tempdir );
+ use FindBin               qw( $Bin );
+ use IO::Select            qw( );
+-use POSIX                 qw( tmpnam );
+ use Test::More            tests => 10, import => [qw( diag is like ok )];
+ 
+ use lib catdir $Bin, updir, 'lib';
+@@ -50,8 +50,8 @@
+ use constant TRANS1 => sub { "++$_[0]" };
+ use constant TRANS2 => sub { scalar(reverse($_[0])) . $_[0] };
+ 
+-use constant TMPNAM1 => tmpnam;
+-use constant TMPNAM2 => tmpnam;
++use constant TMPNAM1 => tempdir;
++use constant TMPNAM2 => tempdir;
+ 
+ use Log::Info qw( :DEFAULT :log_levels );
+ 

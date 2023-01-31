@@ -101,6 +101,8 @@
 
                     ./desktop.nix
                     ./scanning.nix
+
+                    ./finbar.nix
                   ];
                 });
 
@@ -115,7 +117,6 @@
 #X#       [
 #X#
 #X#
-#X#         ../finbar.nix
 #X#
 #X# #        ../containers-podcaster.nix
 #X#         ../keyboardio.nix

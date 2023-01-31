@@ -1,0 +1,24 @@
+--- a/t/defaults.t	2019-06-27 16:57:20.614814275 +0000
++++ b/t/defaults.t	2019-06-27 16:58:06.453287926 +0000
+@@ -8,9 +8,9 @@
+ 
+ =cut
+ 
+-use FindBin  qw( $Bin );
+-use POSIX    qw( tmpnam );
+-use Test     qw( ok plan );
++use FindBin    qw( $Bin );
++use File::Temp qw( tempdir );
++use Test       qw( ok plan );
+ 
+ use lib  "$Bin/../lib";
+ 
+@@ -40,7 +40,7 @@
+ sub grab_output {
+   die 'usage: grab_output(string to eval)' if @_ != 1;
+   my $code = shift;
+-  my $tmp_o = POSIX::tmpnam(); my $tmp_e = POSIX::tmpnam();
++  my $tmp_o = tempdir(); my $tmp_e = tempdir();
+   local (*OLDOUT, *OLDERR);
+ 
+   # Try to get a message to the outside world if we die

@@ -1,0 +1,11 @@
+--- a/lib/Log/Info.pm	2019-06-27 17:01:10.638172970 +0000
++++ b/lib/Log/Info.pm	2019-06-27 17:01:38.549852471 +0000
+@@ -76,6 +76,8 @@
+   @EXPORT_OK = qw( $PACKAGE $VERSION );
+ }
+ 
++no warnings 'experimental';
++
+ # Utility -----------------------------
+ 
+ use Carp                        qw( carp croak );

@@ -1,0 +1,39 @@
+--- a/t/test.pm	2019-06-27 17:32:46.033787161 +0000
++++ b/t/test.pm	2019-06-27 17:33:55.629831926 +0000
+@@ -136,8 +136,8 @@
+ use File::Compare          1.1002 qw( );
+ use File::Path             1.0401 qw( mkpath rmtree );
+ use File::Spec                0.6 qw( );
++use File::Temp                    qw( );
+ use FindBin                  1.42 qw( $Bin );
+-use POSIX                    1.02 qw( );
+ use Test                    1.122 qw( ok skip );
+ 
+ # ----------------------------------------------------------------------------
+@@ -395,7 +395,7 @@
+   my $tmpfh  = do { local *F; *F; };
+   my $savefh = do { local *F; *F; };
+ 
+-  my $tmpnam = POSIX::tmpnam;
++  my $tmpnam = File::Temp::tmpnam;
+   sysopen $tmpfh, $tmpnam, O_RDWR | O_CREAT | O_EXCL;
+   unlink $tmpnam;
+   select((select($tmpfh), $| = 1)[0]);
+@@ -522,7 +522,7 @@
+     };
+ 
+   *tmpnam = sub {
+-    my $tmpnam = POSIX::tmpnam;
++    my $tmpnam = File::Temp::tmpnam;
+ 
+     if (@_) {
+       push @tmpfns, [ $tmpnam, $_[0] ];
+@@ -583,7 +583,7 @@
+ 
+ my @tmpdirs;
+ sub tempdir {
+-  my $tempdir = POSIX::tmpnam;
++  my $tempdir = File::Temp::tmpnam;
+   mkdir $tempdir, 0700
+     or die "Failed to create temporary directory $tempdir: $!\n";
+ 
