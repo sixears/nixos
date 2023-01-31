@@ -98,6 +98,8 @@
                     ./deluge-killer.nix
                     # this doesn't easily co-exist with home-backup.nix
                     ./local-home-backup.nix
+
+                    ./desktop.nix
                   ];
                 });
 
@@ -113,7 +115,6 @@
 #X#
 #X#
 #X#         ../desktop.nix
-#X#         ../printing.nix
 #X#         ../scanning.nix
 #X#         ../finbar.nix
 #X#
