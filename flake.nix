@@ -100,6 +100,7 @@
                     ./local-home-backup.nix
 
                     ./desktop.nix
+                    ./scanning.nix
                   ];
                 });
 
@@ -114,8 +115,6 @@
 #X#       [
 #X#
 #X#
-#X#         ../desktop.nix
-#X#         ../scanning.nix
 #X#         ../finbar.nix
 #X#
 #X# #        ../containers-podcaster.nix
