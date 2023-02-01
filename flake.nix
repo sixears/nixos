@@ -103,6 +103,11 @@
                     ./scanning.nix
 
                     ./finbar.nix
+                    ./keyboardio.nix
+
+
+         ./users/people/martyn.nix
+         ./users/people/syncthing-martyn.nix
                   ];
                 });
 
@@ -119,7 +124,6 @@
 #X#
 #X#
 #X# #        ../containers-podcaster.nix
-#X#         ../keyboardio.nix
 #X# #        ../bluetooth.nix
 #X#
 #X#         ../laptop.nix
@@ -134,9 +138,6 @@
 #X#
 #X# #        ../docker.nix
 #X#
-#X#         ../local-home-backup.nix
-#X#         ../users/people/martyn.nix
-#X#         ../users/people/syncthing-martyn.nix
 #X#
 #X#         ../nix-serve.nix
 #X#
