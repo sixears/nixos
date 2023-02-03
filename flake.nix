@@ -95,6 +95,9 @@
                     (import ./pkgs/wifi.nix { inherit pkgs; })
 
                     pkgs.shntool # picks up overlay for 24-bit WAV patch
+
+                    (import ./wifi-conns/bowery-secure-init.nix { inherit pkgs; })
+
                   ];
                   filesystems = [
                     ./filesystems/efi.nix

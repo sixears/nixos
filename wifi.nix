@@ -4,7 +4,6 @@
 let
   nm-dispatch   = import ./pkgs/nm-dispatch.nix              { inherit pkgs; };
   parmiters     = import ./wifi-conns/parmiters.nix          { inherit pkgs; };
-  bowery-secure = import ./wifi-conns/bowery-secure-init.nix { inherit pkgs; };
 in
   {
     networking.networkmanager = { enable = true;
@@ -17,7 +16,6 @@ in
       target = "NetworkManager/dispatcher.d/70-wifi-wired-exclusive.sh";
     };
 
+    # !!! THIS SHOULD BE FOR drifting ONLY !!!
     services.fcron.systab = "@ 600s ${parmiters}";
-
-    environment.systemPackages = [ bowery-secure ];
   }
