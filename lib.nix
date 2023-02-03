@@ -1,6 +1,6 @@
 # ------------------------------------------------------------------------------
 
-{ nixpkgs ? import <nixpkgs> {} }:
+{ plib }:
 
 rec {
   /* :: Map String String -> Map String [String]
@@ -15,7 +15,7 @@ rec {
 
   invertSet = input:
     let inherit (builtins)          attrNames getAttr hasAttr;
-        inherit (nixpkgs.lib.lists) foldr;
+        inherit (plib.lists) foldr;
         go = key: acc:
           let value = getAttr key input;
            in acc // { ${value} =
@@ -110,7 +110,7 @@ rec {
       err   = name: "multiple values for ${name}";
       merge = name: values: select1 (err name) values;
       # List of likely-looking derivations in the input.
-      dervs = builtins.filter nixpkgs.lib.attrsets.isDerivation input;
+      dervs = builtins.filter plib.attrsets.isDerivation input;
     in
       if 0 != builtins.length(dervs)
       then let
@@ -119,5 +119,5 @@ rec {
                       + "${one_derv.name}";
             in
              builtins.throw e_msg
-      else nixpkgs.lib.attrsets.zipAttrsWith merge input;
+      else plib.attrsets.zipAttrsWith merge input;
 }

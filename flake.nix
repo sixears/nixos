@@ -69,6 +69,18 @@
             nixos-system {
               inherit system;
               modules =
+                [
+                  { nixpkgs.overlays =
+                      # to import each overlay individually
+                      # [ (import ./overlays/shntool.nix) ];
+
+                      # import everything from ./overlays/
+                      let
+                        lib = import ./lib.nix { plib = nixpkgs.lib; };
+                      in
+                        lib.importNixesNoArgs ./overlays;
+                  }
+                ] ++
                 (dell-xps-13-9310 {
                   inherit system;
                   hostname     = "red";
@@ -81,6 +93,8 @@
                   systemPackages = pkgs: [
                     (import ./pkgs/mkopenvpnconfs { inherit pkgs bash-header; })
                     (import ./pkgs/wifi.nix { inherit pkgs; })
+
+                    pkgs.shntool # picks up overlay for 24-bit WAV patch
                   ];
                   filesystems = [
                     ./filesystems/efi.nix
@@ -105,9 +119,8 @@
                     ./finbar.nix
                     ./keyboardio.nix
 
-
-         ./users/people/martyn.nix
-         ./users/people/syncthing-martyn.nix
+                    ./users/people/martyn.nix
+                    ./users/people/syncthing-martyn.nix
                   ];
                 });
 

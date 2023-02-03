@@ -1,7 +1,7 @@
 # { lib, stdenv, fetchurl, flac }:
-{ nixpkgs ? import <nixpkgs> {} }:
+{ pkgs ? import <pkgs> {} }:
 
-with nixpkgs;
+with pkgs;
 
 stdenv.mkDerivation {
   version = "3.0.10";

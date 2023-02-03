@@ -1,3 +1,1 @@
-self: super: {
-  shntool = import ./pkgs/shntool { nixpkgs = super; };
-}
+final: prev: { shntool = import ../pkgs/shntool { pkgs = prev; }; }
