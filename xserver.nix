@@ -28,6 +28,8 @@ in
     # but maybe displayManager.session can help?
     displayManager.defaultSession = "none+xmonad";
 
+    libinput.enable = true;
+
     windowManager = {
       xmonad.enable = true;
       xmonad.enableContribAndExtras = true;

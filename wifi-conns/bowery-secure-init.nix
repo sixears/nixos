@@ -1,6 +1,14 @@
 { pkgs }: pkgs.writers.writeBashBin "bowery-secure-init" ''
 set -eu -o pipefail
 
+grep=${pkgs.gnugrep}/bin/grep
+nmcli=${pkgs.networkmanager}/bin/nmcli
+
+if $nmcli | $grep --silent '^bowery-secure '; then
+  echo 'bowery-secure connection already exists (per `nmcli conn`)' 1>&2
+  exit 4
+fi
+
 case $# in
   2) base_args=( type     wifi
                  con-name bowery-secure
