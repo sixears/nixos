@@ -119,6 +119,7 @@
                     ./desktop.nix
                     ./pulseaudio.nix
                     ./scanning.nix
+                    ./openvpn.nix
 
                     ./finbar.nix
                     ./keyboardio.nix
@@ -144,8 +145,6 @@
 #X# #        ../bluetooth.nix
 #X#
 #X#
-#X#         ../dkill.nix
-#X#         ../openvpn.nix
 #X# #        ../tmpwww.nix
 #X# #        ../virtualbox.nix
 #X#         ../nix-serve.nix
