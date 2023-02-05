@@ -3,6 +3,7 @@
 
 let
   nm-dispatch   = import ./pkgs/nm-dispatch.nix              { inherit pkgs; };
+  # !!! THIS SHOULD BE ON drifting ONLY
   parmiters     = import ./wifi-conns/parmiters.nix          { inherit pkgs; };
 in
   {

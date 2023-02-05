@@ -117,6 +117,7 @@
                     ./local-home-backup.nix
 
                     ./desktop.nix
+                    ./pulseaudio.nix
                     ./scanning.nix
 
                     ./finbar.nix
@@ -142,8 +143,6 @@
 #X# #        ../containers-podcaster.nix
 #X# #        ../bluetooth.nix
 #X#
-#X#         ../laptop.nix
-#X#         ../pulseaudio.nix
 #X#
 #X#         ../dkill.nix
 #X#         ../openvpn.nix
