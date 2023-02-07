@@ -8,7 +8,8 @@
 
   outputs = { self, nixpkgs, bash-header, ... }:
     let
-      settings-i915 = { pkgs, ... }: {
+      settings-i915 = { pkgs, ... }:
+        {
         # we need linux 5.19+ for sound support, but with 5.19.8 at least;
         # the i915 crashes the display
         boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_1;
@@ -59,7 +60,9 @@
         ];
 
       nixos-system = { modules, system ? "x86_64-linux" }:
-        nixpkgs.lib.nixosSystem { inherit system modules; };
+        nixpkgs.lib.nixosSystem { inherit system modules;
+                                  # pass system through to modules & imports
+                                  specialArgs = { inherit system; }; };
     in {
       nixosConfigurations = {
         red =
@@ -96,7 +99,7 @@
 
                     pkgs.shntool # picks up overlay for 24-bit WAV patch
 
-                    (import ./wifi-conns/bowery-secure-init.nix { inherit pkgs; })
+                    (import ./wifi-conns/bowery-secure-init.nix {inherit pkgs;})
 
                   ];
                   filesystems = [
@@ -120,6 +123,7 @@
                     ./pulseaudio.nix
                     ./scanning.nix
                     ./openvpn.nix
+                    ./nix-serve.nix
 
                     ./finbar.nix
                     ./keyboardio.nix
@@ -147,7 +151,6 @@
 #X#
 #X# #        ../tmpwww.nix
 #X# #        ../virtualbox.nix
-#X#         ../nix-serve.nix
 #X#
 #X#
 #X# #        ../docker.nix
