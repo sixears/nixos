@@ -1,0 +1,12 @@
+let HostType : Type  = { fqdn     : Text
+                       , desc     : Text
+                       , ipv4     : Text
+                       , mac      : Optional Text
+                       , comments : List Text
+                       }
+ in { domains      : { sub_domain : Text, in_addr : Text }
+    , hosts        : List HostType
+    , aliases      : List { from : Text, to : Text }
+    , dns_servers  : List Text
+    , mail_servers : List Text
+    }

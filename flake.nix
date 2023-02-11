@@ -1,12 +1,13 @@
 {
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs/3ae365af; # 2023-01-14
-    bash-header    = { url    = github:sixears/bash-header/5206b087;
-                       inputs = { nixpkgs.follows = "nixpkgs"; }; };
+    hpkgs1.url  = github:sixears/hpkgs1/r0.0.8.0;
+    bash-header = { url    = github:sixears/bash-header/5206b087;
+                    inputs = { nixpkgs.follows = "nixpkgs"; }; };
   };
 #  inputs.home-manager.url = github:nix-community/home-manager;
 
-  outputs = { self, nixpkgs, bash-header, ... }:
+  outputs = { self, nixpkgs, hpkgs1, bash-header, ... }:
     let
       settings-i915 = { pkgs, ... }:
         {
@@ -60,9 +61,15 @@
         ];
 
       nixos-system = { modules, system ? "x86_64-linux" }:
-        nixpkgs.lib.nixosSystem { inherit system modules;
-                                  # pass system through to modules & imports
-                                  specialArgs = { inherit system; }; };
+        let
+          hpkgs = hpkgs1.packages.${system};
+        in
+          nixpkgs.lib.nixosSystem { inherit system modules;
+                                    # pass system through to modules & imports
+                                    specialArgs =
+                                      { inherit system bash-header;
+                                        inherit (hpkgs) htinydns; };
+                                  };
     in {
       nixosConfigurations = {
         red =
@@ -124,6 +131,7 @@
                     ./scanning.nix
                     ./openvpn.nix
                     ./nix-serve.nix
+                    ./dns-server/cloudflare.nix
 
                     ./finbar.nix
                     ./keyboardio.nix
@@ -156,9 +164,6 @@
 #X# #        ../docker.nix
 #X#
 #X#
-#X#         ../nix-serve.nix
-#X#
-#X# ../dns-server-cloudflare.nix
 #X#
 #X#         ../fwupd.nix
 #X#       ];
