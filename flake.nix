@@ -30,6 +30,8 @@
         boot.kernelParams = [ "i915.enable_psr=0" "i915.enable_fbc=1" ];
       };
 
+      # --------------------------------
+
       settings-nvme0 = { ... }: {
         services.smartd.devices =
           [ { device="/dev/nvme0"; options = "-d nvme -W 0,70,75"; } ];
@@ -37,16 +39,26 @@
         boot.initrd.availableKernelModules = [ "nvme" ];
       };
 
+      # --------------------------------
+
       settings-intel = { ... }: {
         boot.kernelModules = [ "kvm-intel" ];
       };
+
+      # --------------------------------
 
       settings-laptop = { ... }: {
         powerManagement.cpuFreqGovernor = "powersave";
       };
 
+      # --------------------------------
+
       settingses-dell-xps-13-9310 =
-        [ settings-i915 settings-intel settings-laptop settings-nvme0 ];
+        [ settings-i915 settings-intel settings-laptop settings-nvme0
+          (import ./fwupd.nix)
+        ];
+
+      # --------------------------------
 
       dell-xps-13-9310 = { hostname, domainname, stateVersion, logicalCores
                          , etherMac, wifiMac, systemPackages, system
@@ -60,6 +72,8 @@
                                  })
         ];
 
+      # --------------------------------
+
       nixos-system = { modules, system ? "x86_64-linux" }:
         let
           hpkgs = hpkgs1.packages.${system};
@@ -70,6 +84,9 @@
                                       { inherit system bash-header;
                                         inherit (hpkgs) htinydns; };
                                   };
+
+      # --------------------------------
+
     in {
       nixosConfigurations = {
         red =
@@ -150,20 +167,11 @@
 #X#   {
 #X#     imports =
 #X#       [
-#X#
-#X#
-#X#
 #X# #        ../containers-podcaster.nix
 #X# #        ../bluetooth.nix
-#X#
-#X#
 #X# #        ../tmpwww.nix
 #X# #        ../virtualbox.nix
-#X#
-#X#
 #X# #        ../docker.nix
-#X#
-#X#
 #X#
 #X#         ../fwupd.nix
 #X#       ];
