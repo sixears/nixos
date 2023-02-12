@@ -9,38 +9,6 @@
 
   outputs = { self, nixpkgs, hpkgs1, bash-header, ... }:
     let
-      settings-i915 = { pkgs, ... }:
-        {
-        # we need linux 5.19+ for sound support, but with 5.19.8 at least;
-        # the i915 crashes the display
-        boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_1;
-        # https://wiki.archlinux.org/title/Dell_XPS_13_(9310)#Random_Hangs_on_i915_with_kernel
-        # Random Hangs on i915 with kernel
-        #
-        #   Occasionally the laptop hangs when running the i915 Linux
-        #   driver.
-        #   This results in an occasional visual delay to keyboard inputs
-        #   and makes the system appear to be crashing.
-        #
-        # The bug report for this issue can be found here:
-        # https://gitlab.freedesktop.org/drm/intel/-/issues/3496
-        #
-        # Set panel self refresh to off in the kernel parameters:
-        # i915.enable_psr=0 i915.enable_fbc=1.
-        boot.kernelParams = [ "i915.enable_psr=0" "i915.enable_fbc=1" ];
-      };
-
-      # --------------------------------
-
-      settings-nvme0 = { ... }: {
-        services.smartd.devices =
-          [ { device="/dev/nvme0"; options = "-d nvme -W 0,70,75"; } ];
-
-        boot.initrd.availableKernelModules = [ "nvme" ];
-      };
-
-      # --------------------------------
-
       settings-intel = { ... }: {
         boot.kernelModules = [ "kvm-intel" ];
       };
@@ -54,12 +22,16 @@
       # --------------------------------
 
       settingses-dell-xps-13-9310 =
-        [ settings-i915 settings-intel settings-laptop settings-nvme0
+        [ # settings-i915
+          (import  ./video/i915.nix)
+          settings-intel settings-laptop
+          (import ./storage/nvme0.nix)
           (import ./fwupd.nix)
         ];
 
       # --------------------------------
 
+      # https://wiki.archlinux.org/title/Dell_XPS_13_(9310)
       dell-xps-13-9310 = { hostname, domainname, stateVersion, logicalCores
                          , etherMac, wifiMac, systemPackages, system
                          , filesystems, imports }:
@@ -163,34 +135,13 @@
     };
 }
 
-#X# { config ? import ./nullcfg.nix, lib, options, modulesPath, pkgs, specialArgs ? {} }:
-#X#   {
-#X#     imports =
-#X#       [
-#X# #        ../containers-podcaster.nix
-#X# #        ../bluetooth.nix
-#X# #        ../tmpwww.nix
-#X# #        ../virtualbox.nix
-#X# #        ../docker.nix
-#X#
-#X#         ../fwupd.nix
-#X#       ];
-#X#
-#X#     fileSystems =
-#X#       {
-#X#         "/mnt/sdcard" =
-#X#           {
-#X#             device = "/dev/disk/by-path/pci-0000:39:00.0-usb-0:1.4:1.0-scsi-0:0:0:1-part1";
-#X#             options = [ "user" "utf8" "umask=000" "noauto" "exec" "sync" ];
-#X#           };
-#X#       };
-#X#
-#X#
-#X#     # SoundWire
-#X# #    networking.firewall.allowedUDPPorts = [ 59010 59011 ];
-#X#
-#X#     # enable the CFSSL CA api-server.
-#X#     services.cfssl.enable = true;
-#X#     services.cfssl.port   = 59998;
-#X#   }
-#X#
+  # # # SoundWire
+  # # Audio casting for Linux-Android https://georgielabs.net/
+  # networking.firewall.allowedUDPPorts = [ 59010 59011 ];
+  #
+  # # # CFSSL - SSL Cert creation service
+  # # https://blog.cloudflare.com/introducing-cfssl/
+  # # https://github.com/cloudflare/cfssl
+  # # enable the CFSSL CA api-server.
+  # services.cfssl.enable = true;
+  # services.cfssl.port   = 59998;
