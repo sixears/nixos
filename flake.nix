@@ -9,12 +9,6 @@
 
   outputs = { self, nixpkgs, hpkgs1, bash-header, ... }:
     let
-      settings-intel = { ... }: {
-        boot.kernelModules = [ "kvm-intel" ];
-      };
-
-      # --------------------------------
-
       settings-laptop = { ... }: {
         powerManagement.cpuFreqGovernor = "powersave";
       };
@@ -24,9 +18,10 @@
       settingses-dell-xps-13-9310 =
         [ # settings-i915
           (import  ./video/i915.nix)
-          settings-intel settings-laptop
+          (import ./virtualization/intel.nix)
           (import ./storage/nvme0.nix)
           (import ./fwupd.nix)
+          settings-laptop
         ];
 
       # --------------------------------
