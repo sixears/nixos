@@ -5,23 +5,15 @@
     bash-header = { url    = github:sixears/bash-header/5206b087;
                     inputs = { nixpkgs.follows = "nixpkgs"; }; };
   };
-#  inputs.home-manager.url = github:nix-community/home-manager;
 
   outputs = { self, nixpkgs, hpkgs1, bash-header, ... }:
     let
-      settings-laptop = { ... }: {
-        powerManagement.cpuFreqGovernor = "powersave";
-      };
-
-      # --------------------------------
-
       settingses-dell-xps-13-9310 =
-        [ # settings-i915
-          (import  ./video/i915.nix)
+        [ (import  ./video/i915.nix)
           (import ./virtualization/intel.nix)
           (import ./storage/nvme0.nix)
-          (import ./fwupd.nix)
-          settings-laptop
+          (import ./hardware/fwupd.nix)
+          (import ./hostclass/laptop.nix)
         ];
 
       # --------------------------------
