@@ -8,31 +8,6 @@
 
   outputs = { self, nixpkgs, hpkgs1, bash-header, ... }:
     let
-      settingses-dell-xps-13-9310 =
-        [ (import  ./video/i915.nix)
-          (import ./virtualization/intel.nix)
-          (import ./storage/nvme0.nix)
-          (import ./hardware/fwupd.nix)
-          (import ./hostclass/laptop.nix)
-        ];
-
-      # --------------------------------
-
-      # https://wiki.archlinux.org/title/Dell_XPS_13_(9310)
-      dell-xps-13-9310 = { hostname, domainname, stateVersion, logicalCores
-                         , etherMac, wifiMac, systemPackages, system
-                         , filesystems, imports }:
-        settingses-dell-xps-13-9310 ++ [
-          (import ./ethernet.nix { inherit etherMac; })
-          (import ./wifi.nix     { inherit wifiMac; })
-          (import ./std.nix      { inherit hostname domainname stateVersion
-                                           logicalCores systemPackages system
-                                           bash-header filesystems imports;
-                                 })
-        ];
-
-      # --------------------------------
-
       nixos-system = { modules, system ? "x86_64-linux" }:
         let
           hpkgs = hpkgs1.packages.${system};
@@ -67,8 +42,8 @@
                         lib.importNixesNoArgs ./overlays;
                   }
                 ] ++
-                (dell-xps-13-9310 {
-                  inherit system;
+                (import ./hardware/dell-xps-13-9310.nix {
+                  inherit system bash-header;
                   hostname     = "red";
                   domainname   = "sixears.co.uk";
                   logicalCores = 12;
