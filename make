@@ -132,6 +132,4 @@ bash_cmd="$env -i ${env_add[*]} ${cmd[*]}"
 if [[ 0 -ne  ${#sfx_cmd[@]} ]]; then
   bash_cmd+=" ${sfx_cmd[*]}"
 fi
-# go_exec "${pfx_cmd[@]}" bash -c "$env -i PATH=/run/current-system/sw/bin ${env_add[*]} ${cmd[*]} ${sfx_cmd[*]}"
 go_exec "${pfx_cmd[@]}" bash -c "$bash_cmd"
-# |& grep -v '^collision between'
