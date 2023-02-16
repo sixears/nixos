@@ -23,6 +23,9 @@ in
       };
     };
 
+# systemd.services.<name>.requires
+    systemd.services.dnscache.requires = [ "tinydns.service" ];
+
     services.dnscache = {
       enable = true;
       clientIps = [ "127" "192.168" ];

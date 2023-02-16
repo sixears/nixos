@@ -14,12 +14,7 @@ services=(ifconfig.me
           http://checkip.amazonaws.com
          )
 
-if [ $# -eq 1 ]; then
-  # divide by repeat interval for best chance of a wide spread
-  svcs=(''${services[$(($($date +%s) / $1 % ''${#services[@]}))]})
-else
-  svcs=("''${services[@]}")
-fi
+svcs=("''${services[@]}")
 
 do_one=false
 case $# in
