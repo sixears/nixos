@@ -6,10 +6,11 @@
   (import ../storage/nvme0.nix)
   (import ../hardware/fwupd.nix)
   (import ../hostclass/laptop.nix)
-  (import ../ethernet.nix { inherit etherMac; })
-  (import ../wifi.nix     { inherit wifiMac; })
-  (import ../std.nix      { inherit hostname domainname stateVersion
-                                    logicalCores systemPackages system
-                                    bash-header filesystems imports;
-                          })
+  (import ../components/ethernet.nix { inherit etherMac; })
+  (import ../components/wifi.nix     { inherit wifiMac; })
+  (import ../std.nix                 { inherit hostname domainname stateVersion
+                                               logicalCores systemPackages
+                                               system bash-header filesystems
+                                               imports;
+                                     })
 ]

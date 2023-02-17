@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = [
-    (import ./pkgs/htpswd { inherit pkgs system; })
+    (import ../pkgs/htpswd { inherit pkgs system; })
   ];
 
   networking.firewall.allowedTCPPorts = [ 80 443 ];

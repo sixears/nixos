@@ -41,25 +41,25 @@ nixos-system {
         ../filesystems/usb-sda.nix
       ];
       imports = pkgs: [
-        (import ../xserver.nix { inherit pkgs bash-header; })
-        ../xserver-dvorak.nix
-        ../xserver-intel.nix
+        (import ../components/xserver.nix { inherit pkgs bash-header; })
+        ../components/xserver-dvorak.nix
+        ../components/xserver-intel.nix
 
-        ../laptop.nix
-        ../printing.nix
-        ../deluge-killer.nix
+        ../components/laptop.nix
+        ../components/printing.nix
+        ../components/deluge-killer.nix
         # this doesn't easily co-exist with home-backup.nix
-        ../local-home-backup.nix
+        ../components/local-home-backup.nix
 
-        ../desktop.nix
-        ../pulseaudio.nix
-        ../scanning.nix
-        ../openvpn.nix
-        ../nix-serve.nix
+        ../components/desktop.nix
+        ../components/pulseaudio.nix
+        ../components/scanning.nix
+        ../components/openvpn.nix
+        ../components/nix-serve.nix
         ../dns-server/cloudflare.nix
 
-        ../finbar.nix
-        ../keyboardio.nix
+        ../components/finbar.nix
+        ../components/keyboardio.nix
 
         ../users/people/martyn.nix
         ../users/people/syncthing-martyn.nix

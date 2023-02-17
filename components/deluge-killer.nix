@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 
 let
-  ip-public     = import ./pkgs/ip-public.nix { inherit pkgs; };
-  deluge-killer = import ./pkgs/delug-killer.nix { inherit pkgs ip-public; };
+  ip-public     = import ../pkgs/ip-public.nix { inherit pkgs; };
+  deluge-killer = import ../pkgs/delug-killer.nix { inherit pkgs ip-public; };
 in
   {
     environment.systemPackages = with pkgs; [ deluge-killer ];

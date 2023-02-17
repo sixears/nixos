@@ -3,7 +3,7 @@
 # https://nixos.wiki/wiki/Binary_Cache
 # pre-create the creds with ~/bin/nixos-bincache-cred
 {
-  imports = [ ./users/system/nix-serve.nix
+  imports = [ ../users/system/nix-serve.nix
               (import ./nginx.nix { inherit pkgs system; }) ];
 
   networking.firewall = {

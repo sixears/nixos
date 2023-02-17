@@ -55,6 +55,7 @@ options:
  -d | --dirty       allow building from a dirty tree
  -r | --remote      work outside of sixears network
  -i | --isolated    work completely offline
+ -T | --show-trace
 
  -v | --verbose
  -n | --dry-run
@@ -78,8 +79,10 @@ hostname="$($swbin/hostname --short)"
 isolated=false
 remote=false
 dirty=false
+show_trace=false
 
-options=( -o vnird --long dirty,isolated,remote,verbose,dry-run,help )
+options=( -o vnirdT
+          --long show-trace,dirty,isolated,remote,verbose,dry-run,help )
 OPTS=$( $getopt "${options[@]}" -n "$progname" -- "$@" )
 
 [ $? -eq 0 ] || die 2 "options parsing failed (--help for help)"
@@ -89,9 +92,10 @@ eval set -- "$OPTS"
 
 while true; do
   case "$1" in
-    -i | --isolated ) isolated=true ; shift ;;
-    -r | --remote   ) remote=true   ; shift ;;
-    -d | --dirty    ) dirty=true    ; shift ;;
+    -i | --isolated   ) isolated=true ; shift ;;
+    -r | --remote     ) remote=true   ; shift ;;
+    -d | --dirty      ) dirty=true    ; shift ;;
+    -T | --show-trace ) show_trace=true ; shift ;;
 
     -v | --verbose  ) verbose=true ; shift   ;;
     -n | --dry-run  ) dry_run=true ; shift   ;;
@@ -127,6 +131,8 @@ if $dirty; then
 else
   cmd+=( --option allow-dirty false )
 fi
+
+$show_trace && cmd+=( --show-trace )
 
 bash_cmd="$env -i ${env_add[*]} ${cmd[*]}"
 if [[ 0 -ne  ${#sfx_cmd[@]} ]]; then

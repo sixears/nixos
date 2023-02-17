@@ -1,8 +1,8 @@
 { pkgs, bash-header, ... }:
 
 let
-  touchpad = import ./pkgs/touchpad.nix { inherit pkgs bash-header; };
-  xkb      = import ./pkgs/xkb.nix      { inherit pkgs; };
+  touchpad = import ../pkgs/touchpad.nix { inherit pkgs bash-header; };
+  xkb      = import ../pkgs/xkb.nix      { inherit pkgs; };
   xmonad-with-pkgs =
     pkgs.xmonad-with-packages.override
       { packages = hPkgs: with hPkgs; [ xmonad-contrib ]; };
@@ -17,7 +17,7 @@ in
       xkb
       xkeyboard_config
       xmonad-with-pkgs
-      (import ./pkgs/xsession.nix { inherit pkgs xkb xmonad-with-pkgs; })
+      (import ../pkgs/xsession.nix { inherit pkgs xkb xmonad-with-pkgs; })
     ];
 
   services.xserver = {
@@ -40,16 +40,16 @@ in
     {
       xmonad-hs =
         {
-          source = import ./pkgs/xmonad-hs.nix { inherit pkgs touchpad; };
+          source = import ../pkgs/xmonad-hs.nix { inherit pkgs touchpad; };
           target = "xmonad.hs";
         };
 
-      xmobarrc = { source = ./pkgs/xmobarrc; };
-      i3status = { source = ./pkgs/i3status; };
+      xmobarrc = { source = ../pkgs/xmobarrc; };
+      i3status = { source = ../pkgs/i3status; };
 
       xresources-urxvt =
         {
-          source = import ./pkgs/xresources/urxvt.nix { inherit pkgs; };
+          source = import ../pkgs/xresources/urxvt.nix { inherit pkgs; };
           target = "Xresources/urxvt";
         };
     };

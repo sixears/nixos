@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  lowbat = import ./pkgs/lowbat.nix { inherit pkgs; };
+  lowbat = import ../pkgs/lowbat.nix { inherit pkgs; };
 in
   {
     imports = [ ./fcron.nix ];

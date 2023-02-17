@@ -67,26 +67,27 @@ in
     # ------------------------------------------------------
 
     imports = (imports pkgs) ++ [
-      ./remote-nixos-caches.nix
-      boot
-      (import ./networking.nix { inherit hostname domainname; })
-      ./tz-gmt.nix
-      (import ./nix-daemon.nix { inherit logicalCores; })
-      ./keyboard.nix
-      ./display.nix
-      ./locate.nix
-      ./acme.nix
-      ./unfree.nix
       (import ./std-pkgs.nix { inherit pkgs bash-header; })
-      ./sixears-hosts.nix
-      ./fcron.nix
-      ./msmtp.nix
-      ./prometheus.nix
-      ./openssh.nix
-      ./sshkeys.nix
-      ./smartd.nix
-      ./sysstat.nix
-      ./disthttpd.nix
+
+      ./components/remote-nixos-caches.nix
+      boot
+      (import ./components/networking.nix { inherit hostname domainname; })
+      ./components/tz-gmt.nix
+      (import ./components/nix-daemon.nix { inherit logicalCores; })
+      ./components/keyboard.nix
+      ./components/display.nix
+      ./components/locate.nix
+      ./components/acme.nix
+      ./components/unfree.nix
+      ./components/sixears-hosts.nix
+      ./components/fcron.nix
+      ./components/msmtp.nix
+      ./components/prometheus.nix
+      ./components/openssh.nix
+      ./components/sshkeys.nix
+      ./components/smartd.nix
+      ./components/sysstat.nix
+      ./components/disthttpd.nix
 
       # !!! red-specific services - MOVE THESE TO red.nix? !!!
     ] ++ filesystems ++ std-filesystems;

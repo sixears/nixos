@@ -17,6 +17,6 @@ in
                                                    39090
                                                  ];
 
-    imports = [ ../../syncthing.nix ];
+    imports = [ ../../components/syncthing.nix ];
     config.systemd.services = mkUserSyncthing "martyn";
   }
