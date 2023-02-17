@@ -26,8 +26,9 @@
       nixosConfigurations = {
         red =
           let
-            system = "x86_64-linux";
+            system      = "x86_64-linux";
             bash-header = bashHeader.packages.${system}.bash-header;
+            hpkgs       = hpkgs1.packages.${system};
           in
             nixos-system {
               inherit system;
@@ -62,6 +63,7 @@
 
                     (import ./wifi-conns/bowery-secure-init.nix {inherit pkgs;})
 
+                    (hpkgs.acct)
                   ];
                   filesystems = [
                     ./filesystems/efi.nix
