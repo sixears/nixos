@@ -13,7 +13,10 @@
           hpkgs = hpkgs1.packages.${system};
           bash-header = bashHeader.packages.${system}.bash-header;
         in
-          nixpkgs.lib.nixosSystem { inherit system modules;
+          nixpkgs.lib.nixosSystem { inherit system;
+                                    modules =
+                                      modules { inherit system
+                                                        bash-header hpkgs; };
                                     # pass system through to modules & imports
                                     specialArgs =
                                       { inherit system bash-header;
@@ -25,14 +28,8 @@
     in {
       nixosConfigurations = {
         red =
-          let
-            system      = "x86_64-linux";
-            bash-header = bashHeader.packages.${system}.bash-header;
-            hpkgs       = hpkgs1.packages.${system};
-          in
             nixos-system {
-              inherit system;
-              modules =
+              modules = { system, bash-header, hpkgs }:
                 [
                   { nixpkgs.overlays =
                       # to import each overlay individually
