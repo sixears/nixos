@@ -3,6 +3,7 @@
 , bash-header
 , boot      ? ./boot/efi.nix
 , sshPubKey ? ./sshkeys + "/${hostname}.pub"
+, cpuFreqGovernor ? "ondemand"
 }:
 
 { lib, pkgs, ... }:
@@ -41,6 +42,8 @@ in
     environment.etc.nixos-cfg.source = "${nixos-cfg}";
 
     programs.sysdig.enable = true;
+
+    powerManagement.cpuFreqGovernor = cpuFreqGovernor;
 
     # -- ssh -----------------------------------------------
 

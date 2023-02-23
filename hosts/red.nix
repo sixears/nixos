@@ -25,7 +25,6 @@ nixos-system {
       stateVersion = "22.05";
       systemPackages = pkgs: [
         (import ../pkgs/mkopenvpnconfs { inherit pkgs bash-header; })
-        (import ../pkgs/wifi.nix { inherit pkgs; })
 
         pkgs.shntool # see overlays/shntool.nix;
                      # picks up overlay for 24-bit WAV patch
@@ -41,8 +40,7 @@ nixos-system {
         ../filesystems/usb-sda.nix
       ];
       imports = pkgs: [
-        (import ../components/xserver.nix { inherit pkgs bash-header; })
-        ../components/xserver-dvorak.nix
+        (import ../components/xserver.nix { inherit pkgs bash-header; dvorak=true; })
         ../components/xserver-intel.nix
 
         ../components/laptop.nix

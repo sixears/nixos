@@ -81,6 +81,29 @@ rec {
 
   # ------------------------------------
 
+  /* :: Path -> any -> Map String *
+   *
+   * Import all *.nix files (but not dirs) with a default.nix, from a given dir.
+   * `args` is provided as an import argument to all imports.
+   * Returns map to each import result, keyed by the basename of each .nix file.
+   */
+
+  importNixesByName = path: args:
+    let
+      # a la shell `basename .nix <path>`
+      no_nix_basename = path:
+        plib.strings.removeSuffix ".nix" (baseNameOf path);
+      # import a file with args; return a pair of the basename & the import
+      # result.
+      named_import = path:
+        plib.attrsets.nameValuePair (no_nix_basename path) (import path args);
+      # map named_imports over all the .nixen in `path`
+      named_imports = builtins.map named_import ((readNixes path).regular);
+    in
+      builtins.listToAttrs named_imports;
+
+  # ------------------------------------
+
   /* :: Path -> [*]
    *
    * Import all *.nix files, and dirs with a default.nix, in a given dir.

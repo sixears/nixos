@@ -1,7 +1,5 @@
 { pkgs, bash-header, ... }:
 
-#-#{ config, lib, pkgs, ... }:
-#-#
 let
  touchpad = import ./pkgs/touchpad.nix { inherit pkgs bash-header; };
 in
@@ -13,7 +11,6 @@ in
 
       (import ./pkgs/ip-public.nix { inherit pkgs; })
 
-      (import ./pkgs/lumix-copy.nix  { inherit pkgs bash-header; })
       (import ./pkgs/pic-reduce.nix  { inherit pkgs bash-header; })
 
       alsaUtils

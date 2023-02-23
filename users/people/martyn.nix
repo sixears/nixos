@@ -5,22 +5,23 @@ let
   home     = "/home/${user}";
   hostname = "${pkgs.inetutils}/bin/hostname";
   touch    = "${pkgs.coreutils}/bin/touch";
+  uid      = 1000;
 in
   {
-    users.groups.martyn.gid = 1000;
+    users.groups.martyn.gid = uid;
 
-    users.users.martyn = {
+    users.users.${user} = {
       isNormalUser = true;
-      name        = user;
-      group       = user;
-      extraGroups = [
+      name         = user;
+      group        = user;
+      uid          = uid;
+      extraGroups  = [
         "wheel" "disk" "audio" "video" "networkmanager" "systemd-journal"
         "users" "scanner" "ftp" "adbusers" "cdrom" "dialout" "input"
       ];
-      createHome  = true;
-      uid         = 1000;
-      home        = home;
-      shell       = "/run/current-system/sw/bin/bash";
+      createHome   = true;
+      home         = home;
+      shell        = "/run/current-system/sw/bin/bash";
 
       # needed for podman; see https://beb.ninja/post/installing-podman/
       # see https://stackoverflow.com/questions/58443334/why-does-podman-report-not-enough-ids-available-in-namespace-with-different-ui

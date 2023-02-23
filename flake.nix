@@ -26,9 +26,12 @@
       # --------------------------------
 
     in {
-      nixosConfigurations = {
-        red = (import ./hosts/red.nix) { inherit nixpkgs nixos-system; };
-      };
+      nixosConfigurations =
+        let
+          # import each hosts/<name>.nix as <name>
+          lib = import ./lib.nix { plib = nixpkgs.lib; };
+        in
+          lib.importNixesByName ./hosts { inherit nixpkgs nixos-system; };
     };
 }
 

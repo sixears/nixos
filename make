@@ -15,6 +15,8 @@ systemctl=$swbin/systemctl
 verbose=false
 dry_run=false
 
+hostname="$($swbin/hostname --short)"
+
 # ------------------------------------------------------------------------------
 
 warn () {
@@ -56,6 +58,8 @@ options:
  -r | --remote      work outside of sixears network
  -i | --isolated    work completely offline
  -T | --show-trace
+ -h | --hostname    use this hostname (instead of $hostname)
+ -I | --impure      enable impure evaluation
 
  -v | --verbose
  -n | --dry-run
@@ -75,14 +79,15 @@ sfx_cmd=()
 env_add=( PATH=/run/current-system/sw/bin )
 command=build
 progname="$($basename "$0")"
-hostname="$($swbin/hostname --short)"
 isolated=false
 remote=false
 dirty=false
 show_trace=false
+impure=false
 
-options=( -o vnirdT
-          --long show-trace,dirty,isolated,remote,verbose,dry-run,help )
+options=( -o vnirdTh:I
+          --long show-trace,dirty,isolated,remote,hostname:,impure
+          --long verbose,dry-run,help )
 OPTS=$( $getopt "${options[@]}" -n "$progname" -- "$@" )
 
 [ $? -eq 0 ] || die 2 "options parsing failed (--help for help)"
@@ -92,14 +97,16 @@ eval set -- "$OPTS"
 
 while true; do
   case "$1" in
-    -i | --isolated   ) isolated=true ; shift ;;
-    -r | --remote     ) remote=true   ; shift ;;
-    -d | --dirty      ) dirty=true    ; shift ;;
-    -T | --show-trace ) show_trace=true ; shift ;;
+    -i | --isolated   ) isolated=true   ; shift   ;;
+    -r | --remote     ) remote=true     ; shift   ;;
+    -d | --dirty      ) dirty=true      ; shift   ;;
+    -T | --show-trace ) show_trace=true ; shift   ;;
+    -h | --hostname   ) hostname="$2"   ; shift 2 ;;
+    -I | --impure     ) impure=true     ; shift   ;;
 
-    -v | --verbose  ) verbose=true ; shift   ;;
-    -n | --dry-run  ) dry_run=true ; shift   ;;
-         --help     ) usage                  ;;
+    -v | --verbose    ) verbose=true    ; shift   ;;
+    -n | --dry-run    ) dry_run=true    ; shift   ;;
+         --help       ) usage                     ;;
     # !!! don't forget to update usage !!!
     -- ) shift; break ;;
     * ) break ;;
@@ -133,6 +140,7 @@ else
 fi
 
 $show_trace && cmd+=( --show-trace )
+$impure     && cmd+=( --impure )
 
 bash_cmd="$env -i ${env_add[*]} ${cmd[*]}"
 if [[ 0 -ne  ${#sfx_cmd[@]} ]]; then

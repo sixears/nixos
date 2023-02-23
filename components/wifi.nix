@@ -1,4 +1,5 @@
 { wifiMac }:
+
 { pkgs, ... }:
 
 let
@@ -19,4 +20,8 @@ in
 
     # !!! THIS SHOULD BE FOR drifting ONLY !!!
     services.fcron.systab = "@ 600s ${parmiters}";
+
+    environment.systemPackages = [
+      (import ../pkgs/wifi.nix { inherit pkgs; })
+    ];
   }
