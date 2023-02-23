@@ -11,7 +11,8 @@ let
       "presume"
       "/run/wrappers/bin/sudo /run/current-system/sw/bin/cupsenable vertigen";
 
-  lumix-copy = (import ../../pkgs/lumix-copy.nix  { inherit pkgs bash-header; });
+  lumix-copy =
+    (import ../../pkgs/lumix-copy.nix  { inherit pkgs bash-header; });
 in
   {
     users.groups.${user}.gid = uid;

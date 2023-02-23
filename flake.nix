@@ -1,14 +1,17 @@
 {
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs/3ae365af; # 2023-01-14
+#    nixpkgs.url = github:NixOS/nixpkgs/3ae365af; # 2023-01-14
+    nixpkgs-2023-01-14.url = github:NixOS/nixpkgs/3ae365af; # 2023-01-14
     hpkgs1.url  = github:sixears/hpkgs1/r0.0.8.0;
-    bashHeader  = { url    = github:sixears/bash-header/5206b087;
-                    inputs = { nixpkgs.follows = "nixpkgs"; }; };
+    bashHeader-2023-01-14  = {
+      url    = github:sixears/bash-header/5206b087;
+      inputs = { nixpkgs.follows = "nixpkgs-2023-01-14"; };
+    };
   };
 
-  outputs = { self, nixpkgs, hpkgs1, bashHeader, ... }:
+  outputs = { self, hpkgs1, nixpkgs-2023-01-14, bashHeader-2023-01-14, ... }:
     let
-      nixos-system = { modules, system ? "x86_64-linux" }:
+      nixos-system = { nixpkgs, bashHeader, modules, system ? "x86_64-linux" }:
         let
           hpkgs = hpkgs1.packages.${system};
           bash-header = bashHeader.packages.${system}.bash-header;
@@ -29,9 +32,11 @@
       nixosConfigurations =
         let
           # import each hosts/<name>.nix as <name>
-          lib = import ./lib.nix { plib = nixpkgs.lib; };
+          lib = import ./lib.nix { plib = nixpkgs-2023-01-14.lib; };
         in
-          lib.importNixesByName ./hosts { inherit nixpkgs nixos-system; };
+          lib.importNixesByName ./hosts { inherit nixos-system
+                                                  nixpkgs-2023-01-14
+                                                  bashHeader-2023-01-14; };
     };
 }
 
