@@ -51,7 +51,8 @@ rec {
   readNixes = path:
     let inherit (builtins) filter match pathExists;
         content = readDir path;
-     in { regular   = filter (n: match ".*\\.nix" (toString n) != null)
+     in
+        { regular   = filter (n: match ".*\\.nix" (toString n) != null)
                              content.regular or [];
           directory = filter (n: pathExists (n+"/default.nix"))
                              content.directory or [];

@@ -32,6 +32,7 @@ in
         systemPackages = pkgs: [ (hpkgs.acct) ];
 
         filesystems = [
+          ../filesystems/std.nix
           ../filesystems/efi.nix
           ../filesystems/mobile-music.nix
           ../filesystems/local.nix

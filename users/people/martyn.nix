@@ -22,6 +22,7 @@ in
       createHome   = true;
       home         = home;
       shell        = "/run/current-system/sw/bin/bash";
+      openssh.authorizedKeys.keyFiles = [ ./authorized_keys.${user} ];
 
       # needed for podman; see https://beb.ninja/post/installing-podman/
       # see https://stackoverflow.com/questions/58443334/why-does-podman-report-not-enough-ids-available-in-namespace-with-different-ui

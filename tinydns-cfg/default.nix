@@ -6,7 +6,7 @@
 with pkgs; derivation {
   name      = "tinydns-cfg";
   builder   = "${bash}/bin/bash";
-  src       =  ../hosts;
+  src       =  ../hosts-data;
   args      =  [ ./builder.sh ];
 
   inherit coreutils findutils htinydns glibcLocales;

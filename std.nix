@@ -9,7 +9,7 @@
 { lib, pkgs, ... }:
 
 let
-  std-filesystems = [ ./filesystems/std.nix ];
+  std-filesystems = [ ];
   nixos-cfg       = import ./nixos-cfg { inherit pkgs system; };
 in
   {

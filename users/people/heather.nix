@@ -29,6 +29,7 @@ in
       createHome   = true;
       home         = home;
       shell        = "/run/current-system/sw/bin/bash";
+      openssh.authorizedKeys.keyFiles = [ ./authorized_keys.${user} ];
 
       # this stuff appears in /etc/profiles/per-user/$USER
       packages = [ presume ];

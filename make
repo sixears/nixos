@@ -34,14 +34,6 @@ go() {
   $dry_run || "$@" || die "$exit" "failed: $*"
 }
 
-go_exec() {
-  builtin printf 'CMD> '
-  builtin printf '%q ' "${@:1:$(($#-1))}"
-  builtin printf '%q\n' "${@:$#}"
-
-  $dry_run || exec "$@"
-}
-
 usage () {
   _usage="$(cat <<EOF
 usage: $progname OPTION* [switch]

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+cat $(grep /run/wrappers/bin/fcrontab $( grep -i ExecStartPre result/etc/systemd/system/fcron.service | cut -c 14- ) | cut -d '<' -f 2 | cut -d ' ' -f 2 )
+
+

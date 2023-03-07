@@ -14,15 +14,16 @@
       nixos-system = { nixpkgs, bashHeader, modules, system ? "x86_64-linux" }:
         let
           hpkgs = hpkgs1.packages.${system};
+          hlib  = hpkgs1.lib.${system};
           bash-header = bashHeader.packages.${system}.bash-header;
         in
           nixpkgs.lib.nixosSystem { inherit system;
                                     modules =
-                                      modules { inherit system
-                                                        bash-header hpkgs; };
+                                      modules { inherit system bash-header
+                                                        hlib hpkgs; };
                                     # pass system through to modules & imports
                                     specialArgs =
-                                      { inherit system bash-header;
+                                      { inherit system bash-header hlib;
                                         inherit (hpkgs) htinydns; };
                                   };
 
@@ -33,10 +34,12 @@
         let
           # import each hosts/<name>.nix as <name>
           lib = import ./lib.nix { plib = nixpkgs-2023-01-14.lib; };
+          by-name =
+            lib.importNixesByName ./hosts { inherit nixos-system
+                                                    nixpkgs-2023-01-14
+                                                    bashHeader-2023-01-14; };
         in
-          lib.importNixesByName ./hosts { inherit nixos-system
-                                                  nixpkgs-2023-01-14
-                                                  bashHeader-2023-01-14; };
+          by-name;
     };
 }
 
