@@ -1,6 +1,6 @@
 #!/run/current-system/sw/bin/bash
 
-set -eu -o pipefail
+set -u -o pipefail
 
 wrappersbin=/run/wrappers/bin
 swbin=/run/current-system/sw/bin
@@ -31,14 +31,17 @@ die () { warn "$2" 1>&2; exit "$1"; }
 go() {
   exit="$1"; shift
   if $dry_run; then info "(CMD) $*"; else info "CMD> $*"; fi
-  $dry_run || "$@" || die "$exit" "failed: $*"
+  $dry_run || "$@" || [[ -z $exit ]] || die "$exit" "failed: $*"
 }
 
 usage () {
   _usage="$(cat <<EOF
-usage: $progname OPTION* [switch]
+usage: $progname OPTION* [switch|checkall]
 
 build nixos system.  If 'switch' is specified, effect it, too.
+
+If 'checkall' is specified; then check all the host configs, one-by-one.
+Implies --dirty.
 
 options:
  -d | --dirty       allow building from a dirty tree
@@ -111,12 +114,13 @@ case $# in
 
        checkall | check-all )
          command=dry-build
+         dirty=true
          if [[ 0 -ne ${#hostnames[@]} ]]; then
            die 2 "--hostname is invalid with checkall"
          fi
          ;;
 
-       *     ) echo "invalid command: '$1'" 1>&2; exit 2 ;;
+       * ) echo "invalid command: '$1'" 1>&2; exit 2 ;;
      esac
      ;;
   *) usage ;;
@@ -152,5 +156,12 @@ for hostname in "${hostnames[@]}"; do
   if [[ 0 -ne  ${#sfx_cmd[@]} ]]; then
     bash_cmd+=" ${sfx_cmd[*]}"
   fi
-  go 10 "${pfx_cmd[@]}" bash -c "$bash_cmd"
+
+  if [[ dry-build == $command ]]; then
+    warn "checking $hostname..."
+    go '' "${pfx_cmd[@]}" bash -c "$bash_cmd"
+    echo "exit: $?"
+  else
+    go 10 "${pfx_cmd[@]}" bash -c "$bash_cmd"
+  fi
 done
