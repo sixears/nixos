@@ -7,7 +7,7 @@ in
   nixos-system
     {
       inherit nixpkgs bashHeader;
-      modules = { system, bash-header, hpkgs }:
+      modules = { system, bash-header, hpkgs, hlib }:
         [
           { nixpkgs.overlays =
               # to import each overlay individually
