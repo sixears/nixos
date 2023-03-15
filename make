@@ -74,9 +74,10 @@ remote=false
 dirty=false
 show_trace=false
 impure=false
+very_verbose=false
 
-options=( -o vnirdTh:I
-          --long show-trace,dirty,isolated,remote,hostname:,impure
+options=( -o vnirdTh:IV
+          --long show-trace,dirty,isolated,remote,hostname:,impure,very-verbose
           --long verbose,dry-run,help )
 OPTS=$( $getopt "${options[@]}" -n "$progname" -- "$@" )
 
@@ -87,16 +88,17 @@ eval set -- "$OPTS"
 
 while true; do
   case "$1" in
-    -i | --isolated   ) isolated=true      ; shift   ;;
-    -r | --remote     ) remote=true        ; shift   ;;
-    -d | --dirty      ) dirty=true         ; shift   ;;
-    -T | --show-trace ) show_trace=true    ; shift   ;;
-    -h | --hostname   ) hostnames=( "$2" ) ; shift 2 ;;
-    -I | --impure     ) impure=true        ; shift   ;;
+    -i | --isolated   ) isolated=true        ; shift   ;;
+    -r | --remote     ) remote=true          ; shift   ;;
+    -d | --dirty      ) dirty=true           ; shift   ;;
+    -T | --show-trace ) show_trace=true      ; shift   ;;
+    -h | --hostname   ) hostnames=( "$2" )   ; shift 2 ;;
+    -I | --impure     ) impure=true          ; shift   ;;
 
-    -v | --verbose    ) verbose=true       ; shift   ;;
-    -n | --dry-run    ) dry_run=true       ; shift   ;;
-         --help       ) usage                        ;;
+    -v | --verbose    ) verbose=true         ; shift   ;;
+    -V | --very-verbose ) very_verbose=true  ; shift   ;;
+    -n | --dry-run    ) dry_run=true         ; shift   ;;
+         --help       ) usage                          ;;
     # !!! don't forget to update usage !!!
     -- ) shift; break ;;
     * ) break ;;
@@ -126,7 +128,7 @@ case $# in
   *) usage ;;
 esac
 
-cmd=($nixos_rebuild --verbose $command)
+cmd=($nixos_rebuild $command)
 if $isolated; then
   cmd+=( --offline )
 elif $remote; then
@@ -138,6 +140,8 @@ if $dirty; then
 else
   cmd+=( --option allow-dirty false )
 fi
+
+$very_verbose && cmd+=( --verbose )
 
 $show_trace && cmd+=( --show-trace )
 $impure     && cmd+=( --impure )

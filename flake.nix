@@ -1,7 +1,8 @@
 {
   inputs = {
-#    nixpkgs.url = github:NixOS/nixpkgs/3ae365af; # 2023-01-14
-    nixpkgs-2023-01-14.url = github:NixOS/nixpkgs/3ae365af; # 2023-01-14
+    nixpkgs-2023-01-14.url = github:NixOS/nixpkgs/3ae365af; # master
+    nixpkgs-2022-04-22.url = github:NixOS/nixpkgs/9887f024; # 22.05
+    nixpkgs-2020-09-25.url = github:NixOS/nixpkgs/52075a82; # master
     hpkgs1.url  = github:sixears/hpkgs1/r0.0.8.0;
     bashHeader-2023-01-14  = {
       url    = github:sixears/bash-header/5206b087;
@@ -9,7 +10,11 @@
     };
   };
 
-  outputs = { self, hpkgs1, nixpkgs-2023-01-14, bashHeader-2023-01-14, ... }:
+  outputs = { self, hpkgs1
+            , nixpkgs-2023-01-14, bashHeader-2023-01-14
+            , nixpkgs-2022-04-22 # for mythtv
+            , nixpkgs-2020-09-25 # for plex
+            , ... }:
     let
       nixos-system = { nixpkgs, bashHeader, modules, system ? "x86_64-linux" }:
         let
@@ -37,7 +42,9 @@
           by-name =
             lib.importNixesByName ./hosts { inherit nixos-system
                                                     nixpkgs-2023-01-14
-                                                    bashHeader-2023-01-14; };
+                                                    bashHeader-2023-01-14
+                                                    nixpkgs-2022-04-22
+                                                    nixpkgs-2020-09-25; };
         in
           by-name;
     };

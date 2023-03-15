@@ -773,6 +773,38 @@
         "type": "github"
       }
     },
+    "nixpkgs-2020-09-25": {
+      "locked": {
+        "lastModified": 1601014270,
+        "narHash": "sha256-hJwe7iqSL2TcZ294HBF/0ePRCLyYgjYMoyY82p1GXQI=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "52075a824dcbfed49092aeecc7c9d30263ec3f5f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "52075a82",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-2022-04-22": {
+      "locked": {
+        "lastModified": 1650501692,
+        "narHash": "sha256-ApKf0/dc0SyB7zZ6yiiOQgcXAhCXxbSDyihHfRDIzx0=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "9887f024766aa27704d1f89f623efd1d063da92a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "9887f024",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-2023-01-14": {
       "locked": {
         "lastModified": 1673681449,
@@ -963,6 +995,8 @@
       "inputs": {
         "bashHeader-2023-01-14": "bashHeader-2023-01-14",
         "hpkgs1": "hpkgs1",
+        "nixpkgs-2020-09-25": "nixpkgs-2020-09-25",
+        "nixpkgs-2022-04-22": "nixpkgs-2022-04-22",
         "nixpkgs-2023-01-14": "nixpkgs-2023-01-14"
       }
     },

@@ -10,6 +10,7 @@ in
       enable = true;
       data   =
         pkgs.lib.strings.fileContents "${tinydns-cfg}/share/tinydns.data";
+
       ip     = "127.0.0.1";
     };
 
@@ -31,16 +32,10 @@ in
 
       domainServers = {
         "@" = [ # "192.168.0.1"    # blackbox.sixears.co.uk
-                # cloudflare open, private, free - *.2 with malware protection
-                "1.1.1.2"
-                "1.0.0.2"
-
-                "91.121.113.58"  # secured1.torguard.org
-                "91.121.113.7"   # secured.torguard.org
-                "212.23.3.100"   # cache01.dns.zen.net.uk.
-                "212.23.6.100"   # cache03.dns.zen.net.uk.
-                "8.8.8.8"        # google-public-dns-a.google.com.
-                "8.8.4.4"        # google-public-dns-b.google.com.
+                "208.67.220.220" # resolver2.opendns.com
+                "208.67.220.222" # resolver4.opendns.com
+                "208.67.222.220" # resolver3.opendns.com
+                "208.67.222.222" # resolver1.opendns.com
           ];
 
         "sixears.co.uk" = [ "127.0.0.1" ];
