@@ -112,6 +112,8 @@ in
             ../components/hdcalm.nix
             ../components/mirrorfs.nix
 
+            ../components/home-backup.nix
+
             ../components/plex.nix   # should be v1.20
             ../components/mythtv.nix # should be v31.0
 
@@ -125,7 +127,6 @@ in
 # ------------------------------------------------------------------------------
 
 ##    imports =
-##        ../../home-backup.nix
 ##
 ##        ../../xserver.nix
 ##        ../../media.nix
