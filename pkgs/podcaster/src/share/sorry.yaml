@@ -1,0 +1,12 @@
+---
+title: I'm Sorry, I Haven't a Clue
+subtitle: DVR
+category: Comedy
+explicit: no
+author: BBC Radio 4
+owner: Bob Job
+email: bob@job.com
+copyright: not mine
+dir: /htdocs/podcasts/sorry
+base: http://192.168.0.24:8080/podcasts/sorry
+# feedloc: https://www.sixears.co.uk/cgi-bin/sorry.cgi

@@ -105,6 +105,7 @@ in
 
             # support GeForce GT 710
             ../hardware/nvidia470.nix
+            ../hardware/nvidia.nix
             ../hardware/ahci.nix
             ../hardware/ehci-pci.nix
 
@@ -114,8 +115,11 @@ in
 
             ../components/home-backup.nix
 
+            ../components/media.nix
+            ../components/get_iplayer.nix
             ../components/plex.nix   # should be v1.20
             ../components/mythtv.nix # should be v31.0
+            ../components/podcaster.nix
 
             ../users/people/martyn.nix
             ../users/people/fletch.nix
@@ -127,13 +131,6 @@ in
 # ------------------------------------------------------------------------------
 
 ##    imports =
-##
-##        ../../xserver.nix
-##        ../../media.nix
-##        ../../nvidia.nix
-##        ../../plex.nix
-##        ../../get_iplayer.nix
-##        ../../podcaster.nix
 ##
 ##        ../../gitit.nix
 ##        ../../cam-proxy.nix

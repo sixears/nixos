@@ -1,0 +1,12 @@
+---
+title: News Quiz Extra
+subtitle: DVR
+category: Comedy
+explicit: no
+author: BBC Radio 4
+owner: Bob Job
+email: bob@job.com
+copyright: not mine
+dir: /htdocs/podcasts/news_quiz
+base: http://192.168.0.24:8080/podcasts/news_quiz_extra
+feedloc: https://www.sixears.co.uk/cgi-bin/podcast?name=news_quiz_extra

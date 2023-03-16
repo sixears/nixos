@@ -1,0 +1,11 @@
+---
+title: Just a Minute
+subtitle: DVR
+category: Comedy
+explicit: no
+author: BBC Radio 4
+owner: Bob Job
+email: bob@job.com
+copyright: not mine
+dir: /htdocs/podcasts/just_a_minute
+base: http://192.168.0.24:8080/podcasts/just_a_minute

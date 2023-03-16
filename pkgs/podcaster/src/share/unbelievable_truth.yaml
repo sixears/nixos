@@ -1,0 +1,11 @@
+---
+title: The Unbelievable Truth
+subtitle: DVR
+category: Comedy
+explicit: no
+author: BBC Radio 4
+owner: Bob Job
+email: bob@job.com
+copyright: not mine
+dir: /htdocs/podcasts/unbelievable_truth
+base: http://192.168.0.24:8080/podcasts/unbelievable_truth
