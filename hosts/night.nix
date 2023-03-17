@@ -120,6 +120,7 @@ in
             ../components/plex.nix   # should be v1.20
             ../components/mythtv.nix # should be v31.0
             ../components/podcaster.nix
+            ../components/gitit.nix
 
             ../users/people/martyn.nix
             ../users/people/fletch.nix
@@ -132,7 +133,6 @@ in
 
 ##    imports =
 ##
-##        ../../gitit.nix
 ##        ../../cam-proxy.nix
 ##        ../../nix-serve.nix
 ##
