@@ -121,11 +121,16 @@ in
             ../components/mythtv.nix # should be v31.0
             ../components/podcaster.nix
             ../components/gitit.nix
-        ../components/cam-proxy.nix
+            ../components/nix-serve.nix
+            ../components/cam-proxy.nix
 
             ../users/people/martyn.nix
             ../users/people/fletch.nix
             ../users/people/syncthing-martyn.nix
+            ../users/people/syncthing-heather.nix
+            ../users/people/syncthing-abigail.nix
+            ../users/people/syncthing-xander.nix
+            ../users/people/syncthing-jj.nix
           ];
         });
     }
@@ -134,14 +139,8 @@ in
 
 ##    imports =
 ##
-##        ../../nix-serve.nix
 ##
-##        ../../users/people/martyn.nix
 ##        ../../users/people/syncthing-martyn.nix
-##        ../../users/people/syncthing-heather.nix
-##        ../../users/people/syncthing-abigail.nix
-##        ../../users/people/syncthing-xander.nix
-##        ../../users/people/syncthing-jj.nix
 ##      ];
 ##
 ##    # fix for bug in master-2021-09-23
