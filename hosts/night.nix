@@ -53,7 +53,7 @@ in
           logicalCores = 16;
           # taken from the card
           etherMac = "04:d9:f5:f9:db:cc";
-          stateVersion = "unstable";
+          stateVersion = "22.05";
           virtualization = ../virtualization/amd.nix;
           nvme0 = true;
           systemPackages = pkgs: [
@@ -121,6 +121,7 @@ in
             ../components/mythtv.nix # should be v31.0
             ../components/podcaster.nix
             ../components/gitit.nix
+        ../components/cam-proxy.nix
 
             ../users/people/martyn.nix
             ../users/people/fletch.nix
@@ -133,7 +134,6 @@ in
 
 ##    imports =
 ##
-##        ../../cam-proxy.nix
 ##        ../../nix-serve.nix
 ##
 ##        ../../users/people/martyn.nix
