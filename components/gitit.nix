@@ -29,6 +29,7 @@ in
         config = { config, ...}:
         {
             imports = [ ../users/system/gitit.nix ];
+            system.stateVersion = "22.05";
 
             systemd.services.gitit =
               {

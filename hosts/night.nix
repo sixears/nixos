@@ -134,16 +134,3 @@ in
           ];
         });
     }
-
-# ------------------------------------------------------------------------------
-
-##    imports =
-##
-##
-##        ../../users/people/syncthing-martyn.nix
-##      ];
-##
-##    # fix for bug in master-2021-09-23
-##    users.users.dnscache.group = "nogroup";
-##  }
-##
