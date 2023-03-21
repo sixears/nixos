@@ -104,8 +104,8 @@ in
             ../dns-server/opendns.nix
 
             # support GeForce GT 710
-            ../hardware/nvidia470.nix
-            ../hardware/nvidia.nix
+            ../hardware/video/nvidia470.nix
+            ../hardware/video/nvidia.nix
             ../hardware/sata/ahci.nix
             ../hardware/sata/xhci-pci.nix
             ../hardware/sata/ehci-pci.nix

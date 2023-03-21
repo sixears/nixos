@@ -76,13 +76,13 @@ in
             ../dns-server/cloudflare.nix
 
             # support GeForce GT 710
-            ../hardware/nvidia470.nix
+            ../hardware/video/nvidia470.nix
+            ../hardware/video/nvidia.nix
             ../hardware/sata/ahci.nix
             ../hardware/sata/xhci-pci.nix
             # sg needed for makemkv to recognize the CDRom/BluRay
             ../hardware/scsi/sg.nix
 
-            ../hardware/nvidia.nix
             (import ../components/xserver.nix
                      { inherit pkgs bash-header; dvorak=true; })
 
