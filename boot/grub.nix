@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ grub-device }:
 
 {
   boot.loader.grub = {
@@ -9,6 +9,6 @@
     # boot.loader.grub.efiInstallAsRemovable = true;
     # boot.loader.efi.efiSysMountPoint = "/boot/efi";
     # Define on which hard drive you want to install Grub.
-    device = "/dev/sda"; # or "nodev" for efi only
+    device = grub-device; # or "nodev" for efi only
   };
 }

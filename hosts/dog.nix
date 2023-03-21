@@ -72,13 +72,15 @@ in
             ../filesystems/local-nixpkgs.nix
           ];
           imports = pkgs: [
+
             ../dns-server/cloudflare.nix
 
             # support GeForce GT 710
             ../hardware/nvidia470.nix
-            ../hardware/ahci.nix
+            ../hardware/sata/ahci.nix
+            ../hardware/sata/xhci-pci.nix
             # sg needed for makemkv to recognize the CDRom/BluRay
-            ../hardware/sg.nix
+            ../hardware/scsi/sg.nix
 
             ../hardware/nvidia.nix
             (import ../components/xserver.nix

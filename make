@@ -48,7 +48,7 @@ options:
  -r | --remote      work outside of sixears network
  -i | --isolated    work completely offline
  -T | --show-trace
- -h | --hostname    use this hostname (instead of $hostname)
+ -h | --hostname    use this hostname (instead of $($swbin/hostname --short))
  -I | --impure      enable impure evaluation
 
  -v | --verbose

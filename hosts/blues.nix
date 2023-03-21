@@ -25,7 +25,6 @@ in
         inherit system bash-header;
         hostname     = "blues";
         domainname   = "sixears.co.uk";
-        logicalCores = 8;
         etherMac     = "9c:eb:e8:5e:18:2e";
         wifiMac      = "e4:aa:ea:cc:91:31";
         stateVersion = "19.03";

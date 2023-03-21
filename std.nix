@@ -33,7 +33,7 @@ in
     # `nixos-generate-config`.
     hardware.enableRedistributableFirmware = lib.mkDefault true;
 
-    boot.initrd.availableKernelModules = [ "xhci_pci" "usb_storage" "sd_mod" ];
+    boot.initrd.availableKernelModules = [ "usb_storage" "sd_mod" ];
 
     environment.systemPackages = systemPackages pkgs;
 
