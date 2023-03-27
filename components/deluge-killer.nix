@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   ip-public     = import ../pkgs/ip-public.nix { inherit pkgs; };

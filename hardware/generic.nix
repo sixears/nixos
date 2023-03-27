@@ -1,8 +1,10 @@
-{ hostname, domainname, stateVersion, logicalCores, etherMac, wifiMac ? ""
-, systemPackages, system, filesystems, imports, bash-header
-, virtualization
-, nvme0 ? false
+{ hostname, domainname, stateVersion, logicalCores, etherMac
+, system, filesystems, imports, bash-header, virtualization
+, wifiMac         ? ""
+, systemPackages  ? (_ : [])
+, nvme0           ? false
 , cpuFreqGovernor ? "ondemand"
+, boot            ? ./boot/efi.nix
 }:
 
 [ (import virtualization)
@@ -12,7 +14,7 @@
     (import ../components/wifi.nix     { inherit wifiMac; }) else ../null.nix)
   (import ../std.nix {
     inherit hostname domainname stateVersion logicalCores systemPackages system
-            bash-header filesystems imports;
+            bash-header filesystems imports boot;
     inherit cpuFreqGovernor;
   })
 ]

@@ -1,9 +1,9 @@
-{ pkgs, hlib, hpkgs }:
+{ pkgs, hlib, ... }:
 
 let
   inherit (pkgs) rclone;
   s6-rotate    = import ../../pkgs/s6-rotate.nix     { inherit pkgs; };
-  queue        = import ../../pkgs/queue.nix         { inherit pkgs hlib hpkgs; };
+  queue        = import ../../pkgs/queue.nix         { inherit pkgs hlib; };
   trim-to-size = import ../../pkgs/trim-to-size.nix  { inherit pkgs; };
   cam-bashrc =
     pkgs.writeTextFile

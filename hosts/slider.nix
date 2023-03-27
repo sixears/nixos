@@ -27,6 +27,7 @@ in
           etherMac     = "20:6a:8a:24:87:26";
           wifiMac      = "18:f4:6a:a4:00:83";
           stateVersion = "22.05";
+          boot = import ../boot/grub.nix { grub-device = "/dev/sda"; };
           systemPackages = pkgs: [
             pkgs.shntool # see overlays/shntool.nix;
                          # picks up overlay for 24-bit WAV patch

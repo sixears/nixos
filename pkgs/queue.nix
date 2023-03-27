@@ -1,4 +1,4 @@
-{ pkgs, hlib, hpkgs }:
+{ pkgs, hlib }:
 
 (hlib.mkHBin "queue" ./queue.hs {
   libs = p:
