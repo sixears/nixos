@@ -122,15 +122,11 @@
                         "18.205.93.0" "18.205.93.1" "18.205.93.2" ];
       publicKeyFile = ../sshkeys/bitbucket.org.pub;
     };
-#    github = {
-#      hostNames     = [ "github.com" "*.github.com" ];
-#      publicKeyFile = ../sshkeys/github.com.pub;
-#    };
-
-    angy = {
-      hostNames     = [ "angy.mbligh.org" "176.9.10.118" ];
-      publicKeyFile = ../sshkeys/angy.mbligh.org.pub;
+    github = {
+      hostNames     = [ "github.com" "*.github.com" ];
+      publicKeyFile = ../sshkeys/github.com.pub;
     };
+
     titus = {
       hostNames     = [ "titus" "24.0.234.200" "mbligh.org" ];
       publicKeyFile = ../sshkeys/mbligh.org.pub;
