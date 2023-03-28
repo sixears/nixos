@@ -5,10 +5,10 @@
 #      [8 efficient+2 performance cores/8 efficient+4 performance threads]
 # GPU: Intel Corporation Alder Lake-UP4 GT2 [Iris Xe Graphics]
 
-[ (import ../video/i915.nix)
+[ (import ../hardware/video/i915.nix)
   (import ../virtualization/intel.nix)
   (import ../storage/nvme0.nix)
-  (import ../hardware/dell/xhci-pci.nix)
+  (import ../hardware/sata/xhci-pci.nix)
   (import ../hardware/fwupd.nix)
   (import ../components/ethernet.nix { inherit etherMac; })
   (import ../components/wifi.nix     { inherit wifiMac; })
