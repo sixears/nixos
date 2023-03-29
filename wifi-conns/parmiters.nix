@@ -34,7 +34,7 @@ cat >$target <<'END'
   method=auto
 
   [proxy]
-  END
+END
 
 ${pkgs.coreutils}/bin/chmod 0600 $target
 ''
