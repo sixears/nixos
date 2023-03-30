@@ -4,7 +4,7 @@
 , systemPackages  ? (_ : [])
 , nvme0           ? false
 , cpuFreqGovernor ? "ondemand"
-, boot            ? ./boot/efi.nix
+, boot            ? ../boot/efi.nix
 }:
 
 [ (import virtualization)
