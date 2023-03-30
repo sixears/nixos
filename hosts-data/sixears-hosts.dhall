@@ -40,6 +40,13 @@
             , comments = [] : List Text
             }
 
+          , { fqdn = "apparatus.sixears.co.uk."
+            , ipv4 = "192.168.0.23"
+            , desc = "VPN Box AWOW AK41"
+            , mac  = Some "00:e0:4c:5d:fc:17"
+            , comments = [] : List Text
+            }
+
             -- Laptops ---------------------------------------------------------
 
           , { fqdn = "curse.sixears.co.uk."
