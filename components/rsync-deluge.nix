@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  passwd-file = "/home/martyn/.rsync-secret";
+  passwd-file = "/home/martyn/.rsync.secret";
   rsync-deluge = pkgs.writers.writeBashBin "rsync-deluge" ''
     builtin exec ${pkgs.rsync}/bin/rsync --archive                       \
                                          --password-file ${passwd-file}  \

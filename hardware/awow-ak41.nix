@@ -1,4 +1,4 @@
-{ hostname, domainname, stateVersion, logicalCores ? 4, etherMac, wifiMac
+{ hostname, domainname, stateVersion, logicalCores ? 4, etherMac, wifiMac ? ""
 , systemPackages, system, filesystems, imports, bash-header }:
 
 # CPU: 2.0-2.7 GHz Intel J4125 [4 cores/4 threads] 10W
@@ -12,7 +12,6 @@
   (import ../virtualization/intel.nix)
   (import ../storage/nvme0.nix)
   (import ../components/ethernet.nix { inherit etherMac; })
-  (import ../components/wifi.nix     { inherit wifiMac; })
   (import ../std.nix {
     inherit hostname domainname stateVersion logicalCores systemPackages system
             bash-header filesystems imports;
@@ -22,4 +21,6 @@
     # and that the current policy is "powersave"
     cpuFreqGovernor = "powersave";
   })
-]
+]++ (if (wifiMac == "") then [
+  (import ../components/wifi.nix     { inherit wifiMac; })
+] else [])

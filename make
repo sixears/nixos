@@ -50,6 +50,8 @@ options:
  -T | --show-trace
  -h | --hostname    use this hostname (instead of $($swbin/hostname --short))
  -I | --impure      enable impure evaluation
+ -N | --bincache    explicitly cite 192.168.0.7 as a substituters
+ -S | --sudo        force sudo, needed to trust without keys
 
  -v | --verbose
  -n | --dry-run
@@ -75,9 +77,10 @@ dirty=false
 show_trace=false
 impure=false
 very_verbose=false
+substituters=( https://cache.nixos.org/ )
 
-options=( -o vnirdTh:IV
-          --long show-trace,dirty,isolated,remote,hostname:,impure,very-verbose
+options=( -o vnirdTh:IVNS
+          --long show-trace,dirty,isolated,remote,hostname:,impure,very-verbose,bincache,sudo
           --long verbose,dry-run,help )
 OPTS=$( $getopt "${options[@]}" -n "$progname" -- "$@" )
 
@@ -94,6 +97,8 @@ while true; do
     -T | --show-trace ) show_trace=true      ; shift   ;;
     -h | --hostname   ) hostnames=( "$2" )   ; shift 2 ;;
     -I | --impure     ) impure=true          ; shift   ;;
+    -N | --bincache   ) substituters+=( http://nixos-bincache.sixears.co.uk:5000/ ); shift ;;
+    -S | --sudo       ) pfx_cmd=( $sudo -- ) ; shift   ;;
 
     -v | --verbose    ) verbose=true         ; shift   ;;
     -V | --very-verbose ) very_verbose=true  ; shift   ;;
@@ -132,7 +137,7 @@ cmd=($nixos_rebuild $command)
 if $isolated; then
   cmd+=( --offline )
 elif $remote; then
-  cmd+=( --option substituters https://cache.nixos.org/ )
+  substituters+=( https://cache.nixos.org/ )
 fi
 
 if $dirty; then
@@ -145,6 +150,13 @@ $very_verbose && cmd+=( --verbose )
 
 $show_trace && cmd+=( --show-trace )
 $impure     && cmd+=( --impure )
+
+##if [[ 0 -ne ${#substituters[@]} ]]; then
+##  cmd+=( --option substituters "'${substituters[*]}'"
+##         --option trusted-substituters "'${substituters[*]}'"
+###         --option trusted-public-keys 'qdbId5CKN01tH6SWL0YUsIG5fUmdZKRgYQ8Hh2C3STg='
+##       )
+##fi
 
 if [[ dry-build == $command ]]; then
   hostfiles=( "$progdir/hosts/"*.nix )

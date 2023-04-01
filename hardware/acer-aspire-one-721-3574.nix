@@ -7,13 +7,14 @@
 # GPU: ATI Radeon HD 4225
 # Broadcom wifi
 
-[ (import ../virtualization/amd.nix)
-  (import ../hardware/networking/broadcom.nix)
-  (import ../hardware/sata/ahci.nix)
-  (import ../hardware/sata/ehci-pci.nix)
-  (import ../hardware/sata/ohci-pci.nix)
-  (import ../hardware/card/ums-realtek.nix)
-  (import ../hardware/fwupd.nix)
+[ (import ./networking/broadcom.nix)
+  (import ./sata/ahci.nix)
+  (import ./sata/ehci-pci.nix)
+  (import ./sata/ohci-pci.nix)
+  (import ./card/ums-realtek.nix)
+  (import ./fwupd.nix)
+
+  (import ../virtualization/amd.nix)
   (import ../components/ethernet.nix { inherit etherMac; })
   (import ../components/wifi.nix     { inherit wifiMac; })
   (import ../std.nix {

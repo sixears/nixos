@@ -1,8 +1,8 @@
-{ nixpkgs-2023-01-14, bashHeader-2023-01-14, nixos-system, ... }:
+{ nixos-22-11-release, bashHeader-22-11-release, nixos-system, ... }:
 
 let
-  nixpkgs    = nixpkgs-2023-01-14;
-  bashHeader = bashHeader-2023-01-14;
+  nixpkgs    = nixos-22-11-release;
+  bashHeader = bashHeader-22-11-release;
 in
   nixos-system
     {
@@ -32,14 +32,15 @@ in
           logicalCores   = 4;
 
           filesystems = [
-            ../filesystems/boot.nix
+            ../filesystems/efi.nix
             ../filesystems/std.nix
             ../filesystems/local.nix
 
-            ../filesystems/archive6-a.nix
-            ../filesystems/archive6-b.nix
+            ../filesystems/efi-b.nix
+            ../filesystems/std-b.nix
+            ../filesystems/local-b.nix
             # nixpkgs on /local
-            # ../filesystems/local-nixpkgs.nix
+            ../filesystems/local-nixpkgs.nix
 
             ../filesystems/local-deluge.nix
           ];
