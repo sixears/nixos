@@ -19,6 +19,7 @@ in
       dmidecode
       emacs
       fatrace
+      fd
       file
       flameshot
       (import ./pkgs/fstab-check.nix { inherit pkgs; })
@@ -26,6 +27,7 @@ in
       hddtemp
       hdparm
       inetutils
+      inxi
       git
       gnumake
       less
@@ -46,6 +48,8 @@ in
       sysstat
       vim
       unzip
+      usbutils
+
       atop
       htop
       ntopng

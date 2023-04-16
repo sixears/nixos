@@ -15,6 +15,8 @@
     extraConfig = ''
       domain sixears.co.uk
       from %U@%H
+      logfile /var/log/msmtp.log
+      logfile_time_format %FZ%T
     '';
     accounts.default = {
       host         = "ocean.mxroute.com";

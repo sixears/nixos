@@ -19,6 +19,8 @@ Mount=true
 Source=/mnt/sdcard
 NoDelete=false # if true, skip the deletion question
 LogFile=/dev/null
+readonly DefaultCopyExtensions=( jpg rw2 )
+CopyExtensions=( )
 
 # ------------------------------------------------------------------------------
 
@@ -49,6 +51,19 @@ main() {
 
   echo "Copying card contents to ''${Target%/}/..."
   local fn
+
+  if [[ 0 -eq ''${#CopyExtensions[@]} ]]; then
+    CopyExtensions=( "''${DefaultCopyExtensions[@]}" )
+  fi
+
+  local find_args=( -iname '*.jpg' -o -iname '*.rw2' )
+  local find_args=()
+  local extension
+  for extension in "''${CopyExtensions[@]}"; do
+    [[ 0 -eq ''${find_args[@]} ]] || find_args+=( -o )
+    find_args+=( -iname "*.$extension" )
+  done
+
   while read fn; do
     local bn
     capture bn gocmdnodryrun 19 basename "$fn"
@@ -93,6 +108,7 @@ main() {
         capture source_size gocmdnodryrun 35 stat --printf %s "$fn"
         capture target_size gocmdnodryrun 36 stat --printf %s "$target_fn"
         if [[ $target_size -eq $source_size ]]; then
+
           warn "ignoring duplicate '$fn'"
           continue
         fi
@@ -137,7 +153,7 @@ main() {
     $DryRun || gocmdnodryrun 33 basename "$fn" >> "$LogFile"
     deletions+=("$fn")
     # include rw2 files: this is lumix raw format
-  done < <( gocmdnodryrun 13 find "$Source" -iname '*.jpg' -o -iname '*.rw2' )
+  done < <( gocmdnodryrun 13 find "$Source" "''${find_args[@]}" )
 
   if ! $NoDelete; then
     while true; do
@@ -186,6 +202,11 @@ options:
  -t | --target <DIR>  Copy/move files to here (in dated subdirectory).
  -C | --copy          Skip the deletion prompt after the copy.
     | --no-delete
+ -D | --no-dated      Don't copy into dated dirs
+ -L | --log-file      Write a log of files that were copied here; use this
+                      to avoid re-copying previously copied files.
+ -E | --extensions    Copy only files with these (case-insensitive) file
+                      extensions.  Defaults to ''${DefaultCopyExtensions[@]}
 
  -v | --verbose
  -n | --dry-run
@@ -194,8 +215,9 @@ EOF
 )"
 
 orig_args=("$@")
-getopt_args=( --options s:t:DvCL:
+getopt_args=( --options s:t:DvCL:E:
               --long source:,target:,no-dated,copy,no-delete,log-file:
+              --long extensions:
               --long verbose,dry-run,help,debug )
 OPTS=$( ''${Cmd[getopt]} "''${getopt_args[@]}" -n "$Progname" -- "$@" )
 
@@ -211,11 +233,12 @@ while true; do
     --dry-run       ) DryRun=true            ; shift ;;
     --debug         ) Debug=true             ; shift ;;
 
-    -s | --source   ) Source="$2"; Mount=false; shift 2 ;;
-    -t | --target   ) Target="$2";              shift 2 ;;
-    -D | --no-dated ) Dated=false;              shift   ;;
-    -C | --copy | --no-delete ) NoDelete=true ; shift   ;;
-    -L | --log-file ) LogFile="$2";             shift 2 ;;
+    -s | --source     ) Source="$2"; Mount=false; shift 2 ;;
+    -t | --target     ) Target="$2";              shift 2 ;;
+    -D | --no-dated   ) Dated=false;              shift   ;;
+    -L | --log-file   ) LogFile="$2";             shift 2 ;;
+    -E | --extensions ) CopyExtensions+=( "$2" ); shift 2 ;;
+    -C | --copy | --no-delete ) NoDelete=true   ; shift   ;;
 
     # !!! don't forget to update usage !!!
     --              ) args+=("''${@:2}")       ; break ;;

@@ -137,7 +137,7 @@ cmd=($nixos_rebuild $command)
 if $isolated; then
   cmd+=( --offline )
 elif $remote; then
-  substituters+=( https://cache.nixos.org/ )
+  substituters=( https://cache.nixos.org/ )
 fi
 
 if $dirty; then
@@ -151,12 +151,9 @@ $very_verbose && cmd+=( --verbose )
 $show_trace && cmd+=( --show-trace )
 $impure     && cmd+=( --impure )
 
-##if [[ 0 -ne ${#substituters[@]} ]]; then
-##  cmd+=( --option substituters "'${substituters[*]}'"
-##         --option trusted-substituters "'${substituters[*]}'"
-###         --option trusted-public-keys 'qdbId5CKN01tH6SWL0YUsIG5fUmdZKRgYQ8Hh2C3STg='
-##       )
-##fi
+if [[ 0 -ne ${#substituters[@]} ]]; then
+  cmd+=( --option substituters "'${substituters[*]}'" )
+fi
 
 if [[ dry-build == $command ]]; then
   hostfiles=( "$progdir/hosts/"*.nix )

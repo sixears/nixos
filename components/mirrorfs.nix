@@ -11,6 +11,6 @@ in
     services.fcron.systab =
       ''
         # one minute past midnight
-        &runas(root) 1 0 * * * ${mirrorfs}
+        &runas(root) 1 0 * * * ${mirrorfs}/bin/mirrorfs
       '';
   }

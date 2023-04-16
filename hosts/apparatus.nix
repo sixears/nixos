@@ -1,8 +1,8 @@
-{ nixos-22-11-release, bashHeader-22-11-release, nixos-system, ... }:
+{ nixpkgs-2023-03-24, bashHeader-2023-03-24, nixos-system, ... }:
 
 let
-  nixpkgs    = nixos-22-11-release;
-  bashHeader = bashHeader-22-11-release;
+  nixpkgs    = nixpkgs-2023-03-24;
+  bashHeader = bashHeader-2023-03-24;
 in
   nixos-system
     {
@@ -46,22 +46,17 @@ in
           ];
           imports = pkgs: [
 
-#            (import ../components/xserver.nix
-#                    { inherit pkgs bash-header; dvorak=true; })
-
-            ../components/hdcalm.nix
+#            ../components/hdcalm.nix
             ../components/mirrorfs.nix
             ../components/media.nix
 
             ../users/people/martyn.nix
             ../users/people/syncthing-martyn.nix
 
-#      ../nginx-reverse-ssl.nix
-
-            ../filesystems/ramdisk-cam.nix
-            ../components/vsftpd.nix
-            ../users/system/cam.nix
-            ../components/cam-thttpd.nix
+#            ../filesystems/ramdisk-cam.nix
+#            ../components/vsftpd.nix
+#            ../users/system/cam.nix
+#            ../components/cam-thttpd.nix
 
             ## When running the VPN tunnel, requests from dnscache to the
             ## outside world go via the tunnel; so the IP address doesn't appear
@@ -74,10 +69,10 @@ in
             # create this with the mkopenvpnconfs script
             ../openvpn/new-york.nix
 
-            ../components/deluged.nix
             ../components/deluge-killer.nix
+            ../components/deluged.nix
             # host locks up every few days.  Maybe this will help.  2022-07-01
-            ../components/daily-reboot.nix
+#            ../components/daily-reboot.nix
           ];
         });
     }

@@ -20,8 +20,8 @@ while $true; do
   #   AND public ip is neither 82.69.* (zen) or 193.219.* (hey broadband)
           $pgrep openvpn > /dev/null                                       \
       &&  $route --numeric | $grep ^0.0.0.0 | $grep --silent tun0          \
-      &&  { ! { ${ip-public}/bin/ip-public $sleeptime | $grep ^82.69.      \
-             || ${ip-public}/bin/ip-public $sleeptime | $grep ^193.219.; } \
+      &&  { ! { ${ip-public}/bin/ip-public | $grep ^82.69.                 \
+             || ${ip-public}/bin/ip-public | $grep ^193.219.; }            \
           } \
    || { set -x ; $pgrep deluge && { echo -e "\nVPN IS DOWN - killing deluge"; \
                            $killall --signal TERM --regexp deluge;   \

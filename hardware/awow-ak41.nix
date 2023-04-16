@@ -6,7 +6,7 @@
 [ (import ./sata/ahci.nix)
   (import ./sata/xhci-pci.nix)
   (import ./usb/hid.nix)
-  (import ./card/rtsx_usb_sdmmc.nix)
+  (import ./card/rtsx-usb-sdmmc.nix)
   (import ./card/sdhci.nix)
   (import ./fwupd.nix)
   (import ../virtualization/intel.nix)

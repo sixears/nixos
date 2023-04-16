@@ -124,11 +124,11 @@
         "type": "github"
       }
     },
-    "bashHeader-22-11-release": {
+    "bashHeader-2023-03-24": {
       "inputs": {
         "flake-utils": "flake-utils_2",
         "nixpkgs": [
-          "nixos-22-11-release"
+          "nixpkgs-2023-03-24"
         ]
       },
       "locked": {
@@ -813,22 +813,6 @@
         "type": "github"
       }
     },
-    "nixos-22-11-release": {
-      "locked": {
-        "lastModified": 1669805558,
-        "narHash": "sha256-MjSv0KcmLrwoEq4GPeFYLbFC4YP3C/9XGou8bq4KxLw=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "f1b9cc23aa8b1549dd7cb53dbe9fc950efc97646",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "f1b9cc2",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1665856284,
@@ -889,6 +873,22 @@
       "original": {
         "owner": "NixOS",
         "ref": "3ae365af",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-2023-03-24": {
+      "locked": {
+        "lastModified": 1679788965,
+        "narHash": "sha256-zHbJ3Mz/DoUcRBpkjiBkFN1vFic9fTqXD0R4NNieQ5k=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "07fb9cae4e13da222e9d356d34e990c162f08a51",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "07fb9ca",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -1066,12 +1066,12 @@
     "root": {
       "inputs": {
         "bashHeader-2023-01-14": "bashHeader-2023-01-14",
-        "bashHeader-22-11-release": "bashHeader-22-11-release",
+        "bashHeader-2023-03-24": "bashHeader-2023-03-24",
         "hpkgs1": "hpkgs1",
-        "nixos-22-11-release": "nixos-22-11-release",
         "nixpkgs-2020-09-25": "nixpkgs-2020-09-25",
         "nixpkgs-2022-04-22": "nixpkgs-2022-04-22",
-        "nixpkgs-2023-01-14": "nixpkgs-2023-01-14"
+        "nixpkgs-2023-01-14": "nixpkgs-2023-01-14",
+        "nixpkgs-2023-03-24": "nixpkgs-2023-03-24"
       }
     },
     "single-src-0-0-1-0": {
