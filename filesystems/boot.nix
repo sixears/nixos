@@ -1,3 +1,3 @@
 { ... }:
 
-{ fileSystems = { "/boot" = { label = "boot";   fsType = "vfat"; }; }; }
+{ fileSystems = { "/boot" = { label = "boot";   fsType = "ext2"; }; }; }

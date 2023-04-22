@@ -64,6 +64,7 @@ in
           ../components/finbar.nix
 
           ../users/people/heather.nix
+          ../users/people/heather-lumix-copy.nix
           ../users/people/syncthing-heather.nix
           ../users/people/martyn.nix
           ../users/people/syncthing-martyn.nix

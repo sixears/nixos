@@ -1,4 +1,4 @@
-{ config, pkgs, bash-header, ... }:
+{ pkgs, ... }:
 
 let
   user     = "heather";
@@ -10,9 +10,6 @@ let
     pkgs.writers.writeBashBin
       "presume"
       "/run/wrappers/bin/sudo /run/current-system/sw/bin/cupsenable vertigen";
-
-  lumix-copy =
-    (import ../../pkgs/lumix-copy.nix  { inherit pkgs bash-header; });
 in
   {
     users.groups.${user}.gid = uid;
@@ -36,7 +33,6 @@ in
     };
 
     services.fcron.systab = ''
-      @runas(${user}),erroronlymail 60s ${lumix-copy}/bin/lumix-copy --source ${home}/stalker-Camera --log-file ${home}/.stalker-Camera.log --no-delete
       @runas(${user}) 60s ${touch} ${home}/.touch-$(${hostname} -s)
     '';
   }

@@ -84,7 +84,7 @@ in
             ../components/deluged.nix
             ../components/deluge-killer.nix
             # host locks up every few days.  Maybe this will help.  2022-07-01
-            ../components/daily-reboot.nix
+            # ../components/daily-reboot.nix
           ];
         });
     }

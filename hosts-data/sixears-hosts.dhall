@@ -378,6 +378,13 @@
             , comments = [] : List Text
             }
 
+          , { fqdn = "rj.sixears.co.uk."
+            , mac= Some "d8:14:df:59:8c:15"
+            , ipv4 = "192.168.0.121"
+            , desc = "Roku TV (Day Room)"
+            , comments = [] : List Text
+            }
+
           , { fqdn = "veronica.sixears.co.uk."
             , ipv4 = "192.168.0.115"
             , desc = "iRobot Roomba 980"

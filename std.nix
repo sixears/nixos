@@ -50,6 +50,10 @@ in
     programs.ssh.knownHosts =
       { "localhost" = { publicKeyFile = sshPubKey; }; };
 
+    # -- sudo ----------------------------------------------
+
+    security.sudo = { execWheelOnly = true; wheelNeedsPassword = false; };
+
     # -- audio ---------------------------------------------
 
     sound.enable = true;
