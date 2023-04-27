@@ -62,8 +62,6 @@ in
             ../components/nix-serve.nix
             ../dns-server/cloudflare.nix
 
-            ../components/bluetooth.nix
-
             ../components/finbar.nix
             ../components/keyboardio.nix
 

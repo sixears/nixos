@@ -56,5 +56,7 @@ in
       s-tui
       sysdig
       cryptsetup
+
+      hwloc
     ];
   }
