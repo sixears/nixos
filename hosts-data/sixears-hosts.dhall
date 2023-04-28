@@ -263,7 +263,7 @@
           , { fqdn = "river.sixears.co.uk."
             , ipv4 = "192.168.0.9"
             , desc = "Samsung Galaxy Tab S8 JJ"
-            , mac= Some "66:fe:b3:a3:2d:a1"
+            , mac= Some "9c:2e:7a:5c:83:7a"
             , comments = [] : List Text
             }
 
