@@ -1,7 +1,7 @@
-{ pkgs, bash-header, dvorak ? false, ... }:
+{ pkgs, bash-header, my-pkgs, dvorak ? false, ... }:
 
 let
-  touchpad = import ../pkgs/touchpad.nix { inherit pkgs bash-header; };
+#  touchpad = import ../pkgs/touchpad.nix { inherit pkgs bash-header; };
   xkb      = import ../pkgs/xkb.nix      { inherit pkgs; };
   xmonad-with-pkgs =
     pkgs.xmonad-with-packages.override
@@ -13,7 +13,7 @@ in
       # ghc
       i3status
       rxvt_unicode-with-plugins
-      touchpad
+      my-pkgs.touchpad
       xkb
       xkeyboard_config
       xmonad-with-pkgs
@@ -49,7 +49,8 @@ in
     environment.etc = {
       xmonad-hs =
         {
-          source = import ../pkgs/xmonad-hs.nix { inherit pkgs touchpad; };
+          source = import ../pkgs/xmonad-hs.nix { inherit pkgs;
+                                                  inherit (my-pkgs) touchpad; };
           target = "xmonad.hs";
         };
 

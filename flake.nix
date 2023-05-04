@@ -16,25 +16,35 @@
       url    = github:sixears/bash-header/5206b087;
       inputs = { nixpkgs.follows = "nixpkgs-2023-03-24"; };
     };
+    myPkgs-2023-01-14      = {
+      url    = github:sixears/nix-pkgs/r0.0.0.0;
+      inputs = { nixpkgs.follows = "nixpkgs-2023-01-14"; };
+    };
+    myPkgs-2023-03-24      = {
+      url    = github:sixears/nix-pkgs/r0.0.0.0;
+      inputs = { nixpkgs.follows = "nixpkgs-2023-03-24"; };
+    };
   };
 
   outputs = { self, hpkgs1
-            , nixpkgs-2023-03-24, bashHeader-2023-03-24
-            , nixpkgs-2023-01-14, bashHeader-2023-01-14
+            , nixpkgs-2023-03-24, bashHeader-2023-03-24, myPkgs-2023-03-24
+            , nixpkgs-2023-01-14, bashHeader-2023-01-14, myPkgs-2023-01-14
             , nixpkgs-2022-04-22 # for mythtv
             , nixpkgs-2020-09-25 # for plex
             , ... }:
     let
-      nixos-system = { nixpkgs, bashHeader, modules, system ? "x86_64-linux" }:
+      nixos-system = { nixpkgs, bashHeader, myPkgs, modules
+                     , system ? "x86_64-linux" }:
         let
           hpkgs = hpkgs1.packages.${system};
           hlib  = hpkgs1.lib.${system};
           bash-header = bashHeader.packages.${system}.bash-header;
+          my-pkgs     = myPkgs.packages.${system};
         in
           nixpkgs.lib.nixosSystem { inherit system;
                                     modules =
                                       modules { inherit system bash-header
-                                                        hlib hpkgs; };
+                                                        hlib my-pkgs hpkgs; };
                                     # pass system through to modules & imports
                                     specialArgs =
                                       { inherit system bash-header hlib;
@@ -52,8 +62,10 @@
             lib.importNixesByName ./hosts { inherit nixos-system
                                                     nixpkgs-2023-03-24
                                                     bashHeader-2023-03-24
+                                                    myPkgs-2023-03-24
                                                     nixpkgs-2023-01-14
                                                     bashHeader-2023-01-14
+                                                    myPkgs-2023-01-14
                                                     nixpkgs-2022-04-22
                                                     nixpkgs-2020-09-25; };
         in

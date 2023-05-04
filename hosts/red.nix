@@ -1,13 +1,14 @@
-{ nixpkgs-2023-01-14, bashHeader-2023-01-14, nixos-system, ... }:
+{ nixpkgs-2023-01-14,bashHeader-2023-01-14,myPkgs-2023-01-14,nixos-system,... }:
 
 let
   nixpkgs    = nixpkgs-2023-01-14;
   bashHeader = bashHeader-2023-01-14;
+  myPkgs     = myPkgs-2023-01-14;
 in
   nixos-system
     {
-      inherit nixpkgs bashHeader;
-      modules = { system, bash-header, hpkgs, hlib }:
+      inherit nixpkgs bashHeader myPkgs;
+      modules = { system, bash-header, my-pkgs, hpkgs, hlib }:
         [
           { nixpkgs.overlays =
               # to import each overlay individually
@@ -46,7 +47,10 @@ in
             ../filesystems/usb-sda.nix
           ];
           imports = pkgs: [
-            (import ../components/xserver.nix { inherit pkgs bash-header; dvorak=true; })
+            (import ../components/xserver.nix {
+              inherit pkgs bash-header my-pkgs;
+              dvorak=true;
+            })
             ../components/xserver-intel.nix
 
             ../components/laptop.nix
@@ -61,6 +65,7 @@ in
             ../components/openvpn.nix
             ../components/nix-serve.nix
             ../dns-server/cloudflare.nix
+            ../components/zsa.nix
 
             ../components/finbar.nix
             ../components/keyboardio.nix
