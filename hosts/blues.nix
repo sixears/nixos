@@ -1,13 +1,14 @@
-{ nixpkgs-2023-01-14, bashHeader-2023-01-14, nixos-system, ... }:
+{ nixpkgs-2023-01-14,bashHeader-2023-01-14,myPkgs-2023-01-14,nixos-system,... }:
 
 let
   nixpkgs    = nixpkgs-2023-01-14;
   bashHeader = bashHeader-2023-01-14;
+  myPkgs     = myPkgs-2023-01-14;
 in
   nixos-system
     {
-      inherit nixpkgs bashHeader;
-      modules = { system, bash-header, hpkgs, hlib }:
+      inherit nixpkgs bashHeader myPkgs;
+      modules = { system, bash-header, my-pkgs, hpkgs, hlib }:
         [
           { nixpkgs.overlays =
               # to import each overlay individually
@@ -28,7 +29,10 @@ in
         etherMac     = "9c:eb:e8:5e:18:2e";
         wifiMac      = "e4:aa:ea:cc:91:31";
         stateVersion = "19.03";
-        systemPackages = pkgs: [ (hpkgs.acct) ];
+        systemPackages = pkgs: [
+          (hpkgs.acct)
+          (import ../pkgs/mkopenvpnconfs { inherit pkgs bash-header; })
+        ];
 
         filesystems = [
           ../filesystems/std.nix
@@ -50,7 +54,7 @@ in
         ];
 
         imports = pkgs: [
-          (import ../components/xserver.nix { inherit pkgs bash-header; })
+          (import ../components/xserver.nix {inherit pkgs bash-header my-pkgs;})
 
           ../components/laptop.nix
           ../components/printing.nix
@@ -62,6 +66,7 @@ in
           ../components/scanning.nix
 
           ../components/finbar.nix
+          ../components/openvpn.nix
 
           ../users/people/heather.nix
           ../users/people/heather-lumix-copy.nix

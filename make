@@ -181,3 +181,4 @@ done
 # https://nixos.wiki/wiki/Nixos-rebuild
 ## /usr/bin/env -i SSH_AUTH_SOCK=/tmp/martyn/ssh-XXXXXX6Lxt15/agent.2771 PATH=/run/current-system/sw/bin /run/current-system/sw/bin/nixos-rebuild --option allow-dirty false --verbose --flake /home/martyn/nixos/#grain --target-host grain --use-remote-sudo switch
 # nixos-rebuild  --verbose --flake ~+/#night --target-host night --use-remote-sudo switch
+# --option trusted-substituters https://nixos-bincache.sixears.co.uk:5000/

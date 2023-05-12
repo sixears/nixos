@@ -8,7 +8,6 @@
     package = pkgs.deluge-2_x;
   };
 
-
   # required for deluge to see the journal output from openvpn
   users.users.deluge.extraGroups = [ "systemd-journal" ];
   # https://pychao.com/2021/02/24/difference-between-partof-and-bindsto-in-a-systemd-unit/

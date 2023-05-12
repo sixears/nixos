@@ -60,7 +60,7 @@ main() {
   local find_args=()
   local extension
   for extension in "''${CopyExtensions[@]}"; do
-    [[ 0 -eq ''${find_args[@]} ]] || find_args+=( -o )
+    [[ 0 -eq ''${#find_args[@]} ]] || find_args+=( -o )
     find_args+=( -iname "*.$extension" )
   done
 

@@ -15,7 +15,7 @@ sleeptime="''${1:-0}"
 
 while $true; do
   # EITHER:
-  #       openvpn is up, AND
+  #       openvpn is up,
   #   AND the default gateway is going through tun0
   #   AND public ip is neither 82.69.* (zen) or 193.219.* (hey broadband)
           $pgrep openvpn > /dev/null                                       \
