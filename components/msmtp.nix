@@ -15,8 +15,11 @@
     extraConfig = ''
       domain sixears.co.uk
       from %U@%H
-      logfile /var/log/msmtp.log
-      logfile_time_format %FZ%T
+      # logfile does not work for multiple users; they all need write perm
+      # to the log file.  Use syslog instead.
+      # logfile /var/log/msmtp.log
+      # logfile_time_format %FZ%T
+      syslog on
     '';
     accounts.default = {
       host         = "ocean.mxroute.com";
