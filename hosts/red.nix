@@ -29,6 +29,7 @@ in
           etherMac     = "72:65:64:2e:73:69";
           wifiMac      = "Dell XPS 9315 Laptop Wireless";
           stateVersion = "22.05";
+
           systemPackages = pkgs: [
             (import ../pkgs/mkopenvpnconfs { inherit pkgs bash-header; })
 
@@ -69,6 +70,11 @@ in
 
             ../components/finbar.nix
             ../components/keyboardio.nix
+
+            (import ../components/suspend-then-hibernate.nix {
+              suspend-hibernate-time  = "4h";
+              idle-suspend-time       = "30m";
+            })
 
             ../users/people/martyn.nix
             ../users/people/syncthing-martyn.nix
