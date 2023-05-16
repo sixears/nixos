@@ -39,6 +39,10 @@ in
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+    # these users can, e.g., build & install from remote
+    # see https://nixos.wiki/wiki/Nixos-rebuild
+    nix.settings.trusted-users = [ "martyn" ];
+
     environment.etc.nixos-cfg.source = "${nixos-cfg}";
 
     programs.sysdig.enable = true;
@@ -52,6 +56,7 @@ in
 
     # -- sudo ----------------------------------------------
 
+    # we allow nopasswd for wheel in part to allow remote rebuilding with --with-remote-sudo
     security.sudo = { execWheelOnly = true; wheelNeedsPassword = false; };
 
     # -- audio ---------------------------------------------
