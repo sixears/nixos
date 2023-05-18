@@ -90,7 +90,7 @@ in
       cam_log_dir=/var/log/cam/move-cam-mp4s/
 
       # 12 minutes past every hour
-      &runas(cam) 12 * * * * ${trim-to-size}/bin/trim-to-size /cam 1792
+      &runas(cam) 12 * * * * ${trim-to-size}/bin/trim-to-size /cam 1792 --exclude-pat 'camthttpd*'
       # every 6 hours at 10 past the hour; plus 3:10AM before the boot dance
       # 1:10 rather than 12:10 to avoid mirrorfs
       &runas(cam) 10 1,3,6,12,16,18 * * * ${pkgs.rsync}/bin/rsync -a /cam/* /Cam-Archive/ --exclude cam\*
@@ -98,7 +98,7 @@ in
       &runas(cam) 15 * * * * ${move-cam-mp4s} $cam_log_dir && ${s6-rotate} $cam_log_dir
 
       # 6AM; After 5AM timer plug on / 5:30AM BIOS resume
-      &runas(cam) 0  6          * * * ${trim-to-size}/bin/trim-to-size /Cam-Archive 1572864
+      &runas(cam) 0  6          * * * ${trim-to-size}/bin/trim-to-size /Cam-Archive 1572864 --exclude-pat 'camthttpd*'
     '';
 
   users.groups.cam.gid = 2005;

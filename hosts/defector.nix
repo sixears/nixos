@@ -1,13 +1,14 @@
-{ nixpkgs-2023-01-14, bashHeader-2023-01-14, nixos-system, ... }:
+{ nixpkgs-2023-01-14, bashHeader-2023-01-14,myPkgs-2023-01-14, nixos-system, ... }:
 
 let
   nixpkgs    = nixpkgs-2023-01-14;
   bashHeader = bashHeader-2023-01-14;
+  myPkgs     = myPkgs-2023-01-14;
 in
   nixos-system
     {
-      inherit nixpkgs bashHeader;
-      modules = { system, bash-header, hpkgs, hlib }:
+      inherit nixpkgs bashHeader myPkgs;
+      modules = { system, bash-header, my-pkgs, hpkgs, hlib }:
         [
           { nixpkgs.overlays =
               # to import each overlay individually

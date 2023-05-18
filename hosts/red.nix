@@ -71,10 +71,11 @@ in
             ../components/finbar.nix
             ../components/keyboardio.nix
 
-            (import ../components/suspend-then-hibernate.nix {
-              suspend-hibernate-time  = "4h";
-              idle-suspend-time       = "30m";
-            })
+#           this crashes when it goes into auto-suspend :-(
+#            (import ../components/suspend-then-hibernate.nix {
+#              suspend-hibernate-time  = "1h";
+#              idle-suspend-time       = "30m";
+#            })
 
             ../users/people/martyn.nix
             ../users/people/syncthing-martyn.nix
