@@ -48,7 +48,7 @@ die() {
 
 # ------------------------------------------------------------------------------
 
-OPTS=$( $getopt -o vh --long verbose,help,exclude-pat: \
+OPTS=$( $getopt -o vhl: --long verbose,help,exclude-pat:,log-file: \
                 -n "$progname" -- "$@" )
 
 [ $? -eq 0 ] || die 2 "options parsing failed (--help for help)"
@@ -57,10 +57,12 @@ OPTS=$( $getopt -o vh --long verbose,help,exclude-pat: \
 eval set -- "$OPTS"
 
 exclude_pats=()
+log_file=/dev/tty
 
 while true; do
   case "$1" in
     --exclude-pat   ) exclude_pats+=( "$2" ); shift 2 ;;
+    --log-file | -l ) log_file="$2"         ; shift 2 ;;
 
     -v | --verbose  ) verbose=$true ; shift   ;;
     -h | --help     ) usage                   ;;
@@ -84,6 +86,7 @@ for f in "''${exclude_pats[@]}"; do
   find_args+=( -name "$f" -o )
 done
 
+$rm -f "$log_file"
 # it is important that the while loop is the parent while the find is the piped
 # find is the child process; the find will almost certainly die of a sigPIPE due
 # to the early break from the while when the size falls below the limit; the
@@ -93,6 +96,6 @@ done
 while read -d $'\0' f; do
   [[ $( $du --summarize --block-size=1MiB "$dir" | $cut --fields 1 ) -lt "$size" ]] && break
   info "removing $dir/$f"
-  $rm --verbose "$dir/$f" || break
+  $rm --verbose "$dir/$f" >> "$log_file" || break
 done < <( $find "$dir" -type f \( "''${find_args[@]}" -printf '%C@ %P\0' \) | $sort -nz | $cut -z -d ' ' -f 2- )
 ''

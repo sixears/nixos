@@ -90,7 +90,7 @@ in
       cam_log_dir=/var/log/cam/move-cam-mp4s/
 
       # 12 minutes past every hour
-      &runas(cam) 12 * * * * ${trim-to-size}/bin/trim-to-size /cam 1792 --exclude-pat 'camthttpd*'
+      &runas(cam) 12 * * * * ${trim-to-size}/bin/trim-to-size /cam 1792 --exclude-pat 'camthttpd*' --log-file /tmp/trim-to-size.cam.log
       # every 6 hours at 10 past the hour; plus 3:10AM before the boot dance
       # 1:10 rather than 12:10 to avoid mirrorfs
       &runas(cam) 10 1,3,6,12,16,18 * * * ${pkgs.rsync}/bin/rsync -a /cam/* /Cam-Archive/ --exclude cam\*

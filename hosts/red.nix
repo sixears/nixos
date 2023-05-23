@@ -77,6 +77,8 @@ in
 #              idle-suspend-time       = "30m";
 #            })
 
+            (import ../components/hibernate.nix { idle-suspend-time = "30m"; })
+
             ../users/people/martyn.nix
             ../users/people/syncthing-martyn.nix
           ];
