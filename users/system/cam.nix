@@ -98,7 +98,7 @@ in
       &runas(cam) 15 * * * * ${move-cam-mp4s} $cam_log_dir && ${s6-rotate} $cam_log_dir
 
       # 6AM; After 5AM timer plug on / 5:30AM BIOS resume
-      &runas(cam) 0  6          * * * ${trim-to-size}/bin/trim-to-size /Cam-Archive 1572864 --exclude-pat 'camthttpd*'
+      &runas(cam) 0  6          * * * ${trim-to-size}/bin/trim-to-size /Cam-Archive 1572864 --exclude-pat 'camthttpd*' --log-file /tmp/trim-to-size.Cam-Archive.log
     '';
 
   users.groups.cam.gid = 2005;

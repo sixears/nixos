@@ -86,7 +86,7 @@ for f in "''${exclude_pats[@]}"; do
   find_args+=( -name "$f" -o )
 done
 
-$rm -f "$log_file"
+[[ -f $log_file ]] && $rm -f "$log_file"
 # it is important that the while loop is the parent while the find is the piped
 # find is the child process; the find will almost certainly die of a sigPIPE due
 # to the early break from the while when the size falls below the limit; the

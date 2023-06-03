@@ -115,6 +115,10 @@ for my $fs (@fs) {
       if 1.5 < -M $logfn;
   } else {
     for my $to (grep -d, map "/''${_}$fs/", @backupfses) {
+      # $from already has a trailing /
+      my $exclude_fn = "''${from}.mirrorfs-excludes";
+      push @opts, '--exclude-from', $exclude_fn
+        if -e "$from/.mirrorfs-excludes";
       my @cmd = (rsync => '--archive', '--hard-links'
                         , '--delete-before', '--one-file-system'
                         , '--log-file' => $logfn
@@ -125,11 +129,13 @@ for my $fs (@fs) {
       printf "Mirroring %-10s to %-18s", $from, "$to..."
         if $Verbose;
       unless ( $DryRun ) {
+        open STDERR, '|-', 'grep', '-v', '^file has vanished';
         my $rv = system @cmd;
         if ( $Verbose ) {
           print "$rv\n";
-        } elsif ( $rv ) {
+        } elsif ( $rv != 0 and $rv != (24 << 8) ) { # 24 is the error for 'file has vanished'
           warn (sprintf"failed to mirror %s to %s: %d\n", $from, $to, $rv);
+          $Exit ||= $rv;
         }
       } else {
         print "\n"
