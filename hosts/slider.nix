@@ -50,7 +50,6 @@ in
             ../components/desktop.nix
             ../components/pulseaudio.nix
             ../components/openvpn.nix
-            ../dns-server/cloudflare.nix
 
             ../components/keyboardio.nix
 

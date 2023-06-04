@@ -6,7 +6,8 @@
       kernelParams = [ "nvidia-drm.modeset=1" ];
     };
 
-  nixpkgs.config.allowUnfree = true;
+# can we please do what's needed here in unfree-predicate?
+#  nixpkgs.config.allowUnfree = true;
 
   # https://www.mythtv.org/wiki/User_Manual:JudderFree
   # https://discourse.nixos.org/t/getting-nvidia-to-work-avoiding-screen-tearing/10422/16

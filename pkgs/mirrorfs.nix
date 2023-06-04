@@ -129,7 +129,7 @@ for my $fs (@fs) {
       printf "Mirroring %-10s to %-18s", $from, "$to..."
         if $Verbose;
       unless ( $DryRun ) {
-        open STDERR, '|-', 'grep', '-v', '^file has vanished';
+        open STDERR, '|-', 'grep', '-v', '^file has vanished|^rsync warning: some files vanished before they could be transferred';
         my $rv = system @cmd;
         if ( $Verbose ) {
           print "$rv\n";
