@@ -5,7 +5,8 @@ let
   xkb      = import ../pkgs/xkb.nix      { inherit pkgs; };
   xmonad-with-pkgs =
     pkgs.xmonad-with-packages.override
-      { packages = hPkgs: with hPkgs; [ xmonad-contrib ]; };
+      { packages = hPkgs: with hPkgs; [ base-unicode-symbols data-default
+                                        xmonad-contrib ]; };
 in
   {
     environment.systemPackages = with pkgs; [

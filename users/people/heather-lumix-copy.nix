@@ -2,12 +2,15 @@
 
 let
   user     = "heather";
-  home     = "/home/${user}";
+  top      = "/local/${user}";
+  name     = "stalker-Camera";
+  source   = "${top}/${name}";
+  log      = "${top}/.${name}.log";
   lumix-copy =
     (import ../../pkgs/lumix-copy.nix  { inherit pkgs bash-header; });
 in
   {
     services.fcron.systab = ''
-      @runas(${user}),erroronlymail 60s ${lumix-copy}/bin/lumix-copy --source ${home}/stalker-Camera --log-file ${home}/.stalker-Camera.log --no-delete
+      @runas(${user}),erroronlymail 60s ${lumix-copy}/bin/lumix-copy --source ${source} --log-file ${log} --no-delete
     '';
   }

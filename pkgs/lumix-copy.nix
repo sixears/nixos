@@ -56,12 +56,11 @@ main() {
     CopyExtensions=( "''${DefaultCopyExtensions[@]}" )
   fi
 
-  local find_args=( -iname '*.jpg' -o -iname '*.rw2' )
-  local find_args=()
+  local find_args=( -type d -name .stversions -prune )
   local extension
   for extension in "''${CopyExtensions[@]}"; do
     [[ 0 -eq ''${#find_args[@]} ]] || find_args+=( -o )
-    find_args+=( -iname "*.$extension" )
+    find_args+=( -iname "*.$extension" -print )
   done
 
   while read fn; do
