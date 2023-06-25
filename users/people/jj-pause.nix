@@ -16,7 +16,7 @@ in {
   services.fcron.systab =
     ''
       # Nothing before 7AM any day
-      &timezone(Europe/London) *     0-7   * * *   ${steam-signal} STOP
+      &timezone(Europe/London) *     0-6   * * *   ${steam-signal} STOP
 
       # Run 7AM-915PM Sun-Thurs
       &timezone(Europe/London) *     7-20  * * 0-4 ${steam-signal} CONT
