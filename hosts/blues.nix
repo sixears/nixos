@@ -32,6 +32,7 @@ in
         systemPackages = pkgs: [
           (hpkgs.acct)
           (import ../pkgs/mkopenvpnconfs { inherit pkgs bash-header; })
+          (import ../pkgs/lumix-copy.nix { inherit pkgs bash-header; })
         ];
 
         filesystems = [
