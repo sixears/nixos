@@ -10,9 +10,9 @@
             , { from = "podcasts"      , to = "night" }
             , { from = "podcast"       , to = "night" }
             , { from = "canine"        , to = "dog" }
-	    , { from = "nixos-bincache", to = "dog" }
-	    , { from = "nixpkgs"       , to = "dog" }
-	    , { from = "svn"           , to = "dog" }
+            , { from = "nixos-bincache", to = "dog" }
+            , { from = "nixpkgs"       , to = "dog" }
+            , { from = "svn"           , to = "dog" }
             ]
 , dns_servers = [ "night", "dog" ]
 , mail_servers = [ ] : List Text
