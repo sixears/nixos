@@ -74,6 +74,7 @@ in
           ../components/openvpn.nix
 
           ../users/people/abigail.nix
+          ../users/people/abigail-lumix-copy.nix
           ../users/people/syncthing-abigail.nix
           ../users/people/martyn.nix
           ../users/people/syncthing-martyn.nix
