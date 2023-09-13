@@ -601,19 +601,19 @@
         "type": "github"
       }
     },
-    "fpath-src-1-3-3-0": {
+    "fpath-src-1-3-4-0": {
       "flake": false,
       "locked": {
-        "lastModified": 1687843524,
-        "narHash": "sha256-cBqsG/gczMf6hSLLjC2lfn6Q3WCCMVk5IX6U8dJXNjs=",
+        "lastModified": 1694417935,
+        "narHash": "sha256-B76oESECghDP7KP46JYJMaemblmeg4RJQHHO2g6e4UQ=",
         "owner": "sixears",
         "repo": "fpath",
-        "rev": "659d32a077d4ec1dad5ce91346b235a56bccf0b0",
+        "rev": "d17b4b90a6d7e903fcac0da2f6d0f0f46359b260",
         "type": "github"
       },
       "original": {
         "owner": "sixears",
-        "ref": "r1.3.3.0",
+        "ref": "r1.3.4.0",
         "repo": "fpath",
         "type": "github"
       }
@@ -724,7 +724,7 @@
         "exited-src-1-0-4-23": "exited-src-1-0-4-23",
         "file-split-src-1-0-2-1": "file-split-src-1-0-2-1",
         "flake-utils": "flake-utils_4",
-        "fpath-src-1-3-3-0": "fpath-src-1-3-3-0",
+        "fpath-src-1-3-4-0": "fpath-src-1-3-4-0",
         "fstat-src-1-0-2-26": "fstat-src-1-0-2-26",
         "handbrake-src-1-0-3-1": "handbrake-src-1-0-3-1",
         "has-callstack-src-1-0-1-19": "has-callstack-src-1-0-1-19",
@@ -767,8 +767,8 @@
         "yaml-plus-src-1-0-1-1": "yaml-plus-src-1-0-1-1"
       },
       "locked": {
-        "lastModified": 1693652481,
-        "narHash": "sha256-ZFsfRpfC9OTgygJ2tbKgaDwGH2L/OcOmZqXSEBtxW+0=",
+        "lastModified": 1694418937,
+        "narHash": "sha256-GBLd22kToH7l6ZYP6dZj6aF8Ib+54aiaQBYYRaOAs+E=",
         "path": "/home/martyn/src/hpkgs1",
         "type": "path"
       },
