@@ -1,4 +1,4 @@
-{ pkgs }: pkgs.writers.writePerlBin "mirrorfs" { libraries = with pkgs.perlPackages; [ IOAll ]; } ''
+{ pkgs }: pkgs.writers.writePerlBin "hosts" { libraries = with pkgs.perlPackages; [ IOAll ]; } ''
 
 # much like a simple `host` re-implementation, but returns non-zero for names
 # that cannot be resolved

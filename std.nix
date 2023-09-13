@@ -76,6 +76,15 @@ in
       owner = "root"; group = "root"; setuid = true;
     };
 
+    # -- auditd ------------------------
+
+    # https://xeiaso.net/blog/paranoid-nixos-2021-07-18
+#    security.auditd.enable = true;
+#    security.audit.enable = true;
+#    security.audit.rules = [
+#      "-a exit,always -F arch=b64 -S execve"
+#    ];
+
     # ------------------------------------------------------
 
     imports = (imports pkgs) ++ [
@@ -93,6 +102,7 @@ in
       ./components/unfree.nix
       ./components/sixears-hosts.nix
       ./components/fcron.nix
+      ./components/mosh.nix
       ./components/msmtp.nix
       ./components/prometheus.nix
       ./components/openssh.nix

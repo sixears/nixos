@@ -1,6 +1,9 @@
 { pkgs, touchpad }: pkgs.writeText "xmonad.hs" ''
+{-# OPTIONS_GHC -Wno-deprecations #-}
 {-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE UnicodeSyntax     #-}
+
+-- -Wno-deprecations : we need to replace docksEventHook with docks
 
 import Prelude ()
 

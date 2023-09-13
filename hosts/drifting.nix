@@ -1,9 +1,9 @@
-{ nixpkgs-2023-01-14,bashHeader-2023-01-14,myPkgs-2023-01-14,nixos-system,... }:
+{ nixpkgs-2023-03-24,bashHeader-2023-03-24,myPkgs-2023-03-24,nixos-system,... }:
 
 let
-  nixpkgs    = nixpkgs-2023-01-14;
-  bashHeader = bashHeader-2023-01-14;
-  myPkgs     = myPkgs-2023-01-14;
+  nixpkgs    = nixpkgs-2023-03-24;
+  bashHeader = bashHeader-2023-03-24;
+  myPkgs     = myPkgs-2023-03-24;
 in
   nixos-system
     {

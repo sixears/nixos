@@ -1,4 +1,4 @@
-{ pkgs }: pkgs.writers.writeBashBin "home-backup" ''
+{ pkgs, hosts }: pkgs.writers.writeBashBin "home-backup" ''
 set -eu -o pipefail
 
 basename=${pkgs.coreutils}/bin/basename
@@ -8,7 +8,7 @@ false=${pkgs.coreutils}/bin/false
 flock=${pkgs.utillinux}/bin/flock
 getopt=${pkgs.utillinux}/bin/getopt
 grep=${pkgs.gnugrep}/bin/grep
-hosts=${pkgs.hosts}/bin/hosts
+hosts=${hosts}/bin/hosts
 id=${pkgs.coreutils}/bin/id
 ping=/run/wrappers/bin/ping
 rsync=${pkgs.rsync}/bin/rsync

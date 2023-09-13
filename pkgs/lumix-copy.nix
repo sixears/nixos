@@ -74,9 +74,19 @@ main() {
       local edate date
       capture edate gocmdnodryrun 17 exiftool -dateFormat %04Y/%02m/%02d \
                                               -CreateDate "$fn" -json
-      capture date gocmdnodryrun 18 jq --raw-output '.[0].CreateDate' \
-                                       --exit-status <<<"$edate"
-      check_ "exiftool '$fn' | jq"
+      date="$(gocmdnoexitnodryrun jq --raw-output '.[0].CreateDate' \
+                                          --exit-status <<<"$edate")"
+      # check_ "exiftool '$fn' | jq"
+      local rv=$?
+      if [[ 0 -ne $rv ]]; then
+        if [[ $bn =~ ^IMG-?(20[0-3][0-9])(0[0-9]|1[0-2])([0-2][0-9]|3[01])- ]]
+        then
+          date="''${BASH_REMATCH[1]}/''${BASH_REMATCH[2]}/''${BASH_REMATCH[3]}"
+        else
+          die $rv "exiftool '$fn' | jq failed"
+        fi
+      fi
+
       local target_dir="$Target/$date"
 
       local proto_dirs=("$target_dir"\ *)
