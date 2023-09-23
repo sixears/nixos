@@ -3,7 +3,7 @@
 {
   # Suspend-then-hibernate everywhere
   services.logind = {
-    lidSwitch = "hibernate";
+    lidSwitch = "suspend";
     extraConfig = ''
       HandlePowerKey=hibernate
       IdleAction=hibernate

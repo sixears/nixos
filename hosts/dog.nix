@@ -1,9 +1,17 @@
-{ nixpkgs-2023-09-07,bashHeader-2023-09-07,myPkgs-2023-09-07,nixos-system,... }:
+{
+  nixpkgs-2023-09-07,
+  nixpkgs-2023-09-07-url,
+  bashHeader-2023-09-07,
+  myPkgs-2023-09-07,
+  nixos-system,
+  ...
+}:
 
 let
-  nixpkgs    = nixpkgs-2023-09-07;
-  bashHeader = bashHeader-2023-09-07;
-  myPkgs     = myPkgs-2023-09-07;
+  nixpkgs     = nixpkgs-2023-09-07;
+  nixpkgs-url = nixpkgs-2023-09-07-url;
+  bashHeader  = bashHeader-2023-09-07;
+  myPkgs      = myPkgs-2023-09-07;
 in
   nixos-system
     {
@@ -22,7 +30,7 @@ in
           }
         ] ++
         (import ../hardware/generic.nix {
-          inherit system bash-header;
+          inherit system bash-header nixpkgs-url;
           hostname     = "dog";
           domainname   = "sixears.co.uk";
           logicalCores = 16;

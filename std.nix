@@ -4,6 +4,7 @@
 , boot      ? ./boot/efi.nix
 , sshPubKey ? ./sshkeys + "/${hostname}.pub"
 , cpuFreqGovernor ? "ondemand"
+, nixpkgs-url
 }:
 
 { lib, pkgs, ... }:
@@ -76,14 +77,34 @@ in
       owner = "root"; group = "root"; setuid = true;
     };
 
+    # -- profile -----------------------
+
+    environment.etc = {
+      profile-local =
+        {
+          text   = ''
+            nixos-gitref() {
+              local jq=${pkgs.jq}/bin/jq
+              local cut=${pkgs.coreutils}/bin/cut
+              local version=/run/current-system/sw/bin/nixos-version
+
+              $version --json | $jq -r .nixpkgsRevision | $cut -c 1-8
+            }
+
+            export NIXPKGS=github:/nixos/nixpkgs/$(nixos-gitref)
+          '';
+          target = "profile.local";
+        };
+    };
+
     # -- auditd ------------------------
 
     # https://xeiaso.net/blog/paranoid-nixos-2021-07-18
-#    security.auditd.enable = true;
-#    security.audit.enable = true;
-#    security.audit.rules = [
-#      "-a exit,always -F arch=b64 -S execve"
-#    ];
+    security.auditd.enable = true;
+    security.audit.enable = true;
+    security.audit.rules = [
+      "-a exit,always -F arch=b64 -S execve"
+    ];
 
     # ------------------------------------------------------
 

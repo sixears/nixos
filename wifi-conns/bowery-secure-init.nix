@@ -23,7 +23,7 @@ case $# in
                  )
 
      ${pkgs.networkmanager}/bin/nmcli connection add "''${base_args[@]}" \
-                                      -- "''${config_args}"
+                                      -- "''${config_args[@]}"
     ;;
 
   *) echo "usage: $0 <js-username> <js-password>" 1>&2; exit 2 ;;

@@ -69,22 +69,28 @@
           # import each hosts/<name>.nix as <name>
           lib = import ./lib.nix { plib = nixpkgs-2023-01-14.lib; };
           by-name =
-            lib.importNixesByName ./hosts { inherit nixos-system
+            lib.importNixesByName ./hosts {
+              inherit
+                nixos-system
 
-                                                    nixpkgs-2023-09-07
-                                                    bashHeader-2023-09-07
-                                                    myPkgs-2023-09-07
+                nixpkgs-2023-09-07
+                bashHeader-2023-09-07
+                myPkgs-2023-09-07
 
-                                                    nixpkgs-2023-03-24
-                                                    bashHeader-2023-03-24
-                                                    myPkgs-2023-03-24
+                nixpkgs-2023-03-24
+                bashHeader-2023-03-24
+                myPkgs-2023-03-24
 
-                                                    nixpkgs-2023-01-14
-                                                    bashHeader-2023-01-14
-                                                    myPkgs-2023-01-14
+                nixpkgs-2023-01-14
+                bashHeader-2023-01-14
+                myPkgs-2023-01-14
 
-                                                    nixpkgs-2022-04-22
-                                                    nixpkgs-2020-09-25; };
+                nixpkgs-2022-04-22
+                nixpkgs-2020-09-25;
+
+              nixpkgs-2023-01-14-url = "github:NixOS/nixpkgs=3ae365af";
+              nixpkgs-2023-09-07-url = "github:NixOS/nixpkgs=4f77ea6";
+            };
         in
           by-name;
     };

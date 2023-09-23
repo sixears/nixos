@@ -5,6 +5,9 @@ let
 in
   {
     environment.systemPackages = with pkgs; [
+      (import ./pkgs/nix-install.nix { inherit pkgs; })
+      (import ./pkgs/nix-search.nix  { inherit pkgs; })
+
       # !!! Do we really need these everywhere?
       (import ./pkgs/acme-cert.nix   { inherit pkgs; })
       (import ./pkgs/cert-expiry.nix { inherit pkgs; })
