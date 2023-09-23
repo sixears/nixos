@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+nixos-rebuild --verbose --flake ~+/#"$1" --target-host "$1" --use-remote-sudo switch

@@ -1,5 +1,5 @@
 { hostname, domainname, stateVersion, logicalCores, etherMac
-, system, filesystems, imports, bash-header, virtualization, nixpkgs-url
+, system, filesystems, imports, bash-header, virtualization
 , wifiMac         ? ""
 , systemPackages  ? (_ : [])
 , nvme0           ? false
@@ -14,7 +14,7 @@
     (import ../components/wifi.nix     { inherit wifiMac; }) else ../null.nix)
   (import ../std.nix {
     inherit hostname domainname stateVersion logicalCores systemPackages system
-            bash-header filesystems imports boot nixpkgs-url;
+            bash-header filesystems imports boot;
     inherit cpuFreqGovernor;
   })
 ]

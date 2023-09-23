@@ -4,7 +4,6 @@
 , boot      ? ./boot/efi.nix
 , sshPubKey ? ./sshkeys + "/${hostname}.pub"
 , cpuFreqGovernor ? "ondemand"
-, nixpkgs-url
 }:
 
 { lib, pkgs, ... }:
