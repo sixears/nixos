@@ -23,7 +23,7 @@ in
         ] ++
 
       (import ../hardware/lenovo-s540-13.nix {
-        inherit system bash-header;
+        inherit system bash-header hlib;
         hostname     = "blues";
         domainname   = "sixears.co.uk";
         etherMac     = "9c:eb:e8:5e:18:2e";

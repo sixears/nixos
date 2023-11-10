@@ -1,5 +1,5 @@
 { hostname, domainname, stateVersion, logicalCores ? 8, etherMac, wifiMac
-, systemPackages, system, filesystems, imports, bash-header }:
+, systemPackages, system, filesystems, imports, bash-header, hlib }:
 
 [ (import ./sata/xhci-pci.nix)
 
@@ -9,7 +9,7 @@
   (import ../components/wifi.nix     { inherit wifiMac; })
   (import ../std.nix {
     inherit hostname domainname stateVersion logicalCores systemPackages system
-            bash-header filesystems imports;
+            bash-header filesystems imports hlib;
     cpuFreqGovernor = "powersave";
   })
 ]

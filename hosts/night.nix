@@ -3,7 +3,7 @@
 #  -) mythtv
 #  -) podcasts
 #  -) gitit
-{ nixpkgs-2023-01-14, bashHeader-2023-01-14
+{ nixpkgs-2023-01-14, bashHeader-2023-01-14, myPkgs-2023-01-14
 , nixpkgs-2020-09-25
 , nixpkgs-2022-04-22
 , nixos-system, ... }:
@@ -11,11 +11,12 @@
 let
   nixpkgs    = nixpkgs-2023-01-14;
   bashHeader = bashHeader-2023-01-14;
+  myPkgs     = myPkgs-2023-01-14;
 in
   nixos-system
     {
-      inherit nixpkgs bashHeader;
-      modules = { system, bash-header, hpkgs, hlib }:
+      inherit nixpkgs bashHeader myPkgs;
+      modules = { system, bash-header, my-pkgs, hpkgs, hlib }:
         [
           { nixpkgs.overlays =
               # to import each overlay individually
@@ -47,7 +48,7 @@ in
           }
         ] ++
         (import ../hardware/generic.nix {
-          inherit system bash-header;
+          inherit system bash-header hlib;
           hostname     = "night";
           domainname   = "sixears.co.uk";
           logicalCores = 16;
@@ -110,7 +111,7 @@ in
             ../hardware/sata/xhci-pci.nix
             ../hardware/sata/ehci-pci.nix
 
-            (import ../components/xserver.nix { inherit pkgs bash-header; })
+            (import ../components/xserver.nix { inherit pkgs bash-header my-pkgs; })
             ../components/hdcalm.nix
             ../components/mirrorfs.nix
 
@@ -124,6 +125,7 @@ in
             ../components/gitit.nix
             ../components/nix-serve.nix
             ../components/cam-proxy.nix
+            ../components/pulseaudio.nix
 
             ../users/people/martyn.nix
             ../users/people/fletch.nix
@@ -132,6 +134,8 @@ in
             ../users/people/syncthing-abigail.nix
             ../users/people/syncthing-xander.nix
             ../users/people/syncthing-jj.nix
+
+            ../users/system/racereplay.nix
           ];
         });
     }

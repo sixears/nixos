@@ -1,6 +1,6 @@
 { hostname, domainname, stateVersion, systemPackages, logicalCores, system
 , filesystems, imports
-, bash-header
+, bash-header, hlib
 , boot      ? ./boot/efi.nix
 , sshPubKey ? ./sshkeys + "/${hostname}.pub"
 , cpuFreqGovernor ? "ondemand"
@@ -51,8 +51,15 @@ in
 
     # -- ssh -----------------------------------------------
 
-    programs.ssh.knownHosts =
-      { "localhost" = { publicKeyFile = sshPubKey; }; };
+    programs.ssh =
+      {
+        knownHosts = { "localhost" = { publicKeyFile = sshPubKey; }; };
+        extraConfig = ''
+                        Host     sixears
+                        HostName sixears.co.uk
+                        Port     9876
+                      '';
+      };
 
     # -- sudo ----------------------------------------------
 
@@ -99,16 +106,16 @@ in
     # -- auditd ------------------------
 
     # https://xeiaso.net/blog/paranoid-nixos-2021-07-18
-    security.auditd.enable = true;
-    security.audit.enable = true;
-    security.audit.rules = [
-      "-a exit,always -F arch=b64 -S execve"
-    ];
+##    security.auditd.enable = true;
+##    security.audit.enable = true;
+##    security.audit.rules = [
+##      "-a exit,always -F arch=b64 -S execve"
+##    ];
 
     # ------------------------------------------------------
 
     imports = (imports pkgs) ++ [
-      (import ./std-pkgs.nix { inherit pkgs bash-header; })
+      (import ./std-pkgs.nix { inherit pkgs bash-header hlib; })
 
       ./components/remote-nixos-caches.nix
       boot

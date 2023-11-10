@@ -28,7 +28,7 @@ in
           }
         ] ++
         (import ../hardware/generic.nix {
-          inherit system bash-header;
+          inherit system bash-header hlib;
           hostname     = "dog";
           domainname   = "sixears.co.uk";
           logicalCores = 16;
@@ -108,7 +108,7 @@ in
 
             ../components/adb.nix # Android Debug Bridge
             ../components/nixos-head-auto-update.nix
-            ../components/rsync-deluge.nix
+            # ../components/rsync-deluge.nix
             ../components/rsync-nixpkgs.nix
             # ../components/dnsmasq.nix
             # ../components/pygame.nix
@@ -120,6 +120,8 @@ in
             ../components/finbar.nix
 
 
+            # for rtunnel
+            ../users/people/abigail.nix
             ../users/people/martyn.nix
             ../users/people/syncthing-martyn.nix
             ../users/people/fletch.nix

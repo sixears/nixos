@@ -1,7 +1,9 @@
 {-# OPTIONS_GHC -Wall #-}
 
 {-# LANGUAGE NoImplicitPrelude    #-}
+{-# LANGUAGE OverloadedStrings    #-}
 {-# LANGUAGE RankNTypes           #-}
+{-# LANGUAGE QuasiQuotes          #-}
 {-# LANGUAGE ScopedTypeVariables  #-}
 {-# LANGUAGE TypeApplications     #-}
 {-# LANGUAGE UnicodeSyntax        #-}
@@ -129,7 +131,7 @@ myMain opts = do
 
 main ∷ IO ()
 main = do
-  let progDesc ∷ 𝕋 = "cat files"
+  let progDesc ∷ 𝕋 = "pad columns to line up text"
   getArgs ≫ stdMainNoDR progDesc parseOptions (myMain @UsageParseFPProcIOError)
 
 -- that's all, folks! ----------------------------------------------------------

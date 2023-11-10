@@ -1,5 +1,7 @@
 { pkgs }: pkgs.writers.writeBashBin "hdmi" ''
 
+# xrandr --output HDMI1 --same-as eDP1 --scale-from 1920x1080 # (eDP1, smaller screen, size)
+
 # -u: Treat unset variables and parameters other than the special parameters "@"
 #     and "*" as an error when performing parameter expansion.  If expansion is
 #     attempted on an unset variable or parameter, the shell prints an error

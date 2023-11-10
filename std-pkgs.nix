@@ -1,12 +1,16 @@
-{ pkgs, bash-header, ... }:
+{ pkgs, bash-header, hlib, ... }:
 
 let
- touchpad = import ./pkgs/touchpad.nix { inherit pkgs bash-header; };
+  touchpad = import ./pkgs/touchpad.nix { inherit pkgs bash-header; };
+  tablify  = import ./pkgs/tablify.nix { inherit pkgs hlib; };
 in
   {
     environment.systemPackages = with pkgs; [
+      tablify
+
       (import ./pkgs/nix-install.nix { inherit pkgs; })
-      (import ./pkgs/nix-search.nix  { inherit pkgs; })
+      (import ./pkgs/nix-search.nix  { inherit pkgs tablify; })
+      (import ./pkgs/rtunnel.nix     { inherit pkgs; })
 
       # !!! Do we really need these everywhere?
       (import ./pkgs/acme-cert.nix   { inherit pkgs; })
