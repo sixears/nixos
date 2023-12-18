@@ -443,6 +443,14 @@
             , comments = [] : List Text
             }
 
+          , { fqdn = "strings.sixears.co.uk."
+            , ipv4 = "192.168.0.202"
+            , desc = "TP-Link WR-802N 300Mbps Wireless N Nano Router"
+            , mac = Some "a4:2b:b0:f9:b3:b6" -- LAN
+            -- WAN, mac = Some "a4:2b:b0:f9:b3:b7"
+            , comments = [] : List Text
+           }
+
           -- Security ----------------------------------------------------------
 
           , { fqdn = "control.sixears.co.uk."

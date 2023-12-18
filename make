@@ -68,7 +68,7 @@ EOF
 pfx_cmd=()
 sfx_cmd=()
 # sadly, nixos-rebuild needs /run/…/sw/bin in the path
-env_add=( PATH=/run/current-system/sw/bin )
+env_add=( PATH=/run/current-system/sw/bin NIX_CONFIG="$NIX_CONFIG" )
 command=build
 progname="$($basename "$0")"
 isolated=false
@@ -165,7 +165,7 @@ for hostname in "${hostnames[@]}"; do
   this_cmd=( "${cmd[@]}" )
   this_cmd+=( --flake ~+/#$hostname )
 
-  bash_cmd="$env -i ${env_add[*]} ${this_cmd[*]}"
+  bash_cmd="$env -i ${env_add[*]@Q} ${this_cmd[*]}"
   if [[ 0 -ne  ${#sfx_cmd[@]} ]]; then
     bash_cmd+=" ${sfx_cmd[*]}"
   fi

@@ -1,5 +1,14 @@
+# https://github.com/NixOS/nixpkgs/tags
 {
   inputs = {
+    # found checking out https://github.com/nixos/nixpkgs/, and/or running
+    # `git pull` in there; and running
+    # ```
+    # git log origin/nixos-23.05 | grep ^Merge: | head -n 1 \
+    #   | cut -d ' ' -f 2 | cut -c 1-8
+    # ```
+    nixpkgs-nixos-23-05-2023-12-03.url = github:NixOS/nixpkgs/ea15d6f;
+
     nixpkgs-2023-09-07.url = github:NixOS/nixpkgs/4f77ea6; # nixos-23.05
     nixpkgs-2023-03-24.url = github:NixOS/nixpkgs/07fb9ca; # master
 
@@ -9,6 +18,10 @@
     nixpkgs-2020-09-25.url = github:NixOS/nixpkgs/52075a82; # master
 #    hpkgs1.url  = github:sixears/hpkgs1/r0.0.10.0;
     hpkgs1.url  = path:/home/martyn/src/hpkgs1;
+    bashHeader-2023-12-03  = {
+      url    = github:sixears/bash-header/e0c0096;
+      inputs = { nixpkgs.follows = "nixpkgs-nixos-23-05-2023-12-03"; };
+    };
     bashHeader-2023-09-07  = {
       url    = github:sixears/bash-header/5206b087;
       inputs = { nixpkgs.follows = "nixpkgs-2023-09-07"; };
@@ -20,6 +33,10 @@
     bashHeader-2023-01-14  = {
       url    = github:sixears/bash-header/5206b087;
       inputs = { nixpkgs.follows = "nixpkgs-2023-01-14"; };
+    };
+    myPkgs-2023-12-03      = {
+      url    = github:sixears/nix-pkgs/r0.0.0.0;
+      inputs = { nixpkgs.follows = "nixpkgs-nixos-23-05-2023-12-03"; };
     };
     myPkgs-2023-09-07      = {
       url    = github:sixears/nix-pkgs/r0.0.0.0;
@@ -36,6 +53,7 @@
   };
 
   outputs = { self, hpkgs1
+            , nixpkgs-nixos-23-05-2023-12-03, bashHeader-2023-12-03, myPkgs-2023-12-03
             , nixpkgs-2023-09-07, bashHeader-2023-09-07, myPkgs-2023-09-07
             , nixpkgs-2023-03-24, bashHeader-2023-03-24, myPkgs-2023-03-24
             , nixpkgs-2023-01-14, bashHeader-2023-01-14, myPkgs-2023-01-14
@@ -73,6 +91,10 @@
               inherit
                 nixos-system
 
+                nixpkgs-nixos-23-05-2023-12-03
+                bashHeader-2023-12-03
+                myPkgs-2023-12-03
+
                 nixpkgs-2023-09-07
                 bashHeader-2023-09-07
                 myPkgs-2023-09-07
@@ -88,8 +110,8 @@
                 nixpkgs-2022-04-22
                 nixpkgs-2020-09-25;
 
-              nixpkgs-2023-01-14-url = "github:NixOS/nixpkgs=3ae365af";
-              nixpkgs-2023-09-07-url = "github:NixOS/nixpkgs=4f77ea6";
+#              nixpkgs-2023-01-14-url = "github:NixOS/nixpkgs=3ae365af";
+#              nixpkgs-2023-09-07-url = "github:NixOS/nixpkgs=4f77ea6";
             };
         in
           by-name;
