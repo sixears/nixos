@@ -224,8 +224,29 @@
 
           , { fqdn = "supreme.sixears.co.uk."
             , ipv4 = "192.168.0.71"
-            , desc = "Wileyfox Swift"
+            , desc = "Wileyfox Swift (Mx Bike)"
             , mac= Some "fc:3d:93:3f:c2:f1"
+            , comments = [] : List Text
+            }
+
+          , { fqdn = "church.sixears.co.uk."
+            , ipv4 = "192.168.0.51"
+            , desc = "OnePlus Nord 2T 5G / 12GB / 256GB / Grey Shadow (Ax) / S/N 8P6LMJHQIBPBR4BI / IMEI 860439060378378 / IMEI 860439060378360"
+            , mac= Some "48:74:12:91:75:a1"
+            , comments = [] : List Text
+            }
+
+          , { fqdn = "healed.sixears.co.uk."
+            , ipv4 = "192.168.0.52"
+            , desc = "OnePlus Nord 2 5G / 12GB / 256GB / Grey Sierra (Hx) / S/N YLMBE6DUYD8DWOC6 / IMEI 867192050336350 / IMEI 867192050336343"
+            , mac= Some "52:25:63:ec:18:59"
+            , comments = [] : List Text
+            }
+
+          , { fqdn = "noisy.sixears.co.uk."
+            , ipv4 = "192.168.0.53"
+            , desc = "OnePlus Nord CE 5G / 8GB / 128GB / Blue Void (JJ) / S/N fa111498 / IMEI 866673054132417 / IMEI 866673054132409"
+            , mac= Some "ac:d6:18:d3:71:0d"
             , comments = [] : List Text
             }
 
@@ -445,8 +466,8 @@
 
           , { fqdn = "strings.sixears.co.uk."
             , ipv4 = "192.168.0.202"
-            , desc = "TP-Link WR-802N 300Mbps Wireless N Nano Router"
-            , mac = Some "a4:2b:b0:f9:b3:b6" -- LAN
+            , desc = "TP-Link WR-801N 300Mbps Wireless N Router"
+            , mac = Some "5c:e9:31:d1:a2:cc" -- LAN
             -- WAN, mac = Some "a4:2b:b0:f9:b3:b7"
             , comments = [] : List Text
            }
