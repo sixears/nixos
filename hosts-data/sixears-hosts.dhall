@@ -239,7 +239,7 @@
           , { fqdn = "healed.sixears.co.uk."
             , ipv4 = "192.168.0.52"
             , desc = "OnePlus Nord 2 5G / 12GB / 256GB / Grey Sierra (Hx) / S/N YLMBE6DUYD8DWOC6 / IMEI 867192050336350 / IMEI 867192050336343"
-            , mac= Some "52:25:63:ec:18:59"
+            , mac= Some "d0:49:7c:38:9e:47"
             , comments = [] : List Text
             }
 
