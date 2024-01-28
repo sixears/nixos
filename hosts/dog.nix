@@ -1,15 +1,15 @@
 {
-  nixpkgs-2023-09-07,
-  bashHeader-2023-09-07,
-  myPkgs-2023-09-07,
+  nixpkgs-nixos-23-05-2023-12-03,
+  bashHeader-2023-12-03,
+  myPkgs-2023-12-03,
   nixos-system,
   ...
 }:
 
 let
-  nixpkgs     = nixpkgs-2023-09-07;
-  bashHeader  = bashHeader-2023-09-07;
-  myPkgs      = myPkgs-2023-09-07;
+  nixpkgs     = nixpkgs-nixos-23-05-2023-12-03;
+  bashHeader  = bashHeader-2023-12-03;
+  myPkgs      = myPkgs-2023-12-03;
 in
   nixos-system
     {
@@ -83,21 +83,29 @@ in
             ../dns-server/cloudflare.nix
 
             # support GeForce GT 710
-            ../hardware/video/nvidia470.nix
-            ../hardware/video/nvidia.nix
+#            ../hardware/video/nvidia470.nix
+#            ../hardware/video/nvidia.nix
+#            ../hardware/video/nouveau.nix
+            # support Radeon Pro WX 4100
+            ../hardware/video/radeon.nix
+
             ../hardware/sata/ahci.nix
             ../hardware/sata/xhci-pci.nix
             # sg needed for makemkv to recognize the CDRom/BluRay
             ../hardware/scsi/sg.nix
 
-            (import ../components/xserver.nix
-                     { inherit pkgs bash-header my-pkgs; dvorak=true; })
+##            (import ../components/xserver.nix
+##                     { inherit pkgs bash-header my-pkgs; dvorak=true; })
+            ../components/greetd-sway.nix
+            ../components/wayland.nix
 
             ../components/scanning.nix
             ../components/hdcalm.nix
             ../components/pulseaudio.nix
             ../components/pulseaudio-udev.nix
             ../components/thttpd.nix
+
+            ../components/unifi.nix
 
             ../components/gdddns.nix # GoDaddy DNS updater (with our public IP)
             ../components/mirrorfs.nix
@@ -121,6 +129,7 @@ in
 
             # for rtunnel
             ../users/people/abigail.nix
+
             ../users/people/martyn.nix
             ../users/people/syncthing-martyn.nix
             ../users/people/fletch.nix

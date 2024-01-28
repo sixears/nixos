@@ -54,11 +54,13 @@ in
             ../filesystems/usb-sda.nix
           ];
           imports = pkgs: [
-            (import ../components/xserver.nix {
-              inherit pkgs bash-header my-pkgs;
-              dvorak=true;
-            })
-            ../components/xserver-intel.nix
+##            (import ../components/xserver.nix {
+##              inherit pkgs bash-header my-pkgs;
+##              dvorak=true;
+##            })
+##            ../components/xserver-intel.nix
+            ../components/greetd-sway.nix
+            ../components/wayland.nix
 
             ../components/laptop.nix
             ../components/printing.nix

@@ -188,7 +188,7 @@
           , { fqdn = "red-wl.sixears.co.uk."
             , ipv4 = "192.168.0.5"
             , desc = "Dell XPS 9315 Laptop Wireless"
-            , mac= Some "64:d6:9a:02:45:9f"
+            , mac= Some "30:89:4a:b5:4a:91"
             , comments = [] : List Text
             }
 
@@ -252,6 +252,7 @@
 
             -- Pads ------------------------------------------------------------
 
+{-
           , { fqdn = "killing.sixears.co.uk."
             , ipv4 = "192.168.0.98"
             , desc = "Nivia Shield Tablet Xax"
@@ -265,6 +266,7 @@
             , mac= Some "e0:aa:96:ff:f6:6e"
             , comments = [] : List Text
             }
+-}
 
           , { fqdn = "barracuda.sixears.co.uk."
             , ipv4 = "192.168.0.27"
@@ -420,6 +422,13 @@
             , comments = [ "Somfy F-74300 CLUSES" ] : List Text
             }
 
+          , { fqdn = "easee1.sixears.co.uk."
+            , ipv4 = "192.168.0.154"
+            , desc = "Easee Home Charger UKVYN9PT"
+            , mac = Some "9c:9c:1f:cd:0f:84"
+            , comments = [] : List Text
+            }
+
             -- Networking ------------------------------------------------------
 
           , { fqdn = "barry.sixears.co.uk."
@@ -435,13 +444,6 @@
             , mac = Some "b4:b0:25:c5:cb:80"
             , comments = [] : List Text
            }
-
-          , { fqdn = "easee1.sixears.co.uk."
-            , ipv4 = "192.168.0.154"
-            , desc = "Easee Home Charger UKVYN9PT"
-            , mac = Some "9c:9c:1f:cd:0f:84"
-            , comments = [] : List Text
-            }
 
           , { fqdn = "disbeliever.sixears.co.uk."
             , ipv4 = "192.168.0.50"
@@ -469,6 +471,13 @@
             , desc = "TP-Link WR-801N 300Mbps Wireless N Router"
             , mac = Some "5c:e9:31:d1:a2:cc" -- LAN
             -- WAN, mac = Some "a4:2b:b0:f9:b3:b7"
+            , comments = [] : List Text
+           }
+
+          , { fqdn = "to.sixears.co.uk."
+            , ipv4 = "192.168.0.199"
+            , desc = "Ubiquiti UAP-AC-M (kitchen) WAP Mesh"
+            , mac = Some "d8:b3:70:b0:a9:3e" -- LAN
             , comments = [] : List Text
            }
 

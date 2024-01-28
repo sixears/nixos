@@ -89,7 +89,9 @@ in
       profile-local =
         {
           text   = ''
-            nixos-gitref() {
+            # use underscore, not hyphen here, as this needs to
+            # be /bin/sh-compatible
+            nixos_gitref() {
               local jq=${pkgs.jq}/bin/jq
               local cut=${pkgs.coreutils}/bin/cut
               local version=/run/current-system/sw/bin/nixos-version
@@ -97,7 +99,7 @@ in
               $version --json | $jq -r .nixpkgsRevision | $cut -c 1-8
             }
 
-            export NIXPKGS=github:/nixos/nixpkgs/$(nixos-gitref)
+            export NIXPKGS=github:/nixos/nixpkgs/$(nixos_gitref)
           '';
           target = "profile.local";
         };

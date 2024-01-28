@@ -2,11 +2,11 @@
 
 {
   services.openssh = {
-    enable     = true;
-    forwardX11 = true;
+    enable        = true;
+    settings.X11Forwarding = true;
     hostKeys   = [ { path = "/etc/ssh/ssh_host_ed25519_key"; type = "ed25519"; } ];
-    passwordAuthentication = false;
-    permitRootLogin = "no";
+    settings.PasswordAuthentication = false;
+    settings.PermitRootLogin = "no";
     extraConfig = ''
                     AllowAgentForwarding yes
                   '';

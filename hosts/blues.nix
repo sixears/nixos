@@ -1,9 +1,15 @@
-{ nixpkgs-2023-01-14,bashHeader-2023-01-14,myPkgs-2023-01-14,nixos-system,... }:
+{
+  nixpkgs-nixos-23-05-2023-12-03,
+  bashHeader-2023-12-03,
+  myPkgs-2023-12-03,
+  nixos-system,
+  ...
+}:
 
 let
-  nixpkgs    = nixpkgs-2023-01-14;
-  bashHeader = bashHeader-2023-01-14;
-  myPkgs     = myPkgs-2023-01-14;
+  nixpkgs     = nixpkgs-nixos-23-05-2023-12-03;
+  bashHeader  = bashHeader-2023-12-03;
+  myPkgs      = myPkgs-2023-12-03;
 in
   nixos-system
     {
@@ -56,6 +62,7 @@ in
 
         imports = pkgs: [
           (import ../components/xserver.nix {inherit pkgs bash-header my-pkgs;})
+          ../components/xserver-resolution-1920x1200.nix
 
           ../components/laptop.nix
           ../components/printing.nix

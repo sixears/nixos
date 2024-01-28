@@ -20,7 +20,10 @@
     # in the nix build
     shotwell dconf
     thunderbird
+
+    (import ../pkgs/vlcp.nix { inherit pkgs; })
     vlc
+
     zoom-us
   ];
 }
