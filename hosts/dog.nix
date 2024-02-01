@@ -126,6 +126,7 @@ in
 
             ../components/media.nix
             ../components/finbar.nix
+            (import ../components/desktop.nix { inherit pkgs my-pkgs; })
 
             # for rtunnel
             ../users/people/abigail.nix

@@ -35,7 +35,7 @@
       inputs = { nixpkgs.follows = "nixpkgs-2023-01-14"; };
     };
     myPkgs-2023-12-03      = {
-      url    = github:sixears/nix-pkgs/r0.0.0.0;
+      url    = github:sixears/nix-pkgs/r0.0.5.0;
       inputs = { nixpkgs.follows = "nixpkgs-nixos-23-05-2023-12-03"; };
     };
     myPkgs-2023-09-07      = {

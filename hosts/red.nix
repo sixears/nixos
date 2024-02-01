@@ -68,7 +68,7 @@ in
             # this doesn't easily co-exist with home-backup.nix
             ../components/local-home-backup.nix
 
-            ../components/desktop.nix
+            (import ../components/desktop.nix { inherit pkgs my-pkgs; })
             ../components/pulseaudio.nix
             ../components/scanning.nix
             ../components/openvpn.nix

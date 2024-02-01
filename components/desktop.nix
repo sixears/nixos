@@ -1,5 +1,5 @@
 # a set of standard packages to be available on all desktops
-{ pkgs, ... }:
+{ pkgs, my-pkgs, ... }:
 
 {
   imports = [ ./unfree.nix ]; # for zoom
@@ -21,7 +21,7 @@
     shotwell dconf
     thunderbird
 
-    (import ../pkgs/vlcp.nix { inherit pkgs; })
+    my-pkgs.vlcp
     vlc
 
     zoom-us
