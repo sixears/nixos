@@ -79,6 +79,7 @@ follow=false
 
 location_file=/root/openvpn.default-location
 location="$(gocmdnoexitnodryrun sudo ''${Cmd[cat]} $location_file 2>/dev/null)"
+: ''${location:=uk_london}
 
 while true; do
   case "$1" in
