@@ -64,7 +64,25 @@ in
     # -- sudo ----------------------------------------------
 
     # we allow nopasswd for wheel in part to allow remote rebuilding with --with-remote-sudo
-    security.sudo = { execWheelOnly = true; wheelNeedsPassword = false; };
+    security.sudo = { execWheelOnly = true;
+                      wheelNeedsPassword = true;
+                      extraRules =
+                        [
+
+                          { users    = [ "martyn" ];
+                            commands = [ { command = "ALL";
+                                           options  = [ "SETENV" "NOPASSWD" ]; } ];
+                          }
+
+                          { groups = [ "users" ];
+                            commands =
+                              [ # "/home/baz/cmd1.sh hello-sudo"
+                                { command = ''/run/current-system/sw/bin/systemctl ^(start|stop|restart) openvpn-[a-z_.]+$'';
+                                  options = [ "NOPASSWD" ]; }
+                              ];
+                          }
+                        ];
+                    };
 
     # -- audio ---------------------------------------------
 
