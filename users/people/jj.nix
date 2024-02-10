@@ -14,9 +14,8 @@ in
       name        = user;
       group       = user;
       extraGroups = [
-        "disk" "audio" "video" "networkmanager" "scanner" "systemd-journal" "users"
-        # needed to use sudo
-        "wheel"
+        "disk" "audio" "video" "networkmanager" "scanner" "systemd-journal"
+        "users"
       ];
       createHome  = true;
       uid         = uid;

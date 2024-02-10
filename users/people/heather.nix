@@ -22,8 +22,6 @@ in
       extraGroups  = [
         "disk" "audio" "video" "networkmanager" "scanner" "systemd-journal"
         "users"
-        # needed to use sudo
-        "wheel"
       ];
       createHome   = true;
       home         = home;

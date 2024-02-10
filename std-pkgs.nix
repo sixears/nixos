@@ -19,6 +19,7 @@ in
       (import ./pkgs/ip-public.nix { inherit pkgs; })
 
       (import ./pkgs/pic-reduce.nix  { inherit pkgs bash-header; })
+      (import ./pkgs/vpn.nix  { inherit pkgs bash-header; })
 
       alsaUtils
       bat

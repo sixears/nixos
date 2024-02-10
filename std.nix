@@ -63,8 +63,15 @@ in
 
     # -- sudo ----------------------------------------------
 
+    environment.etc.sudo-env = {
+      text   = ''
+        PAGER=${pkgs.less}/bin/less
+      '';
+      target = "sudo.env";
+    };
+
     # we allow nopasswd for wheel in part to allow remote rebuilding with --with-remote-sudo
-    security.sudo = { execWheelOnly = true;
+    security.sudo = { # execWheelOnly = true;
                       wheelNeedsPassword = true;
                       extraRules =
                         [
@@ -79,9 +86,14 @@ in
                               [ # "/home/baz/cmd1.sh hello-sudo"
                                 { command = ''/run/current-system/sw/bin/systemctl ^(start|stop|restart) openvpn-[a-z_.]+$'';
                                   options = [ "NOPASSWD" ]; }
+
+                                { command = ''/run/current-system/sw/bin/cat /root/openvpn.default-location'';
+                                  options = [ "NOPASSWD" ]; }
                               ];
                           }
                         ];
+
+                      extraConfig = "Defaults env_file=/etc/sudo.env";
                     };
 
     # -- audio ---------------------------------------------
