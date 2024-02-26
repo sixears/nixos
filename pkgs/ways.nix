@@ -13,7 +13,19 @@ export XDG_RUNTIME_DIR
 exec >& "$XDG_RUNTIME_DIR/sway.log"
 TZ=UTC ${pkgs.coreutils}/bin/date +%Y-%m-%dZ%H:%M:%S
 echo "PID: $$"
-exec ${pkgs.sway}/bin/sway "$@"
+
+input_config=~/.config/sway/config
+output_config=$XDG_RUNTIME_DIR/sway.rc
+
+${pkgs.coreutils}/bin/rm -f $output_config
+if [[ -x $input_config ]]; then
+  echo "executing $input_config > $output_config" >&2
+  $input_config > $output_config
+else
+  ${pkgs.coreutils}/bin/cp -v $input_config $output_config
+fi
+
+exec ${pkgs.sway}/bin/sway --config $output_config
 ''
 
 # Local Variables:

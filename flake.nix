@@ -1,6 +1,7 @@
 # https://github.com/NixOS/nixpkgs/tags
 {
   inputs = {
+    nixpkgs-nixos-23-11-2024-02-07.url = github:NixOS/nixpkgs/6832d0d9;
     # found checking out https://github.com/nixos/nixpkgs/, and/or running
     # `git pull` in there; and running
     # ```
@@ -18,6 +19,10 @@
     nixpkgs-2020-09-25.url = github:NixOS/nixpkgs/52075a82; # master
 #    hpkgs1.url  = github:sixears/hpkgs1/r0.0.10.0;
     hpkgs1.url  = path:/home/martyn/src/hpkgs1;
+    bashHeader-2024-02-07  = {
+      url    = github:sixears/bash-header/c68d4608;
+      inputs = { nixpkgs.follows = "nixpkgs-nixos-23-11-2024-02-07"; };
+    };
     bashHeader-2023-12-03  = {
       url    = github:sixears/bash-header/e0c0096;
       inputs = { nixpkgs.follows = "nixpkgs-nixos-23-05-2023-12-03"; };
@@ -33,6 +38,10 @@
     bashHeader-2023-01-14  = {
       url    = github:sixears/bash-header/5206b087;
       inputs = { nixpkgs.follows = "nixpkgs-2023-01-14"; };
+    };
+    myPkgs-2024-02-07      = {
+      url    = github:sixears/nix-pkgs/r0.0.9.0;
+      inputs = { nixpkgs.follows = "nixpkgs-nixos-23-11-2024-02-07"; };
     };
     myPkgs-2023-12-03      = {
       url    = github:sixears/nix-pkgs/r0.0.5.0;
@@ -53,6 +62,7 @@
   };
 
   outputs = { self, hpkgs1
+            , nixpkgs-nixos-23-11-2024-02-07, bashHeader-2024-02-07, myPkgs-2024-02-07
             , nixpkgs-nixos-23-05-2023-12-03, bashHeader-2023-12-03, myPkgs-2023-12-03
             , nixpkgs-2023-09-07, bashHeader-2023-09-07, myPkgs-2023-09-07
             , nixpkgs-2023-03-24, bashHeader-2023-03-24, myPkgs-2023-03-24
@@ -90,6 +100,10 @@
             lib.importNixesByName ./hosts {
               inherit
                 nixos-system
+
+                nixpkgs-nixos-23-11-2024-02-07
+                bashHeader-2024-02-07
+                myPkgs-2024-02-07
 
                 nixpkgs-nixos-23-05-2023-12-03
                 bashHeader-2023-12-03
