@@ -17,6 +17,10 @@
             # means "use rightalt layer when held; use rightalt key (mapped by
             # xkb to "compose" when tapped"
             rightalt = "overload(rightalt,rightalt)";
+
+            # on Dell XPS, this is the backslash/pipe key at the bottom left
+            # between the Shift and the Z
+            "102nd" = "f13";
           };
 
           rightalt = {
