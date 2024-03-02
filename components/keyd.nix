@@ -20,7 +20,7 @@
 
             # on Dell XPS, this is the backslash/pipe key at the bottom left
             # between the Shift and the Z
-            "102nd" = "f13";
+            "102nd" = "overload(lslash,f13)";
           };
 
           rightalt = {
@@ -35,10 +35,22 @@
             "3" = "macro(rightalt 3 p)";
             # really, 4-e; but keyd is the lowest level, the 'd' will
             # get translated to an 'e'
-            "4" = "macro(rightalt 4 d)";
+            "4" = "macro(rightalt 4 d)"; # eurosign
             "#" = "macro(rightalt 0 4)";
             f = "¢";
             d = "ç";
+          };
+
+          lslash = {
+            # rightalt Q W => Multi_Key quotedbl(Shift+quote) less(Shift+comma)     ~> «
+            w = "macro(rightalt Q W)";
+            # rightalt Q E => Multi_Key quotedbl(Shift+quote) greater(Shift+period) ~> «
+            e = "macro(rightalt Q E)";
+
+            a = "left";
+            s = "down";
+            d = "up";
+            f = "right";
           };
 
           # can't get rightalt + alt to work together
