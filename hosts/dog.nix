@@ -98,6 +98,7 @@ in
 ##                     { inherit pkgs bash-header my-pkgs; dvorak=true; })
             ../components/greetd-sway.nix
             ../components/wayland.nix
+            ../components/fonts.nix
 
             ../components/scanning.nix
             ../components/hdcalm.nix
