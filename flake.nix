@@ -10,7 +10,7 @@
     # ```
     nixpkgs-nixos-23-05-2023-12-03.url = github:NixOS/nixpkgs/ea15d6f;
 
-    nixpkgs-2023-09-07.url = github:NixOS/nixpkgs/4f77ea6; # nixos-23.05
+    nixpkgs-2023-09-07.url = github:NixOS/nixpkgs/4f77ea639; # nixos-23.05
     nixpkgs-2023-03-24.url = github:NixOS/nixpkgs/07fb9ca; # master
 
 #    nixos-22-11-release.url = github:NixOS/nixpkgs/f1b9cc2; # 22.11 release

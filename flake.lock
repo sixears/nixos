@@ -973,8 +973,8 @@
         "yaml-plus-src-1-0-1-1": "yaml-plus-src-1-0-1-1"
       },
       "locked": {
-        "lastModified": 1705088663,
-        "narHash": "sha256-ihI4MyVDf0JhSZEavjFKbpYK6q7VkjxhfNHKObWmD4Y=",
+        "lastModified": 1709108193,
+        "narHash": "sha256-P4HHnr3fhv38bTGS/PeCreNtn+itiAdN826ymMcVKQw=",
         "path": "/home/martyn/src/hpkgs1",
         "type": "path"
       },
@@ -1391,16 +1391,16 @@
       "locked": {
         "lastModified": 1702454860,
         "narHash": "sha256-ccmMWrhUPA0YHm+lLQqGEkNruE+5qDC5422gAkATG5U=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
+        "ref": "refs/heads/master",
         "rev": "354184a83e7360c7c5a6fd76d9f6d28508ac3461",
-        "type": "github"
+        "revCount": 559278,
+        "type": "git",
+        "url": "file:/local/nixpkgs/master"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "354184a",
-        "repo": "nixpkgs",
-        "type": "github"
+        "rev": "354184a83e7360c7c5a6fd76d9f6d28508ac3461",
+        "type": "git",
+        "url": "file:/local/nixpkgs/master"
       }
     },
     "nixpkgs-2020-09-25": {
@@ -1478,7 +1478,7 @@
       },
       "original": {
         "owner": "NixOS",
-        "ref": "4f77ea6",
+        "ref": "4f77ea639",
         "repo": "nixpkgs",
         "type": "github"
       }
