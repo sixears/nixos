@@ -1,9 +1,14 @@
-{ nixpkgs-2023-01-14,bashHeader-2023-01-14,myPkgs-2023-01-14,nixos-system,... }:
+{ nixpkgs-nixos-23-05-2023-12-03
+, bashHeader-2023-12-03
+, myPkgs-2023-12-03
+, nixos-system
+, ...
+}:
 
 let
-  nixpkgs    = nixpkgs-2023-01-14;
-  bashHeader = bashHeader-2023-01-14;
-  myPkgs     = myPkgs-2023-01-14;
+  nixpkgs    = nixpkgs-nixos-23-05-2023-12-03;
+  bashHeader = bashHeader-2023-12-03;
+  myPkgs     = myPkgs-2023-12-03;
 in
   nixos-system
     {
@@ -23,7 +28,7 @@ in
         ] ++
 
       (import ../hardware/lenovo-s340-14api.nix {
-        inherit system bash-header;
+        inherit system bash-header hlib;
         hostname     = "grain";
         domainname   = "sixears.co.uk";
         etherMac     = "9c:eb:e8:5e:18:ed";
@@ -60,7 +65,7 @@ in
           # this doesn't easily co-exist with home-backup.nix
           ../components/local-home-backup.nix
 
-          ../components/desktop.nix
+          (import ../components/desktop.nix { inherit pkgs my-pkgs; })
           ../components/pulseaudio.nix
           ../components/scanning.nix
 
