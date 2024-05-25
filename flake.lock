@@ -973,7 +973,7 @@
         "yaml-plus-src-1-0-1-1": "yaml-plus-src-1-0-1-1"
       },
       "locked": {
-        "lastModified": 1709108193,
+        "lastModified": 1716049161,
         "narHash": "sha256-P4HHnr3fhv38bTGS/PeCreNtn+itiAdN826ymMcVKQw=",
         "path": "/home/martyn/src/hpkgs1",
         "type": "path"

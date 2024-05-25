@@ -541,6 +541,13 @@
             , comments = [] : List Text
             }
 
+          , { fqdn = "cam-garage.sixears.co.uk."
+            , ipv4 = "192.168.0.79"
+            , desc = "Reolink Duo 2 PoE"
+            , mac= Some "ec:71:db:ce:07:fa"
+            , comments = [] : List Text
+            }
+
           -- Cars --------------------------------------------------------------
 
           , { fqdn = "yondu.sixears.co.uk."

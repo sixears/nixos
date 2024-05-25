@@ -22,7 +22,7 @@ in
           }
         ] ++
         (import ../hardware/awow-ak41.nix {
-          inherit system bash-header;
+          inherit system bash-header hlib;
           hostname       = "apparatus";
           domainname     = "sixears.co.uk";
           etherMac       = "00:e0:4c:5d:fc:17";
@@ -74,6 +74,12 @@ in
             ../components/deluged.nix
             # host locks up every few days.  Maybe this will help.  2022-07-01
 #            ../components/daily-reboot.nix
+
+            ../users/system/media.group.nix
+            ../components/sabnzbd.nix
+            ../components/radarr.nix
+            ../components/sonarr.nix
+            ../components/prowlarr.nix
           ];
         });
     }
