@@ -44,6 +44,7 @@ in
       lsof
       man
       man-pages
+      ncdu
       networkmanager
       patdiff
       pciutils
@@ -54,6 +55,7 @@ in
       sox
       sudo
       sysstat
+      tree
       vim
       unzip
       usbutils

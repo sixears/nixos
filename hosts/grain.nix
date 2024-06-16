@@ -61,6 +61,7 @@ in
           ../hardware/video/amd-gpu-crashfix.nix
 
           ../components/laptop.nix
+          ../components/suspend.nix
           ../components/printing.nix
           # this doesn't easily co-exist with home-backup.nix
           ../components/local-home-backup.nix

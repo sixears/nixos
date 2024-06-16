@@ -1,16 +1,16 @@
-{ pkgs,... }:
+{ pkgs, ... }:
 
 let
-  dataDir = "/Deluge/sonarr";
+  dataDir = "/Deluge/lidarr";
 in
   {
-    services.sonarr = {
+    services.lidarr = {
       enable  = true;
       group   = "media";
       dataDir = dataDir;
     };
 
-    networking.firewall.allowedTCPPorts = [ 8989 ];
+    networking.firewall.allowedTCPPorts = [ 8686 ];
 
     services.fcron.systab =
       "@runas(root) 60s ${pkgs.coreutils}/bin/chmod -R g+rwX ${dataDir}";

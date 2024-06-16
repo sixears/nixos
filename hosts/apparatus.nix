@@ -76,10 +76,12 @@ in
 #            ../components/daily-reboot.nix
 
             ../users/system/media.group.nix
-            ../components/sabnzbd.nix
-            ../components/radarr.nix
-            ../components/sonarr.nix
-            ../components/prowlarr.nix
+            ../components/sabnzbd.nix   # downloader
+            ../components/radarr.nix    # movies
+            ../components/sonarr.nix    # tv series
+            ../components/prowlarr.nix  # indexer central
+            ../components/bazarr.nix    # subtitles
+            ../components/lidarr.nix    # music
           ];
         });
     }
