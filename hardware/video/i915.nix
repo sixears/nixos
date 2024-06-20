@@ -3,7 +3,8 @@
 {
   # we need linux 5.19+ for sound support, but with 5.19.8 at least;
   # the i915 crashes the display
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_1;
+  ## no longer required since nixos-24.05
+  ## boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_1;
   # https://wiki.archlinux.org/title/Dell_XPS_13_(9310)#Random_Hangs_on_i915_with_kernel
   # Random Hangs on i915 with kernel
   #
