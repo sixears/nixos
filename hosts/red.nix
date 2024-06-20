@@ -1,15 +1,15 @@
 {
-  nixpkgs-nixos-23-11-2024-02-07,
-  bashHeader-2024-02-07,
-  myPkgs-2024-02-07,
+  nixpkgs-nixos-24-05-2024-06-20,
+  bashHeader-2024-06-20,
+  myPkgs-2024-06-20,
   nixos-system,
   ...
 }:
 
 let
-  nixpkgs     = nixpkgs-nixos-23-11-2024-02-07;
-  bashHeader  = bashHeader-2024-02-07;
-  myPkgs      = myPkgs-2024-02-07;
+  nixpkgs     = nixpkgs-nixos-24-05-2024-06-20;
+  bashHeader  = bashHeader-2024-06-20;
+  myPkgs      = myPkgs-2024-06-20;
 in
   nixos-system
     {

@@ -70,6 +70,7 @@ in
           ../components/pulseaudio.nix
           ../components/scanning.nix
 
+          ../components/haskell.nix
           ../components/pygame.nix
 
           ../users/people/xander.nix

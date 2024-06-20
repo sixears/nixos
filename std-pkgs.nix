@@ -38,6 +38,7 @@ in
       inxi
       git
       gnumake
+      inotify-tools
       less
       lm_sensors
       lshw
