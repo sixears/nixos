@@ -192,6 +192,19 @@
             , comments = [] : List Text
             }
 
+          , { fqdn = "cargo.sixears.co.uk."
+            , ipv4 = "192.168.0.10"
+            , desc = "Lenovo X1 Carbon Gen12 Ethernet"
+            , mac= Some "c4:c6:e6:1c:cf:f7"
+            , comments = [ "Serial Number: PF-51382V", "Type Number: 21KC-CTO1WW" ] : List Text
+            }
+          , { fqdn = "cargo-wl.sixears.co.uk."
+            , ipv4 = "192.168.0.10"
+            , desc = "Lenovo X1 Carbon Gen12 Wireless"
+            , mac= Some "b0:47:e9:dc:95:42"
+            , comments = [ "Serial Number: PF-51382V", "Type Number: 21KC-CTO1WW" ] : List Text
+            }
+
             -- Phones ----------------------------------------------------------
 
           , { fqdn = "backslider.sixears.co.uk."
