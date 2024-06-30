@@ -108,7 +108,9 @@ in
 
             ../components/unifi.nix
 
-            ../components/gdddns.nix # GoDaddy DNS updater (with our public IP)
+#            ../components/gdddns.nix # GoDaddy DNS updater (with our public IP)
+            ../components/dyn-addr.nix # public DNS updater (with our public IP)
+
             ../components/mirrorfs.nix
             ../components/local-home-backup.nix
             ../components/vsftpd.nix

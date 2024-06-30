@@ -3,15 +3,15 @@
 #  -) mythtv
 #  -) podcasts
 #  -) gitit
-{ nixpkgs-2023-01-14, bashHeader-2023-01-14, myPkgs-2023-01-14
+{ nixpkgs-nixos-24-05-2024-06-20, bashHeader-2024-06-20, myPkgs-2024-06-20
 , nixpkgs-2020-09-25
 , nixpkgs-2022-04-22
 , nixos-system, ... }:
 
 let
-  nixpkgs    = nixpkgs-2023-01-14;
-  bashHeader = bashHeader-2023-01-14;
-  myPkgs     = myPkgs-2023-01-14;
+  nixpkgs    = nixpkgs-nixos-24-05-2024-06-20;
+  bashHeader = bashHeader-2024-06-20;
+  myPkgs     = myPkgs-2024-06-20;
 in
   nixos-system
     {
@@ -86,7 +86,7 @@ in
             ../filesystems/local-d.nix
 
             # Seagate ST8000 7.28TiB / 8Tb
-            ../filesystems/archive3-b.nix
+#            ../filesystems/archive3-b.nix
 
             # Toshiba N300 HDWN180 7.28TiB / 8Tb
             ../filesystems/archive1-a.nix
