@@ -64,6 +64,7 @@ in
             ../components/wayland.nix
 
             ../components/laptop.nix
+            ../components/suspend.nix
             ../components/printing.nix
             ../components/deluge-killer.nix
             # this doesn't easily co-exist with home-backup.nix
