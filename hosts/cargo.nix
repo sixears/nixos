@@ -55,6 +55,10 @@ in
             ../filesystems/usb-sda.nix
           ];
           imports = pkgs: [
+
+            ## Try the latest kernel to help with logind/acpi failures & crashes
+            ../components/kernel-latest.nix
+
 ##            (import ../components/xserver.nix {
 ##              inherit pkgs bash-header my-pkgs;
 ##              dvorak=true;
