@@ -21,15 +21,14 @@ in
       (import ../pkgs/xsession.nix { inherit pkgs xkb xmonad-with-pkgs; })
     ];
 
+    services.libinput.enable = true;
+    # at the time of writing (2023-01-27, creating first full nixos flake),
+    # this was literally the only thing that built :-( but maybe
+    # displayManager.session can help?
+    services.displayManager.defaultSession = "none+xmonad";
+
     services.xserver = {
       enable = true;
-
-      # at the time of writing (2023-01-27, creating first full nixos flake),
-      # this was literally the only thing that built :-( but maybe
-      # displayManager.session can help?
-      displayManager.defaultSession = "none+xmonad";
-
-      libinput.enable = true;
 
       windowManager = {
         xmonad.enable = true;
@@ -40,11 +39,13 @@ in
       # main { ... }, but that caused the display-manager service to stop on
       # build; I'm pretty sure that the two sets of services.xserver don't merge
       # nicely in that way
-      layout     = if dvorak then "dvorak" else "gb";
-      xkbOptions =
-        if dvorak
-        then "caps:ctrl_modifier compose:prsc altwin:menu eurosign:4"
-        else "eurosign:4";
+      xkb = {
+        layout  = if dvorak then "dvorak" else "gb";
+        options =
+          if dvorak
+          then "caps:ctrl_modifier compose:prsc altwin:menu eurosign:4"
+          else "eurosign:4";
+      };
     };
 
     environment.etc = {
