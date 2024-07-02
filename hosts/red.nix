@@ -90,7 +90,10 @@ in
             (import ../components/hibernate.nix { idle-suspend-time = "30m"; })
 
             ../users/people/martyn.nix
-            ../users/people/jj.nix
+            ../users/people/heather.nix
+#          ../users/people/heather-lumix-copy.nix
+#          ../users/people/heather-rsync-pictures.nix
+            ../users/people/syncthing-heather.nix
             ../users/people/syncthing-martyn.nix
           ];
         });
