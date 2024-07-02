@@ -21,6 +21,7 @@ NoDelete=false # if true, skip the deletion question
 LogFile=/dev/null
 readonly DefaultCopyExtensions=( jpg rw2 )
 CopyExtensions=( )
+DatedNoName=false # don't use extant named dated dirs
 
 # ------------------------------------------------------------------------------
 
@@ -89,17 +90,19 @@ main() {
 
       local target_dir="$Target/$date"
 
-      local proto_dirs=("$target_dir"\ *)
-      case ''${#proto_dirs[@]} in
-        0 ) # stick with the dated dir
-            : ;;
-        1 ) # one dated dir already found; use that
-            target_dir="''${proto_dirs[0]}" ;;
-        * ) # too many pre-extant dated dirs to choose from; skip
-            warn "Too many dirs match '$target_dir *'; skipping $fn"
-            continue
-            ;;
-      esac
+      if ! $DatedNoName; then
+        local proto_dirs=("$target_dir"\ *)
+        case ''${#proto_dirs[@]} in
+          0 ) # stick with the dated dir
+              : ;;
+          1 ) # one dated dir already found; use that
+              target_dir="''${proto_dirs[0]}" ;;
+          * ) # too many pre-extant dated dirs to choose from; skip
+              warn "Too many dirs match '$target_dir *'; skipping $fn"
+              continue
+              ;;
+        esac
+      fi
 
       if    [[ 0 == ''${target_dirs[$target_dir]:-0} ]] \
          && [[ ! -e $target_dir ]]; then
@@ -216,6 +219,8 @@ options:
                       to avoid re-copying previously copied files.
  -E | --extensions    Copy only files with these (case-insensitive) file
                       extensions.  Defaults to ''${DefaultCopyExtensions[@]}
+ --no-named-dated     If copying into dated dirs, don't use extant named dated
+                      dirs; always copy just into a dated dir
 
  -v | --verbose
  -n | --dry-run
@@ -226,7 +231,7 @@ EOF
 orig_args=("$@")
 getopt_args=( --options s:t:DvCL:E:
               --long source:,target:,no-dated,copy,no-delete,log-file:
-              --long extensions:
+              --long extensions:,no-named-dated
               --long verbose,dry-run,help,debug )
 OPTS=$( ''${Cmd[getopt]} "''${getopt_args[@]}" -n "$Progname" -- "$@" )
 
@@ -248,6 +253,7 @@ while true; do
     -L | --log-file   ) LogFile="$2";             shift 2 ;;
     -E | --extensions ) CopyExtensions+=( "$2" ); shift 2 ;;
     -C | --copy | --no-delete ) NoDelete=true   ; shift   ;;
+    --no-named-dated  ) DatedNoName=true        ; shift   ;;
 
     # !!! don't forget to update usage !!!
     --              ) args+=("''${@:2}")       ; break ;;
