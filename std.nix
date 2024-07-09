@@ -169,6 +169,7 @@ in
       ./components/smartd.nix
       ./components/sysstat.nix
       ./components/disthttpd.nix
+      ./components/sys-info.nix
 
       # !!! red-specific services - MOVE THESE TO red.nix? !!!
     ] ++ filesystems ++ std-filesystems;
