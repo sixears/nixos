@@ -1,5 +1,5 @@
 { hostname, domainname, stateVersion, logicalCores ? 8, etherMac, wifiMac
-, systemPackages, system, filesystems, imports, bash-header }:
+, systemPackages, system, filesystems, imports, bash-header, hlib }:
 
 # CPU: 2.8-GHz Intel Core i7-1165G7 (9-29W)
 #      [4 cores, 8 threads]
@@ -15,7 +15,7 @@
   (import ../components/wifi.nix     { inherit wifiMac; })
   (import ../std.nix {
     inherit hostname domainname stateVersion logicalCores systemPackages system
-            bash-header filesystems imports;
+            bash-header hlib filesystems imports;
     # see https://wiki.archlinux.org/title/CPU_frequency_scaling
     # intel_pstate driver works well with powersave.
     # run cpupower frequency-info to check that intel_pstate driver is in use,

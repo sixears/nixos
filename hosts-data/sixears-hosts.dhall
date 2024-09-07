@@ -499,11 +499,18 @@
           , { fqdn = "control.sixears.co.uk."
             , ipv4 = "192.168.0.200"
             , desc = "Visonic PowerMaxComplete / PowerLink"
-            , mac= Some "00:12:6c:10:79:a5"
+            , mac  = Some "00:12:6c:10:79:a5"
             , comments = [] : List Text
             }
 
           -- Cameras -----------------------------------------------------------
+
+          , { fqdn = "edit.sixears.co.uk."
+            , ipv4 = "192.168.0.84"
+            , desc = "ReoLink RLN8-410 NVR"
+            , mac  = Some "ec:71:db:87:d5:ec"
+            , comments = [] : List Text
+            }
 
           , { fqdn = "cam-front.sixears.co.uk."
             , ipv4 = "192.168.0.75"

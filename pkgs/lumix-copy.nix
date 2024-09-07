@@ -80,11 +80,11 @@ main() {
       # check_ "exiftool '$fn' | jq"
       local rv=$?
       if [[ 0 -ne $rv ]]; then
-        if [[ $bn =~ ^IMG-?(20[0-3][0-9])(0[0-9]|1[0-2])([0-2][0-9]|3[01])- ]]
+        if [[ $bn =~ ^(IMG[-_]?|signal-)(20[0-3][0-9])[-_]?(0[0-9]|1[0-2])[-_]?([0-2][0-9]|3[01])[-_]? ]]
         then
-          date="''${BASH_REMATCH[1]}/''${BASH_REMATCH[2]}/''${BASH_REMATCH[3]}"
+          date="''${BASH_REMATCH[2]}/''${BASH_REMATCH[3]}/''${BASH_REMATCH[4]}"
         else
-          die $rv "exiftool '$fn' | jq failed"
+          die $rv "exiftool '$fn' ¦ jq failed"
         fi
       fi
 

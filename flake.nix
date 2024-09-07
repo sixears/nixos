@@ -13,7 +13,7 @@
 ###    nixpkgs-nixos-23-05-2023-12-03.url = github:NixOS/nixpkgs/ea15d6f;
 
 ###    nixpkgs-2023-09-07.url = github:NixOS/nixpkgs/4f77ea639; # nixos-23.05
-###    nixpkgs-2023-03-24.url = github:NixOS/nixpkgs/07fb9ca; # master
+    nixpkgs-2023-03-24.url = github:NixOS/nixpkgs/07fb9ca; # master
 
 #    nixos-22-11-release.url = github:NixOS/nixpkgs/f1b9cc2; # 22.11 release
     nixpkgs-2023-01-14.url = github:NixOS/nixpkgs/3ae365af; # master
@@ -37,10 +37,10 @@
 ###      url    = github:sixears/bash-header/5206b087;
 ###      inputs = { nixpkgs.follows = "nixpkgs-2023-09-07"; };
 ###    };
-###    bashHeader-2023-03-24  = {
-###      url    = github:sixears/bash-header/5206b087;
-###      inputs = { nixpkgs.follows = "nixpkgs-2023-03-24"; };
-###    };
+    bashHeader-2023-03-24  = {
+      url    = github:sixears/bash-header/5206b087;
+      inputs = { nixpkgs.follows = "nixpkgs-2023-03-24"; };
+    };
     bashHeader-2023-01-14  = {
       url    = github:sixears/bash-header/5206b087;
       inputs = { nixpkgs.follows = "nixpkgs-2023-01-14"; };
@@ -61,10 +61,10 @@
 ###      url    = github:sixears/nix-pkgs/r0.0.0.0;
 ###      inputs = { nixpkgs.follows = "nixpkgs-2023-09-07"; };
 ###    };
-###    myPkgs-2023-03-24      = {
-###      url    = github:sixears/nix-pkgs/r0.0.0.0;
-###      inputs = { nixpkgs.follows = "nixpkgs-2023-03-24"; };
-###    };
+    myPkgs-2023-03-24      = {
+      url    = github:sixears/nix-pkgs/r0.0.0.0;
+      inputs = { nixpkgs.follows = "nixpkgs-2023-03-24"; };
+    };
     myPkgs-2023-01-14      = {
       url    = github:sixears/nix-pkgs/r0.0.0.0;
       inputs = { nixpkgs.follows = "nixpkgs-2023-01-14"; };
@@ -76,7 +76,7 @@
 ###            , nixpkgs-nixos-23-11-2024-02-07, bashHeader-2024-02-07, myPkgs-2024-02-07
 ###            , nixpkgs-nixos-23-05-2023-12-03, bashHeader-2023-12-03, myPkgs-2023-12-03
 ###            , nixpkgs-2023-09-07, bashHeader-2023-09-07, myPkgs-2023-09-07
-###            , nixpkgs-2023-03-24, bashHeader-2023-03-24, myPkgs-2023-03-24
+            , nixpkgs-2023-03-24, bashHeader-2023-03-24, myPkgs-2023-03-24
             , nixpkgs-2023-01-14, bashHeader-2023-01-14, myPkgs-2023-01-14
             , nixpkgs-2022-04-22 # for mythtv
             , nixpkgs-2020-09-25 # for plex
@@ -128,9 +128,9 @@
 ###                bashHeader-2023-09-07
 ###                myPkgs-2023-09-07
 
-###                nixpkgs-2023-03-24
-###                bashHeader-2023-03-24
-###                myPkgs-2023-03-24
+                nixpkgs-2023-03-24
+                bashHeader-2023-03-24
+                myPkgs-2023-03-24
 
                 nixpkgs-2023-01-14
                 bashHeader-2023-01-14

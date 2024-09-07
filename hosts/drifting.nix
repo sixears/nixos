@@ -1,9 +1,15 @@
-{ nixpkgs-2023-03-24,bashHeader-2023-03-24,myPkgs-2023-03-24,nixos-system,... }:
+{
+  nixpkgs-nixos-24-05-2024-06-20,
+  bashHeader-2024-06-20,
+  myPkgs-2024-06-20,
+  nixos-system,
+  ...
+}:
 
 let
-  nixpkgs    = nixpkgs-2023-03-24;
-  bashHeader = bashHeader-2023-03-24;
-  myPkgs     = myPkgs-2023-03-24;
+  nixpkgs    = nixpkgs-nixos-24-05-2024-06-20;
+  bashHeader = bashHeader-2024-06-20;
+  myPkgs     = myPkgs-2024-06-20;
 in
   nixos-system
     {
@@ -23,7 +29,7 @@ in
         ] ++
 
       (import ../hardware/dell-inspiron-7306.nix {
-        inherit system bash-header;
+        inherit system bash-header hlib;
         hostname     = "drifting";
         domainname   = "sixears.co.uk";
         etherMac     = "64:72:69:66:74:69";
@@ -66,7 +72,7 @@ in
           # this doesn't easily co-exist with home-backup.nix
           ../components/local-home-backup.nix
 
-          ../components/desktop.nix
+            (import ../components/desktop.nix { inherit pkgs my-pkgs; })
           ../components/pulseaudio.nix
           ../components/scanning.nix
 

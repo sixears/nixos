@@ -20,8 +20,8 @@ cat >$target <<'END'
 
   [802-1x]
   eap=peap;
-  identity=16pearce
-  password=Antonym7&
+  identity=19Pearce
+  password=(Toto:Africa2)
   phase2-auth=mschapv2
 
   [ipv4]

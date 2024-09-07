@@ -81,7 +81,7 @@ in
             ../components/nix-serve.nix
             ../dns-server/cloudflare.nix
 #            ../components/zsa.nix
-            ../components/keyd.nix
+#            ../components/keyd.nix
 
 # not compiling for now, this is hard to do on a fresh install
 #            ../components/finbar.nix
