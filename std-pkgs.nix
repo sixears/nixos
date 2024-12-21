@@ -21,7 +21,9 @@ in
       (import ./pkgs/pic-reduce.nix  { inherit pkgs bash-header; })
       (import ./pkgs/vpn.nix  { inherit pkgs bash-header; })
 
-      alsaUtils
+      # Pre-24.11
+      # alsaUtils
+      alsa-utils
       bat
       coreutils
       dmidecode
@@ -45,7 +47,7 @@ in
       lsof
       man
       man-pages
-      ncdu
+      ncdu dust gdu
       networkmanager
       patdiff
       pciutils
@@ -67,6 +69,7 @@ in
       s-tui
       sysdig
       cryptsetup
+      pavucontrol
 
       hwloc
     ];

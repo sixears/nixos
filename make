@@ -52,6 +52,7 @@ options:
  -I | --impure      enable impure evaluation
  -N | --bincache    explicitly cite 192.168.0.7 as a substituters
  -S | --sudo        force sudo, needed to trust without keys
+ -C | --no-cache    force re-evaluation without cache
 
  -v | --verbose
  -n | --dry-run
@@ -75,12 +76,14 @@ isolated=false
 remote=false
 dirty=false
 show_trace=false
+no_cache=false
 impure=false
 very_verbose=false
 substituters=( https://cache.nixos.org/ )
 
-options=( -o vnirdTh:IVNS
-          --long show-trace,dirty,isolated,remote,hostname:,impure,very-verbose,bincache,sudo
+options=( -o vnirdTh:IVNSC
+          --long show-trace,dirty,isolated,remote,hostname:,impure,very-verbose
+          --long bincache,sudo,no-cache
           --long verbose,dry-run,help )
 OPTS=$( $getopt "${options[@]}" -n "$progname" -- "$@" )
 
@@ -97,6 +100,7 @@ while true; do
     -T | --show-trace ) show_trace=true      ; shift   ;;
     -h | --hostname   ) hostnames=( "$2" )   ; shift 2 ;;
     -I | --impure     ) impure=true          ; shift   ;;
+    -C | --no-cache   ) no_cache=true        ; shift   ;;
     -N | --bincache   ) substituters+=( http://nixos-bincache.sixears.co.uk:5000/ ); shift ;;
     -S | --sudo       ) pfx_cmd=( $sudo -- ) ; shift   ;;
 
@@ -117,6 +121,9 @@ case $# in
          command=switch
          pfx_cmd=( $sudo -- )
          env_add+=( HOME=/root )
+         # https://github.com/NixOS/nix/issues/10202
+         # sudo git config --global --add safe.directory "$PWD"
+         # sfx_cmd+=( --add safe.directory "$progdir" )
          ;;
 
        checkall | check-all )
@@ -150,6 +157,7 @@ $very_verbose && cmd+=( --verbose )
 
 $show_trace && cmd+=( --show-trace )
 $impure     && cmd+=( --impure )
+$no_cache   && cmd+=( --option eval-cache false )
 
 if [[ 0 -ne ${#substituters[@]} ]]; then
   cmd+=( --option substituters "'${substituters[*]}'" )

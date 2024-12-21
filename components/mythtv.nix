@@ -6,19 +6,24 @@
     ];
 
   environment.systemPackages = with pkgs; [
-    mysql mythtv (import ../components/mythtv-convert.nix { inherit pkgs; })
+    # Pre-24.11
+    # mysql
+    mariadb
+    mythtv (import ../components/mythtv-convert.nix { inherit pkgs; })
   ];
 
   networking.firewall.allowedTCPPorts = [ 6544 6547 ];
 
   services.mysql.enable = true;
-  services.mysql.package = pkgs.mysql;
+  # Pre-24.11
+  # services.mysql.package = pkgs.mysql;
+  services.mysql.package = pkgs.mariadb;
 
   # derived from https://www.mythtv.org/wiki/Systemd_mythbackend_Configuration
   systemd.services.mythbackend = {
     description = "MythTV backend";
     after       = [ "network.target" "NetworkManager-wait-online.service"
-                    "mysqld.service" "pingnetwork.service" ];
+                    "mysql.service" "pingnetwork.service" ];
     wants       = [ "pingnetwork.service" ];
     wantedBy    = [ "multi-user.target" ];
     environment = { HOME= "/home/mythtv"; MYTHCONFDIR="/home/mythtv/.mythtv"; };

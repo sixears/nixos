@@ -1,7 +1,8 @@
 { config, lib, pkgs, ... }:
 
 let
-  get_iplayer = import ../pkgs/get_iplayer/default.nix { nixpkgs = pkgs; };
+  # get_iplayer = import ../pkgs/get_iplayer/default.nix { nixpkgs = pkgs; };
+  get_iplayer = pkgs.get_iplayer;
 in
   {
 #    environment.systemPackages = with pkgs; [ get_iplayer ];

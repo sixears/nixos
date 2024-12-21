@@ -13,7 +13,9 @@ in
       # xmonad needs ghc in its path to compile
       # ghc
       i3status
-      rxvt_unicode-with-plugins
+      # Pre-24.11
+      # rxvt_unicode-with-plugins
+      rxvt-unicode
       my-pkgs.touchpad
       xkb
       xkeyboard_config

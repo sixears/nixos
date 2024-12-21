@@ -11,7 +11,10 @@
     claws-mail
     evince
     firefox
-    gqview
+    # As of 24.11, 'gqview' has been removed due to lack of maintenance
+    # upstream and depending on gtk2. Consider using 'gthumb' instead
+    ## gqview
+    gthumb
     imagemagick
     libheif
     libreoffice

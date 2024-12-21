@@ -542,15 +542,15 @@
 
           , { fqdn = "cam-lounge.sixears.co.uk."
             , ipv4 = "192.168.0.80"
-            , desc = "wansview NCB541W cam lounge"
-            , mac= Some "78:a5:dd:00:d0:46"
+            , desc = "Reolink RLC-520A (PoE)"
+            , mac= Some "ec:71:db:ad:bb:51"
             , comments = [] : List Text
             }
 
           , { fqdn = "cam-study.sixears.co.uk."
             , ipv4 = "192.168.0.82"
-            , desc = "wansview NCB541W cam study"
-            , mac= Some "ec:71:db:92:f6:6f"
+            , desc = "Reolink RLC-520A (PoE) study"
+            , mac= Some "ec:71:db:00:85:cc"
             , comments = [] : List Text
             }
 

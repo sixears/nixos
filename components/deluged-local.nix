@@ -14,15 +14,21 @@
   # https://serverfault.com/questions/1012550/systemd-requires-vs-bindsto
 #  systemd.services.deluged.serviceConfig.BindsTo = [ "openvpn-us_new_york.service" ];
   systemd.services.deluged.bindsTo = [ "openvpn-us_new_york.service" ];
-  systemd.services.deluged.serviceConfig.ExecStartPre=
-    [ (lib.concatStrings [ "${pkgs.bash}/bin/bash -c '"
-                          "while ! "
-                          "${pkgs.systemd}/bin/journalctl --boot --unit openvpn-us_new_york.service"
-                          " --since \"$(${pkgs.systemd}/bin/systemctl show openvpn-us_new_york.service --property=ExecMainStartTimestamp"
-                          "  | ${pkgs.coreutils}/bin/cut -d = -f 2-)\""
-                          "| ${pkgs.gnugrep}/bin/grep -iq \"Initialization Sequence Completed\""
-                          "; do echo Waiting for openvpn to come up...; sleep 2s; done"
-                          "'"
-                         ])
-    ];
+  systemd.services.deluged.serviceConfig.ExecStartPre =
+    let find-systemd-start-time =
+      pkgs.writers.writeBash "find-systemd-start-time" ''
+        ${pkgs.systemd}/bin/systemctl show "$1" --property=ExecMainStartTimestamp \
+          | ${pkgs.coreutils}/bin/cut -d = -f 2-                                  \
+          | ${pkgs.perl}/bin/perl -plE 's/ GMT$/ UTC/;s/ BST$/+01:00/'
+      '';
+    in
+      [ (lib.concatStrings [ "${pkgs.bash}/bin/bash -c '"
+                            "while ! "
+                            "${pkgs.systemd}/bin/journalctl --boot --unit openvpn-us_new_york.service"
+                            " --since \"$( ${find-systemd-start-time} openvpn-us_new_york )\""
+                            "| ${pkgs.gnugrep}/bin/grep -iq \"Initialization Sequence Completed\""
+                            "; do echo Waiting for openvpn to come up...; sleep 2s; done"
+                            "'"
+                           ])
+      ];
 }

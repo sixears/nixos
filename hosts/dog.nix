@@ -1,15 +1,15 @@
 {
-  nixpkgs-nixos-24-05-2024-06-20,
-  bashHeader-2024-06-20,
-  myPkgs-2024-06-20,
+  nixpkgs-nixos-24-11-2024-12-11,
+  bashHeader-2024-12-11,
+  myPkgs-2024-12-11,
   nixos-system,
   ...
 }:
 
 let
-  nixpkgs     = nixpkgs-nixos-24-05-2024-06-20;
-  bashHeader  = bashHeader-2024-06-20;
-  myPkgs      = myPkgs-2024-06-20;
+  nixpkgs     = nixpkgs-nixos-24-11-2024-12-11;
+  bashHeader  = bashHeader-2024-12-11;
+  myPkgs      = myPkgs-2024-12-11;
 in
   nixos-system
     {
@@ -102,8 +102,9 @@ in
 
             ../components/scanning.nix
             ../components/hdcalm.nix
-            ../components/pulseaudio.nix
-            ../components/pulseaudio-udev.nix
+# as of 24.11, default is to use pipewire
+##            ../components/pulseaudio.nix
+##            ../components/pulseaudio-udev.nix
             ../components/thttpd.nix
 
             ../components/unifi.nix

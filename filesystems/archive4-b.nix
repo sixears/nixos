@@ -6,7 +6,7 @@
 
     "/backup/a2"          = { device  = "/backup/archive4/a2"          ;
                               options = [ "bind" ]; };
-    "/backup/a4"          = { device  = "/backup/archive4/a4" ;
+    "/backup/a4"          = { device  = "/backup/archive4/a4"          ;
                               options = [ "bind" ]; };
     "/backup/ftp"         = { device  = "/backup/archive4/ftp"         ;
                               options = [ "bind" ]; };
@@ -16,10 +16,13 @@
                               options = [ "bind" ]; };
     "/backup/resource"    = { device  = "/backup/archive4/resource"    ;
                               options = [ "bind" ]; };
-    "/backup/Audiobooks"  = { device  = "/backup/archive4/Audiobooks";
+    "/backup/Audiobooks"  = { device  = "/backup/archive4/Audiobooks"  ;
                               options = [ "bind" ]; };
     "/backup/Audiobooks-Childrens" =
-                           { device  = "/backup/archive4/Audiobooks-Childrens";
-                             options = [ "bind" ]; };
+                            { device  = "/backup/archive4/Audiobooks-Childrens";
+                              options = [ "bind" ]; };
+    "/backup/nsa2"        = { device  = "/backup/archive4/nsa2"         ;
+                              options = [ "bind" ]; };
+
   };
 }

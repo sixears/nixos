@@ -3,15 +3,15 @@
 #  -) mythtv
 #  -) podcasts
 #  -) gitit
-{ nixpkgs-nixos-24-05-2024-06-20, bashHeader-2024-06-20, myPkgs-2024-06-20
+{ nixpkgs-nixos-24-11-2024-12-11, bashHeader-2024-12-11, myPkgs-2024-12-11
 , nixpkgs-2020-09-25
 , nixpkgs-2022-04-22
 , nixos-system, ... }:
 
 let
-  nixpkgs    = nixpkgs-nixos-24-05-2024-06-20;
-  bashHeader = bashHeader-2024-06-20;
-  myPkgs     = myPkgs-2024-06-20;
+  nixpkgs    = nixpkgs-nixos-24-11-2024-12-11;
+  bashHeader = bashHeader-2024-12-11;
+  myPkgs     = myPkgs-2024-12-11;
 in
   nixos-system
     {
@@ -42,7 +42,7 @@ in
                 lib.importNixesNoArgs ../overlays
             ++ [(final: prev: {
                    inherit (r2020-09-25) plex;   # v1.20
-                   inherit (r2022-04-22) mythtv; # v31.0
+#                   inherit (r2022-04-22) mythtv; # v31.0
                  }
                 )];
           }
@@ -121,11 +121,16 @@ in
             ../components/get_iplayer.nix
             ../components/plex.nix   # should be v1.20
             ../components/mythtv.nix # should be v31.0
+            ../components/jellyfin.nix
+            # Pre-24.11
+            # ../components/tvheadend.nix
+
             ../components/podcaster.nix
             ../components/gitit.nix
             ../components/nix-serve.nix
             ../components/cam-proxy.nix
-            ../components/pulseaudio.nix
+            # Pre-24.11
+            # ../components/pulseaudio.nix
 
             ../users/people/martyn.nix
             ../users/people/fletch.nix

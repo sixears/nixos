@@ -2,6 +2,7 @@
 {
   inputs = {
     nixpkgs-nixos-24-05-2024-06-20.url = github:NixOS/nixpkgs/938aa157;
+    nixpkgs-nixos-24-11-2024-12-11.url = github:NixOS/nixpkgs/d9d87c51;
 
 ###nixpkgs-nixos-23-11-2024-02-07.url = github:NixOS/nixpkgs/6832d0d9;
     # found checking out https://github.com/nixos/nixpkgs/, and/or running
@@ -24,6 +25,10 @@
     bashHeader-2024-06-20  = {
       url    = github:sixears/bash-header/c68d4608;
       inputs = { nixpkgs.follows = "nixpkgs-nixos-24-05-2024-06-20"; };
+    };
+    bashHeader-2024-12-11  = {
+      url    = github:sixears/bash-header/469a6da0;
+      inputs = { nixpkgs.follows = "nixpkgs-nixos-24-11-2024-12-11"; };
     };
 ###    bashHeader-2024-02-07  = {
 ###      url    = github:sixears/bash-header/c68d4608;
@@ -49,6 +54,10 @@
       url    = github:sixears/nix-pkgs/r0.0.9.0;
       inputs = { nixpkgs.follows = "nixpkgs-nixos-24-05-2024-06-20"; };
     };
+    myPkgs-2024-12-11      = {
+      url    = github:sixears/nix-pkgs/r0.0.11.0;
+      inputs = { nixpkgs.follows = "nixpkgs-nixos-24-11-2024-12-11"; };
+    };
 ###    myPkgs-2024-02-07      = {
 ###      url    = github:sixears/nix-pkgs/r0.0.9.0;
 ###      inputs = { nixpkgs.follows = "nixpkgs-nixos-23-11-2024-02-07"; };
@@ -72,6 +81,7 @@
   };
 
   outputs = { self, hpkgs1
+            , nixpkgs-nixos-24-11-2024-12-11, bashHeader-2024-12-11, myPkgs-2024-12-11
             , nixpkgs-nixos-24-05-2024-06-20, bashHeader-2024-06-20, myPkgs-2024-06-20
 ###            , nixpkgs-nixos-23-11-2024-02-07, bashHeader-2024-02-07, myPkgs-2024-02-07
 ###            , nixpkgs-nixos-23-05-2023-12-03, bashHeader-2023-12-03, myPkgs-2023-12-03
@@ -106,11 +116,15 @@
       nixosConfigurations =
         let
           # import each hosts/<name>.nix as <name>
-          lib = import ./lib.nix { plib = nixpkgs-nixos-24-05-2024-06-20.lib; };
+          lib = import ./lib.nix { plib = nixpkgs-nixos-24-11-2024-12-11.lib; };
           by-name =
             lib.importNixesByName ./hosts {
               inherit
                 nixos-system
+
+                nixpkgs-nixos-24-11-2024-12-11
+                bashHeader-2024-12-11
+                myPkgs-2024-12-11
 
                 nixpkgs-nixos-24-05-2024-06-20
                 bashHeader-2024-06-20
