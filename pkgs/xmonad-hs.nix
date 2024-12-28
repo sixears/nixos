@@ -219,7 +219,7 @@ main = do
   unsafeSpawn $ unwords [ i3status, "-c", i3statusrc, ">", i3p ]
   xmobarArgs <- let rc = xmobarrc
                  in fileExist rc >>= \e -> if e then return [rc] else return []
-  xmproc <- spawnPipe $ unwords ("${pkgs.haskellPackages.xmobar}/bin/xmobar" : xmobarArgs)
+  xmproc <- spawnPipe $ unwords ("${pkgs.haskellPackages.xmobar.bin}/bin/xmobar" : xmobarArgs)
   xmonad $ additionalKeysP (def { modMask = mod4Mask
                                 , manageHook = manageDocks <+> manageHook def
                                 , layoutHook = avoidStruts $ smartBorders myLayout

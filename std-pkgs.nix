@@ -72,5 +72,9 @@ in
       pavucontrol
 
       hwloc
+
+      nix-du
+      nix-tree
+      nix-output-monitor
     ];
   }
