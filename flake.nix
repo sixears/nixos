@@ -14,18 +14,18 @@
 ###    nixpkgs-nixos-23-05-2023-12-03.url = github:NixOS/nixpkgs/ea15d6f;
 
 ###    nixpkgs-2023-09-07.url = github:NixOS/nixpkgs/4f77ea639; # nixos-23.05
-    nixpkgs-2023-03-24.url = github:NixOS/nixpkgs/07fb9ca; # master
+#x#    nixpkgs-2023-03-24.url = github:NixOS/nixpkgs/07fb9ca; # master
 
 #    nixos-22-11-release.url = github:NixOS/nixpkgs/f1b9cc2; # 22.11 release
-    nixpkgs-2023-01-14.url = github:NixOS/nixpkgs/3ae365af; # master
-    nixpkgs-2022-04-22.url = github:NixOS/nixpkgs/9887f024; # 22.05
-    nixpkgs-2020-09-25.url = github:NixOS/nixpkgs/52075a82; # master
+#x#    nixpkgs-2023-01-14.url = github:NixOS/nixpkgs/3ae365af; # master
+#x#    nixpkgs-2022-04-22.url = github:NixOS/nixpkgs/9887f024; # 22.05
+#x#    nixpkgs-2020-09-25.url = github:NixOS/nixpkgs/52075a82; # master
 #    hpkgs1.url  = github:sixears/hpkgs1/r0.0.10.0;
     hpkgs1.url  = path:/home/martyn/src/hpkgs1;
-    bashHeader-2024-06-20  = {
-      url    = github:sixears/bash-header/c68d4608;
-      inputs = { nixpkgs.follows = "nixpkgs-nixos-24-05-2024-06-20"; };
-    };
+#x#    bashHeader-2024-06-20  = {
+#x#      url    = github:sixears/bash-header/c68d4608;
+#x#      inputs = { nixpkgs.follows = "nixpkgs-nixos-24-05-2024-06-20"; };
+#x#    };
     bashHeader-2024-12-11  = {
       url    = github:sixears/bash-header/469a6da0;
       inputs = { nixpkgs.follows = "nixpkgs-nixos-24-11-2024-12-11"; };
@@ -42,18 +42,18 @@
 ###      url    = github:sixears/bash-header/5206b087;
 ###      inputs = { nixpkgs.follows = "nixpkgs-2023-09-07"; };
 ###    };
-    bashHeader-2023-03-24  = {
-      url    = github:sixears/bash-header/5206b087;
-      inputs = { nixpkgs.follows = "nixpkgs-2023-03-24"; };
-    };
-    bashHeader-2023-01-14  = {
-      url    = github:sixears/bash-header/5206b087;
-      inputs = { nixpkgs.follows = "nixpkgs-2023-01-14"; };
-    };
-    myPkgs-2024-06-20      = {
-      url    = github:sixears/nix-pkgs/r0.0.9.0;
-      inputs = { nixpkgs.follows = "nixpkgs-nixos-24-05-2024-06-20"; };
-    };
+#x#    bashHeader-2023-03-24  = {
+#x#      url    = github:sixears/bash-header/5206b087;
+#x#      inputs = { nixpkgs.follows = "nixpkgs-2023-03-24"; };
+#x#    };
+#x#    bashHeader-2023-01-14  = {
+#x#      url    = github:sixears/bash-header/5206b087;
+#x#      inputs = { nixpkgs.follows = "nixpkgs-2023-01-14"; };
+#x#    };
+#x#    myPkgs-2024-06-20      = {
+#x#      url    = github:sixears/nix-pkgs/r0.0.9.0;
+#x#      inputs = { nixpkgs.follows = "nixpkgs-nixos-24-05-2024-06-20"; };
+#x#    };
     myPkgs-2024-12-11      = {
       url    = github:sixears/nix-pkgs/r0.0.11.0;
       inputs = { nixpkgs.follows = "nixpkgs-nixos-24-11-2024-12-11"; };
@@ -70,26 +70,26 @@
 ###      url    = github:sixears/nix-pkgs/r0.0.0.0;
 ###      inputs = { nixpkgs.follows = "nixpkgs-2023-09-07"; };
 ###    };
-    myPkgs-2023-03-24      = {
-      url    = github:sixears/nix-pkgs/r0.0.0.0;
-      inputs = { nixpkgs.follows = "nixpkgs-2023-03-24"; };
-    };
-    myPkgs-2023-01-14      = {
-      url    = github:sixears/nix-pkgs/r0.0.0.0;
-      inputs = { nixpkgs.follows = "nixpkgs-2023-01-14"; };
-    };
+#x#    myPkgs-2023-03-24      = {
+#x#      url    = github:sixears/nix-pkgs/r0.0.0.0;
+#x#      inputs = { nixpkgs.follows = "nixpkgs-2023-03-24"; };
+#x#    };
+#x#    myPkgs-2023-01-14      = {
+#x#      url    = github:sixears/nix-pkgs/r0.0.0.0;
+#x#      inputs = { nixpkgs.follows = "nixpkgs-2023-01-14"; };
+#x#    };
   };
 
   outputs = { self, hpkgs1
             , nixpkgs-nixos-24-11-2024-12-11, bashHeader-2024-12-11, myPkgs-2024-12-11
-            , nixpkgs-nixos-24-05-2024-06-20, bashHeader-2024-06-20, myPkgs-2024-06-20
+#x#            , nixpkgs-nixos-24-05-2024-06-20, bashHeader-2024-06-20, myPkgs-2024-06-20
 ###            , nixpkgs-nixos-23-11-2024-02-07, bashHeader-2024-02-07, myPkgs-2024-02-07
 ###            , nixpkgs-nixos-23-05-2023-12-03, bashHeader-2023-12-03, myPkgs-2023-12-03
 ###            , nixpkgs-2023-09-07, bashHeader-2023-09-07, myPkgs-2023-09-07
-            , nixpkgs-2023-03-24, bashHeader-2023-03-24, myPkgs-2023-03-24
-            , nixpkgs-2023-01-14, bashHeader-2023-01-14, myPkgs-2023-01-14
-            , nixpkgs-2022-04-22 # for mythtv
-            , nixpkgs-2020-09-25 # for plex
+#x#            , nixpkgs-2023-03-24, bashHeader-2023-03-24, myPkgs-2023-03-24
+#x#            , nixpkgs-2023-01-14, bashHeader-2023-01-14, myPkgs-2023-01-14
+#x#            , nixpkgs-2022-04-22 # for mythtv
+#x#            , nixpkgs-2020-09-25 # for plex
             , ... }:
     let
       nixos-system = { nixpkgs, bashHeader, myPkgs, modules
@@ -126,9 +126,9 @@
                 bashHeader-2024-12-11
                 myPkgs-2024-12-11
 
-                nixpkgs-nixos-24-05-2024-06-20
-                bashHeader-2024-06-20
-                myPkgs-2024-06-20
+#x#                nixpkgs-nixos-24-05-2024-06-20
+#x#                bashHeader-2024-06-20
+#x#                myPkgs-2024-06-20
 
 ###                nixpkgs-nixos-23-11-2024-02-07
 ###                bashHeader-2024-02-07
@@ -142,16 +142,16 @@
 ###                bashHeader-2023-09-07
 ###                myPkgs-2023-09-07
 
-                nixpkgs-2023-03-24
-                bashHeader-2023-03-24
-                myPkgs-2023-03-24
+#x#                nixpkgs-2023-03-24
+#x#                bashHeader-2023-03-24
+#x#                myPkgs-2023-03-24
 
-                nixpkgs-2023-01-14
-                bashHeader-2023-01-14
-                myPkgs-2023-01-14
+#x#                nixpkgs-2023-01-14
+#x#                bashHeader-2023-01-14
+#x#                myPkgs-2023-01-14
 
-                nixpkgs-2022-04-22
-                nixpkgs-2020-09-25
+#x#                nixpkgs-2022-04-22
+#x#                nixpkgs-2020-09-25
               ;
 
 #              nixpkgs-2023-01-14-url = "github:NixOS/nixpkgs=3ae365af";

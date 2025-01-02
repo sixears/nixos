@@ -263,6 +263,13 @@
             , comments = [] : List Text
             }
 
+          , { fqdn = "bukka.sixears.co.uk."
+            , ipv4 = "192.168.0."
+            , desc = "OnePlus Nord 3 5G / 16GB / 256GB / Tempest Grey (Xax) / S/N 4XD64PJFZTY95DLB / IMEI 86232062155057 / IMEI 86232062155040"
+            , mac= Some "2c:a7:ef:8e:18:f9"
+            , comments = [] : List Text
+            }
+
             -- Pads ------------------------------------------------------------
 
 {-

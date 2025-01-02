@@ -27,6 +27,7 @@ in
       bat
       coreutils
       dmidecode
+      (import ./pkgs/dfhl.nix { inherit pkgs; })
       emacs
       fatrace
       fd

@@ -1,15 +1,15 @@
 {
-  nixpkgs-nixos-24-05-2024-06-20,
-  bashHeader-2024-06-20,
-  myPkgs-2024-06-20,
+  nixpkgs-nixos-24-11-2024-12-11,
+  bashHeader-2024-12-11,
+  myPkgs-2024-12-11,
   nixos-system,
   ...
 }:
 
 let
-  nixpkgs     = nixpkgs-nixos-24-05-2024-06-20;
-  bashHeader  = bashHeader-2024-06-20;
-  myPkgs      = myPkgs-2024-06-20;
+  nixpkgs     = nixpkgs-nixos-24-11-2024-12-11;
+  bashHeader  = bashHeader-2024-12-11;
+  myPkgs      = myPkgs-2024-12-11;
 in
   nixos-system
     {
@@ -70,7 +70,8 @@ in
           ../components/local-home-backup.nix
 
             (import ../components/desktop.nix { inherit pkgs my-pkgs; })
-          ../components/pulseaudio.nix
+# as of 24.11, default is to use pipewire
+##          ../components/pulseaudio.nix
           ../components/scanning.nix
 
           ../components/finbar.nix
