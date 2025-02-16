@@ -91,6 +91,9 @@ setup() {
       fi
     fi
   else
+    if $no_up; then
+      die 25 "--no-up|-u applies only to setting up ethernet connections"
+    fi
     connect "$password" "$ssid"
   fi
 
@@ -104,17 +107,6 @@ setup() {
                  )
   go 20 nmcli connection modify "$ssid" "''${mod_args[@]}"
   $no_up || go 23 nmcli connection up "$name"
-
-
-#     IP=192.168.0.XX
-#     nmcli con add con-name sixears ifname "$(ip a | grep -E '^[[:digit:]]' | cut -d ' ' -f 2 | cut -d : -f 1 | grep ^en)" type ethernet ip4 $IP/24 gw4 192.168.0.1 # you may need to work out the ethernet link by hand, if you have the HP USB Dongle attached. Or maybe the dongle is the interface?
-#     nmcli con mod sixears +ipv4.routes 192.168.0.0/24
-#     nmcli con mod sixears ipv4.dns '192.168.0.7 192.168.0.24'
-#     nmcli con mod sixears ipv4.dns-search sixears.co.uk
-#     nmcli con mod sixears ipv4.dns-options edns0
-#     nmcli conn up sixears # you may have to do this at the end, if you’re connected over the dongle
-#     nmcli conn del 'Wired connection 1' # you may have to do this at the end, if you’re connected over the dongle
-
 }
 
 # ------------------------------------------------------------------------------
@@ -146,7 +138,8 @@ Commands:
 
   setup SSID IPADDR [--ethernet|-e]
                          - configure a pre-defined network, using the given IPv4
-                           currently, Architecture is the only available SSID
+                           currently, Architecture & sixears are the only
+                           available SSIDs
                            --ethernet avoids the initial wifi connection, and
                            sets the type to ethernet
 
@@ -333,8 +326,13 @@ elif [[ $1 == up ]]; then
   esac
 elif [[ $1 == setup ]]; then
   case $# in
-    3 ) setup "$2" "$3" "$password" $ethernet $no_up ;;
-    * ) die 2 "usage: $1 SSID IPv4-ADDR"             ;;
+    3 ) case "${2,,}" in
+          architecture ) setup Architecture "$3" "$password" false $no_up ;;
+          sixears      ) setup sixears      "$3" "$password" true  $no_up ;;
+          *            ) die 24 "unknown SSID for setup '$2'"             ;;
+        esac
+        ;;
+    * ) die 2 "usage: $1 SSID IPv4-ADDR" ;;
   esac
 else
   die 2 "command '$1' not recognized (use --help for help)"
