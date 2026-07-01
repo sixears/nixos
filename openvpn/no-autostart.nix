@@ -1,14 +1,25 @@
-# created by mkopenvpnconfs on 2020-11-20Z09:05:04
-
+# created by mkopenvpnconfs on 2025-04-23Z21:04:59
 {
   services.openvpn.servers = {
     albania = {
       autoStart = false;
       config    = "config /root/openvpn/albania.conf";
     };
+    algeria = {
+      autoStart = false;
+      config    = "config /root/openvpn/algeria.conf";
+    };
+    andorra = {
+      autoStart = false;
+      config    = "config /root/openvpn/andorra.conf";
+    };
     argentina = {
       autoStart = false;
       config    = "config /root/openvpn/argentina.conf";
+    };
+    armenia = {
+      autoStart = false;
+      config    = "config /root/openvpn/armenia.conf";
     };
     au_melbourne = {
       autoStart = false;
@@ -26,17 +37,29 @@
       autoStart = false;
       config    = "config /root/openvpn/au_sydney.conf";
     };
+    bahamas = {
+      autoStart = false;
+      config    = "config /root/openvpn/bahamas.conf";
+    };
+    bangladesh = {
+      autoStart = false;
+      config    = "config /root/openvpn/bangladesh.conf";
+    };
     belgium = {
       autoStart = false;
       config    = "config /root/openvpn/belgium.conf";
     };
-    bosnia_and_herzegovina = {
+    brazil = {
       autoStart = false;
-      config    = "config /root/openvpn/bosnia_and_herzegovina.conf";
+      config    = "config /root/openvpn/brazil.conf";
     };
     bulgaria = {
       autoStart = false;
       config    = "config /root/openvpn/bulgaria.conf";
+    };
+    cambodia = {
+      autoStart = false;
+      config    = "config /root/openvpn/cambodia.conf";
     };
     ca_montreal = {
       autoStart = false;
@@ -54,6 +77,14 @@
       autoStart = false;
       config    = "config /root/openvpn/ca_vancouver.conf";
     };
+    china = {
+      autoStart = false;
+      config    = "config /root/openvpn/china.conf";
+    };
+    cyprus = {
+      autoStart = false;
+      config    = "config /root/openvpn/cyprus.conf";
+    };
     czech_republic = {
       autoStart = false;
       config    = "config /root/openvpn/czech_republic.conf";
@@ -70,6 +101,10 @@
       autoStart = false;
       config    = "config /root/openvpn/denmark.conf";
     };
+    egypt = {
+      autoStart = false;
+      config    = "config /root/openvpn/egypt.conf";
+    };
     estonia = {
       autoStart = false;
       config    = "config /root/openvpn/estonia.conf";
@@ -82,9 +117,21 @@
       autoStart = false;
       config    = "config /root/openvpn/france.conf";
     };
+    georgia = {
+      autoStart = false;
+      config    = "config /root/openvpn/georgia.conf";
+    };
     greece = {
       autoStart = false;
       config    = "config /root/openvpn/greece.conf";
+    };
+    greenland = {
+      autoStart = false;
+      config    = "config /root/openvpn/greenland.conf";
+    };
+    hong_kong = {
+      autoStart = false;
+      config    = "config /root/openvpn/hong_kong.conf";
     };
     hungary = {
       autoStart = false;
@@ -102,6 +149,10 @@
       autoStart = false;
       config    = "config /root/openvpn/ireland.conf";
     };
+    isle_of_man = {
+      autoStart = false;
+      config    = "config /root/openvpn/isle_of_man.conf";
+    };
     israel = {
       autoStart = false;
       config    = "config /root/openvpn/israel.conf";
@@ -114,9 +165,17 @@
       autoStart = false;
       config    = "config /root/openvpn/japan.conf";
     };
+    kazakhstan = {
+      autoStart = false;
+      config    = "config /root/openvpn/kazakhstan.conf";
+    };
     latvia = {
       autoStart = false;
       config    = "config /root/openvpn/latvia.conf";
+    };
+    liechtenstein = {
+      autoStart = false;
+      config    = "config /root/openvpn/liechtenstein.conf";
     };
     lithuania = {
       autoStart = false;
@@ -126,9 +185,41 @@
       autoStart = false;
       config    = "config /root/openvpn/luxembourg.conf";
     };
+    macao = {
+      autoStart = false;
+      config    = "config /root/openvpn/macao.conf";
+    };
+    macedonia = {
+      autoStart = false;
+      config    = "config /root/openvpn/macedonia.conf";
+    };
+    malta = {
+      autoStart = false;
+      config    = "config /root/openvpn/malta.conf";
+    };
+    mexico = {
+      autoStart = false;
+      config    = "config /root/openvpn/mexico.conf";
+    };
     moldova = {
       autoStart = false;
       config    = "config /root/openvpn/moldova.conf";
+    };
+    monaco = {
+      autoStart = false;
+      config    = "config /root/openvpn/monaco.conf";
+    };
+    mongolia = {
+      autoStart = false;
+      config    = "config /root/openvpn/mongolia.conf";
+    };
+    montenegro = {
+      autoStart = false;
+      config    = "config /root/openvpn/montenegro.conf";
+    };
+    morocco = {
+      autoStart = false;
+      config    = "config /root/openvpn/morocco.conf";
     };
     netherlands = {
       autoStart = false;
@@ -138,13 +229,21 @@
       autoStart = false;
       config    = "config /root/openvpn/new_zealand.conf";
     };
-    north_macedonia = {
+    nigeria = {
       autoStart = false;
-      config    = "config /root/openvpn/north_macedonia.conf";
+      config    = "config /root/openvpn/nigeria.conf";
     };
     norway = {
       autoStart = false;
       config    = "config /root/openvpn/norway.conf";
+    };
+    panama = {
+      autoStart = false;
+      config    = "config /root/openvpn/panama.conf";
+    };
+    philippines = {
+      autoStart = false;
+      config    = "config /root/openvpn/philippines.conf";
     };
     poland = {
       autoStart = false;
@@ -154,9 +253,17 @@
       autoStart = false;
       config    = "config /root/openvpn/portugal.conf";
     };
+    qatar = {
+      autoStart = false;
+      config    = "config /root/openvpn/qatar.conf";
+    };
     romania = {
       autoStart = false;
       config    = "config /root/openvpn/romania.conf";
+    };
+    saudi_arabia = {
+      autoStart = false;
+      config    = "config /root/openvpn/saudi_arabia.conf";
     };
     serbia = {
       autoStart = false;
@@ -178,6 +285,10 @@
       autoStart = false;
       config    = "config /root/openvpn/spain.conf";
     };
+    sri_lanka = {
+      autoStart = false;
+      config    = "config /root/openvpn/sri_lanka.conf";
+    };
     sweden = {
       autoStart = false;
       config    = "config /root/openvpn/sweden.conf";
@@ -186,13 +297,13 @@
       autoStart = false;
       config    = "config /root/openvpn/switzerland.conf";
     };
+    taiwan = {
+      autoStart = false;
+      config    = "config /root/openvpn/taiwan.conf";
+    };
     turkey = {
       autoStart = false;
       config    = "config /root/openvpn/turkey.conf";
-    };
-    uae = {
-      autoStart = false;
-      config    = "config /root/openvpn/uae.conf";
     };
     uk_london = {
       autoStart = false;
@@ -210,6 +321,10 @@
       autoStart = false;
       config    = "config /root/openvpn/uk_southampton.conf";
     };
+    united_arab_emirates = {
+      autoStart = false;
+      config    = "config /root/openvpn/united_arab_emirates.conf";
+    };
     us_atlanta = {
       autoStart = false;
       config    = "config /root/openvpn/us_atlanta.conf";
@@ -221,10 +336,6 @@
     us_chicago = {
       autoStart = false;
       config    = "config /root/openvpn/us_chicago.conf";
-    };
-    us_dallas = {
-      autoStart = false;
-      config    = "config /root/openvpn/us_dallas.conf";
     };
     us_denver = {
       autoStart = false;
@@ -246,9 +357,9 @@
       autoStart = false;
       config    = "config /root/openvpn/us_las_vegas.conf";
     };
-    us_new_york_city = {
+    us_new_york = {
       autoStart = false;
-      config    = "config /root/openvpn/us_new_york_city.conf";
+      config    = "config /root/openvpn/us_new_york.conf";
     };
     us_seattle = {
       autoStart = false;
@@ -258,6 +369,10 @@
       autoStart = false;
       config    = "config /root/openvpn/us_silicon_valley.conf";
     };
+    us_texas = {
+      autoStart = false;
+      config    = "config /root/openvpn/us_texas.conf";
+    };
     us_washington_dc = {
       autoStart = false;
       config    = "config /root/openvpn/us_washington_dc.conf";
@@ -265,6 +380,14 @@
     us_west = {
       autoStart = false;
       config    = "config /root/openvpn/us_west.conf";
+    };
+    venezuela = {
+      autoStart = false;
+      config    = "config /root/openvpn/venezuela.conf";
+    };
+    vietnam = {
+      autoStart = false;
+      config    = "config /root/openvpn/vietnam.conf";
     };
   };
 }
