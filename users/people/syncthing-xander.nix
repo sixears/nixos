@@ -1,11 +1,12 @@
 { config, ... }:
 
 let
-  userSyncthing   = import ./syncthing.nix { inherit config; };
+  port            = 8787;
+  userSyncthing   = import ./syncthing.nix { inherit config port; };
   mkUserSyncthing = userSyncthing.mkUserSyncthing;
 in
   {
-    config.networking.firewall.allowedTCPPorts = [ 8787 ];
+    config.networking.firewall.allowedTCPPorts = [ port ];
 
     imports = [ ../../components/syncthing.nix ];
     config.systemd.services = mkUserSyncthing "xander";

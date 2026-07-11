@@ -2,5 +2,5 @@
 
 {
   services.smartd.devices =
-    [ { device="/dev/sda"; options = "-d nvme -W 0,70,75"; } ];
+    [ { device="/dev/sda"; options = "-W 0,70,75"; } ];
 }

@@ -5,8 +5,6 @@ PATH=/dev/null
 
 source ${bash-header}
 
-Cmd[grep]=${pkgs.gnugrep}/bin/grep
-
 # -- main ----------------------------------------------------------------------
 
 main () {
@@ -19,7 +17,8 @@ main () {
 
   # we don't insist that the credfn exists; it would be valid to create it after
   # running this (or to run this as a user that cannot see the path).
-  credfn="$(gocmdnodryrun 14 realpath "$credfn")"; check_ realpath
+  credfn="$(gocmdnodryrun 14 realpath --canonicalize-missing "$credfn")"
+  check_ realpath
   output="$(gocmdnodryrun 13 realpath "$output")"; check_ realpath
 
   local auto
@@ -30,8 +29,10 @@ main () {
   fi
 
   local credline="auth-user-pass $credfn"
-  local grepargs=(--fixed-strings --invert-match auth-user-pass "'$input'")
-  gocmdeval 11 grep "''${grepargs[@]}" '>'  "'$output'"
+  local perl=( print unless /^<crl-verify>/..m!</crl-verify>! or
+               /auth-user-pass|remote-cert-tls/ )
+  local perlargs=(-nle "' ''${perl[*]} '"  "'$input'")
+  gocmdeval 11 perl "''${perlargs[@]}" '>'  "'$output'"
   goeval    12 echo "'$credline'"      '>>' "'$output'"
 
   go 13 echo "$(''${Cmd[cat]} << EOF

@@ -1,15 +1,19 @@
 {
-  nixpkgs-nixos-24-11-2024-12-11,
-  bashHeader-2024-12-11,
-  myPkgs-2024-12-11,
+  nixpkgs-nixos-25-05-2025-08-15,
+#  nixpkgs-nixos-24-11-2024-12-11,
+  bashHeader-2025-08-15,
+#  bashHeader-2024-12-11,
+  myPkgs-2025-08-15,
+#  myPkgs-2024-12-11,
   nixos-system,
   ...
 }:
 
 let
-  nixpkgs     = nixpkgs-nixos-24-11-2024-12-11;
-  bashHeader  = bashHeader-2024-12-11;
-  myPkgs      = myPkgs-2024-12-11;
+  nixpkgs     = nixpkgs-nixos-25-05-2025-08-15;
+#  nixpkgs     = nixpkgs-nixos-24-11-2024-12-11;
+  bashHeader  = bashHeader-2025-08-15;
+  myPkgs      = myPkgs-2025-08-15;
 in
   nixos-system
     {
@@ -36,7 +40,7 @@ in
         wifiMac      = "e4:aa:ea:cc:91:31";
         stateVersion = "19.03";
         systemPackages = pkgs: [
-          (hpkgs.acct)
+          # (hpkgs.acct)
           (import ../pkgs/mkopenvpnconfs { inherit pkgs bash-header; })
           (import ../pkgs/lumix-copy.nix { inherit pkgs bash-header; })
         ];
@@ -75,11 +79,10 @@ in
           ../components/scanning.nix
 
           ../components/finbar.nix
-          ../components/openvpn.nix
+          ../openvpn/no-autostart.nix
 
           ../users/people/heather.nix
           ../users/people/heather-lumix-copy.nix
-          ../users/people/heather-rsync-pictures.nix
           ../users/people/syncthing-heather.nix
           ../users/people/martyn.nix
           ../users/people/syncthing-martyn.nix

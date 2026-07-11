@@ -13,9 +13,11 @@
 
   hardware.graphics = {
     # extraPackages   = with pkgs; [ amdvlk rocmPackages.clr.icd ];
-    extraPackages   = with pkgs; [ amdvlk ];
+
+    # error: 'amdvlk' has been removed since it was deprecated by AMD. Its replacement, RADV, is enabled by default.
+    # extraPackages   = with pkgs; [ amdvlk ];
     # For 32 bit applications
-    extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
+    # extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
 
     enable32Bit = true; # For 32 bit applications
   };

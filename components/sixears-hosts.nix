@@ -16,7 +16,8 @@
 
                             # laptops
                             192.168.0.5    red.sixears.co.uk          red
-                            192.168.0.8    trance.sixears.co.uk       trance
+                            192.168.0.8    incubus.sixears.co.uk      incubus
+                            192.168.0.10    cargo.sixears.co.uk       cargo
                             192.168.0.28   dissolve.sixears.co.uk     dissolve
                             192.168.0.11   poison.sixears.co.uk       poison
                             192.168.0.14   curse.sixears.co.uk        curse

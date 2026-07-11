@@ -52,16 +52,16 @@ info () {
 # ------------------------------------------------------------------------------
 
 connect() {
-  local password="$1" name=( "''${@:2}" )
+  local password=$1 name=$2 extra_args=( "''${@:3}" )
 
   for i in "''${name[@]}"; do
     echo "NAME: '$i'"
   done
 
   if [[ -n $password ]]; then
-    go 7 nmcli device wifi connect "''${name[*]}" password "$password"
+    go 7 nmcli device wifi connect "$name" password "$password" "''${extra_args[@]}"
   else
-    go 4 nmcli device wifi connect "''${name[*]}"
+    go 4 nmcli device wifi connect "$name" "''${extra_args[@]}"
   fi
 }
 
@@ -94,7 +94,7 @@ setup() {
     if $no_up; then
       die 25 "--no-up|-u applies only to setting up ethernet connections"
     fi
-    connect "$password" "$ssid"
+    connect "$password" "$ssid" 802-11-wireless-security.key-mgmt wpa-psk
   fi
 
   local mod_args=( ipv4.method manual
@@ -295,7 +295,7 @@ elif [ "x$1" == "xoff" ]; then
 elif [[ $1 == connect ]]; then
   case $# in
     0 ) die 2 "command '$1' needs a wifi SSID" ;;
-    * ) connect "$password" "''${@:2}"         ;;
+    * ) connect "$password" "''${*:2}"         ;;
   esac
 elif [ "x$1" == "xdelete" ]; then
   cmd="$1"
@@ -326,7 +326,7 @@ elif [[ $1 == up ]]; then
   esac
 elif [[ $1 == setup ]]; then
   case $# in
-    3 ) case "${2,,}" in
+    3 ) case "''${2,,}" in
           architecture ) setup Architecture "$3" "$password" false $no_up ;;
           sixears      ) setup sixears      "$3" "$password" true  $no_up ;;
           *            ) die 24 "unknown SSID for setup '$2'"             ;;

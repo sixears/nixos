@@ -3,15 +3,15 @@
 #  -) mythtv
 #  -) podcasts
 #  -) gitit
-{ nixpkgs-nixos-24-11-2024-12-11, bashHeader-2024-12-11, myPkgs-2024-12-11
+{ nixpkgs-nixos-25-05-2025-08-15, bashHeader-2025-08-15, myPkgs-2025-08-15
 , nixpkgs-2020-09-25
-, nixpkgs-2022-04-22
+# , nixpkgs-2022-04-22
 , nixos-system, ... }:
 
 let
-  nixpkgs    = nixpkgs-nixos-24-11-2024-12-11;
-  bashHeader = bashHeader-2024-12-11;
-  myPkgs     = myPkgs-2024-12-11;
+  nixpkgs    = nixpkgs-nixos-25-05-2025-08-15;
+  bashHeader = bashHeader-2025-08-15;
+  myPkgs     = myPkgs-2025-08-15;
 in
   nixos-system
     {
@@ -32,11 +32,11 @@ in
                     inherit system;
                     config = { inherit allowUnfreePredicate; };
                   };
-                r2022-04-22 =
-                  import "${nixpkgs-2022-04-22}" {
-                    inherit system;
-                    config = { inherit allowUnfreePredicate; };
-                  };
+##                r2022-04-22 =
+##                  import "${nixpkgs-2022-04-22}" {
+##                    inherit system;
+##                    config = { inherit allowUnfreePredicate; };
+##                  };
               in
                 # import everything from ../overlays/
                 lib.importNixesNoArgs ../overlays
@@ -121,7 +121,7 @@ in
             ../components/get_iplayer.nix
             ../components/plex.nix   # should be v1.20
             ../components/mythtv.nix # should be v31.0
-            ../components/jellyfin.nix
+            # ../components/jellyfin.nix
             # Pre-24.11
             # ../components/tvheadend.nix
 

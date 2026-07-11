@@ -2,6 +2,6 @@
 
 {
   fileSystems = {
-    "/Music" = { label = "mobile-music";  options = [ "user" "noauto" "exec" ]; };
+    "/Music" = { label = "mobile-music";  options = [ "user" "noauto" "exec" ]; fsType = "xfs"; };
   };
 }

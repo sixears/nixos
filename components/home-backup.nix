@@ -16,16 +16,18 @@ in
       ];
 
     services.rsyncd.settings = {
-      heather       = { path         = "/home-backup/heather" ;
-                        "auth users" = "heather:rw"; };
-      pictures      = { path         = "/home-backup/pictures";
-                        "auth users" = "heather:rw"; };
-      abigail       = { path         = "/home-backup/abigail" ;
-                        "auth users" = "abigail:rw"; };
-      xander        = { path         = "/home-backup/xander" ;
-                        "auth users" = "xander:rw"; };
-      jj            = { path         = "/home-backup/jj" ;
-                        "auth users" = "jj:rw"; };
+      sections = {
+        heather       = { path         = "/home-backup/heather" ;
+                          "auth users" = "heather:rw"; };
+        pictures      = { path         = "/home-backup/pictures";
+                          "auth users" = "heather:rw"; };
+        abigail       = { path         = "/home-backup/abigail" ;
+                          "auth users" = "abigail:rw"; };
+        xander        = { path         = "/home-backup/xander" ;
+                          "auth users" = "xander:rw"; };
+        jj            = { path         = "/home-backup/jj" ;
+                          "auth users" = "jj:rw"; };
+      };
     };
 
     services.rsnapshot = {

@@ -1,4 +1,5 @@
-{ pkgs ? import <nixpkgs> {}, bash-header }: pkgs.writers.writeBashBin "vpn" ''
+# 2025-11-22 - we don't need this, we use sudo systemctl start openvpn-*
+{ pkgs ? import <nixpkgs> {}, bash-header }: pkgs.writers.writeBash "vpn" ''
 
 set -u -o pipefail -o noclobber;
 shopt -s nullglob
@@ -7,7 +8,6 @@ shopt -s dotglob
 source ${bash-header}
 
 Cmd[journalctl]=/run/current-system/sw/bin/journalctl
-#Cmd[journalctl]=/tmp/j
 Cmd[systemctl]=/run/current-system/sw/bin/systemctl
 
 export PAGER=${pkgs.less}/bin/less
@@ -22,14 +22,13 @@ export PAGER=${pkgs.less}/bin/less
 #   environment variable to an empty string or the value "cat" is equivalent to
 #   passing --no-pager. Note: if $SYSTEMD_PAGERSECURE is not set, $SYSTEMD_PAGER
 #   (as well as $PAGER) will be silently ignored.
+export SYSTEMD_PAGER=${pkgs.less}/bin/less
 export SYSTEMD_PAGERSECURE=true
-
-readonly RUN_DIR=/var/run/gdddns
 
 # ------------------------------------------------------------------------------
 
 main () {
-  local mode="$1" service="$2" lines="$3" follow=$4
+  local mode=$1 service=$2 lines=$3 follow=$4
 
   if [[ $mode != log ]]; then
     [[ -n $lines ]] && die "-n|--lines is valid only in log mode"
@@ -50,16 +49,31 @@ main () {
 
 # ------------------------------------------------------------------------------
 
+artist=""
+lines=""
+follow=false
+
+location_file=/root/vpn.default-location
+location="$(gocmdnoexitnodryrun sudo ''${Cmd[cat]} $location_file 2>/dev/null)"
+: ''${location:=pia-uk_london}
+
 Usage="$(''${Cmd[cat]} <<EOF
 usage: $Progname <start|stop|restart|status|log> [location]
 
 Manage the VPN on this host
 
 options:
- -v | --verbose
- --dry-run
- --help
- --debug
+  --lines|-n N ) Valid only in 'log' mode.  How many lines to show.
+                 Default: $lines
+  --follow|-f  ) Valid only in 'log' mode.  Keep tailing the log.
+  --location   ) Which VPN service to use.  Defaults to $location.
+                 Ignored in 'log' mode.  Default location my be set in
+                 $location_file.
+
+  -v | --verbose
+  --dry-run
+  --help
+  --debug
 EOF
 )"
 
@@ -72,14 +86,6 @@ OPTS=$( ''${Cmd[getopt]} "''${getopt_args[@]}" -n "$Progname" -- "$@" )
 
 # copy the values of OPTS (getopt quotes them) into the shell's $@
 eval set -- "$OPTS"
-
-artist=""
-lines=""
-follow=false
-
-location_file=/root/openvpn.default-location
-location="$(gocmdnoexitnodryrun sudo ''${Cmd[cat]} $location_file 2>/dev/null)"
-: ''${location:=uk_london}
 
 while true; do
   case "$1" in
@@ -99,8 +105,8 @@ done
 debug "CALLED AS: $(showcmd "$0" "''${orig_args[@]}")"
 
 case ''${#args[@]} in
-  0 | 1 | 2 ) main "''${args[0]:-status}" "openvpn-$location" "$lines" $follow;;
-  *         ) usage                                                           ;;
+  0 | 1 | 2 ) main "''${args[0]:-status}" "$location" "$lines" $follow ;;
+  *         ) usage                                                    ;;
 esac
 ''
 

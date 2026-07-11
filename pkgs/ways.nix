@@ -1,16 +1,16 @@
 { pkgs }: pkgs.writers.writeBash "ways" ''
 set -eu -o pipefail
 
+exec >& /tmp/ways.log
+set -x
+
 id="$(${pkgs.coreutils}/bin/id --user)"
 : ''${XDG_RUNTIME_DIR:=/run/user/$id}
 export XDG_RUNTIME_DIR
 
-# NOT SO HAPPY WITH THIS.  DO WE REALLY NEED IT?  MAYBE FOR I3STATUS, BUT THAT
-# SHOULD DO ITSELF
-# ways_paths="$HOME/bin/ways-paths"
-# [[ -x $ways_paths ]] && . <($ways_paths)
+[[ -d $XDG_RUNTIME_DIR ]] || ${pkgs.coreutils}/bin/mkdir $XDG_RUNTIME_DIR
 
-exec >& "$XDG_RUNTIME_DIR/sway.log"
+exec >& >(/usr/bin/env TZ=UTC ${pkgs.moreutils}/bin/ts %FZ%T >| "$XDG_RUNTIME_DIR/sway.log")
 TZ=UTC ${pkgs.coreutils}/bin/date +%Y-%m-%dZ%H:%M:%S
 echo "PID: $$"
 

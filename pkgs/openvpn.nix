@@ -1,398 +1,397 @@
-# created by mkopenvpnconfs on 2025-04-23Z21:04:59
-{ pkgs }:
+{ pkgs, system }:
 
 let
-  confs = ../pkgs/openvpn { inherit pkgs system; };
+  confs = import ./openvpn { inherit pkgs system; };
 in
   {
     services.openvpn.servers = {
       albania = {
         autoStart = false;
-        config    = "config ${confs}/albania.conf";
+        config    = "config ${confs}/share/albania.conf";
       };
       algeria = {
         autoStart = false;
-        config    = "config /root/openvpn/algeria.conf";
+        config    = "config ${confs}/share/algeria.conf";
       };
       andorra = {
         autoStart = false;
-        config    = "config /root/openvpn/andorra.conf";
+        config    = "config ${confs}/share/andorra.conf";
       };
       argentina = {
         autoStart = false;
-        config    = "config /root/openvpn/argentina.conf";
+        config    = "config ${confs}/share/argentina.conf";
       };
       armenia = {
         autoStart = false;
-        config    = "config /root/openvpn/armenia.conf";
+        config    = "config ${confs}/share/armenia.conf";
       };
       au_melbourne = {
         autoStart = false;
-        config    = "config /root/openvpn/au_melbourne.conf";
+        config    = "config ${confs}/share/au_melbourne.conf";
       };
       au_perth = {
         autoStart = false;
-        config    = "config /root/openvpn/au_perth.conf";
+        config    = "config ${confs}/share/au_perth.conf";
       };
       austria = {
         autoStart = false;
-        config    = "config /root/openvpn/austria.conf";
+        config    = "config ${confs}/share/austria.conf";
       };
       au_sydney = {
         autoStart = false;
-        config    = "config /root/openvpn/au_sydney.conf";
+        config    = "config ${confs}/share/au_sydney.conf";
       };
       bahamas = {
         autoStart = false;
-        config    = "config /root/openvpn/bahamas.conf";
+        config    = "config ${confs}/share/bahamas.conf";
       };
       bangladesh = {
         autoStart = false;
-        config    = "config /root/openvpn/bangladesh.conf";
+        config    = "config ${confs}/share/bangladesh.conf";
       };
       belgium = {
         autoStart = false;
-        config    = "config /root/openvpn/belgium.conf";
+        config    = "config ${confs}/share/belgium.conf";
       };
       brazil = {
         autoStart = false;
-        config    = "config /root/openvpn/brazil.conf";
+        config    = "config ${confs}/share/brazil.conf";
       };
       bulgaria = {
         autoStart = false;
-        config    = "config /root/openvpn/bulgaria.conf";
+        config    = "config ${confs}/share/bulgaria.conf";
       };
       cambodia = {
         autoStart = false;
-        config    = "config /root/openvpn/cambodia.conf";
+        config    = "config ${confs}/share/cambodia.conf";
       };
       ca_montreal = {
         autoStart = false;
-        config    = "config /root/openvpn/ca_montreal.conf";
+        config    = "config ${confs}/share/ca_montreal.conf";
       };
       ca_ontario = {
         autoStart = false;
-        config    = "config /root/openvpn/ca_ontario.conf";
+        config    = "config ${confs}/share/ca_ontario.conf";
       };
       ca_toronto = {
         autoStart = false;
-        config    = "config /root/openvpn/ca_toronto.conf";
+        config    = "config ${confs}/share/ca_toronto.conf";
       };
       ca_vancouver = {
         autoStart = false;
-        config    = "config /root/openvpn/ca_vancouver.conf";
+        config    = "config ${confs}/share/ca_vancouver.conf";
       };
       china = {
         autoStart = false;
-        config    = "config /root/openvpn/china.conf";
+        config    = "config ${confs}/share/china.conf";
       };
       cyprus = {
         autoStart = false;
-        config    = "config /root/openvpn/cyprus.conf";
+        config    = "config ${confs}/share/cyprus.conf";
       };
       czech_republic = {
         autoStart = false;
-        config    = "config /root/openvpn/czech_republic.conf";
+        config    = "config ${confs}/share/czech_republic.conf";
       };
       de_berlin = {
         autoStart = false;
-        config    = "config /root/openvpn/de_berlin.conf";
+        config    = "config ${confs}/share/de_berlin.conf";
       };
       de_frankfurt = {
         autoStart = false;
-        config    = "config /root/openvpn/de_frankfurt.conf";
+        config    = "config ${confs}/share/de_frankfurt.conf";
       };
       denmark = {
         autoStart = false;
-        config    = "config /root/openvpn/denmark.conf";
+        config    = "config ${confs}/share/denmark.conf";
       };
       egypt = {
         autoStart = false;
-        config    = "config /root/openvpn/egypt.conf";
+        config    = "config ${confs}/share/egypt.conf";
       };
       estonia = {
         autoStart = false;
-        config    = "config /root/openvpn/estonia.conf";
+        config    = "config ${confs}/share/estonia.conf";
       };
       finland = {
         autoStart = false;
-        config    = "config /root/openvpn/finland.conf";
+        config    = "config ${confs}/share/finland.conf";
       };
       france = {
         autoStart = false;
-        config    = "config /root/openvpn/france.conf";
+        config    = "config ${confs}/share/france.conf";
       };
       georgia = {
         autoStart = false;
-        config    = "config /root/openvpn/georgia.conf";
+        config    = "config ${confs}/share/georgia.conf";
       };
       greece = {
         autoStart = false;
-        config    = "config /root/openvpn/greece.conf";
+        config    = "config ${confs}/share/greece.conf";
       };
       greenland = {
         autoStart = false;
-        config    = "config /root/openvpn/greenland.conf";
+        config    = "config ${confs}/share/greenland.conf";
       };
       hong_kong = {
         autoStart = false;
-        config    = "config /root/openvpn/hong_kong.conf";
+        config    = "config ${confs}/share/hong_kong.conf";
       };
       hungary = {
         autoStart = false;
-        config    = "config /root/openvpn/hungary.conf";
+        config    = "config ${confs}/share/hungary.conf";
       };
       iceland = {
         autoStart = false;
-        config    = "config /root/openvpn/iceland.conf";
+        config    = "config ${confs}/share/iceland.conf";
       };
       india = {
         autoStart = false;
-        config    = "config /root/openvpn/india.conf";
+        config    = "config ${confs}/share/india.conf";
       };
       ireland = {
         autoStart = false;
-        config    = "config /root/openvpn/ireland.conf";
+        config    = "config ${confs}/share/ireland.conf";
       };
       isle_of_man = {
         autoStart = false;
-        config    = "config /root/openvpn/isle_of_man.conf";
+        config    = "config ${confs}/share/isle_of_man.conf";
       };
       israel = {
         autoStart = false;
-        config    = "config /root/openvpn/israel.conf";
+        config    = "config ${confs}/share/israel.conf";
       };
       italy = {
         autoStart = false;
-        config    = "config /root/openvpn/italy.conf";
+        config    = "config ${confs}/share/italy.conf";
       };
       japan = {
         autoStart = false;
-        config    = "config /root/openvpn/japan.conf";
+        config    = "config ${confs}/share/japan.conf";
       };
       kazakhstan = {
         autoStart = false;
-        config    = "config /root/openvpn/kazakhstan.conf";
+        config    = "config ${confs}/share/kazakhstan.conf";
       };
       latvia = {
         autoStart = false;
-        config    = "config /root/openvpn/latvia.conf";
+        config    = "config ${confs}/share/latvia.conf";
       };
       liechtenstein = {
         autoStart = false;
-        config    = "config /root/openvpn/liechtenstein.conf";
+        config    = "config ${confs}/share/liechtenstein.conf";
       };
       lithuania = {
         autoStart = false;
-        config    = "config /root/openvpn/lithuania.conf";
+        config    = "config ${confs}/share/lithuania.conf";
       };
       luxembourg = {
         autoStart = false;
-        config    = "config /root/openvpn/luxembourg.conf";
+        config    = "config ${confs}/share/luxembourg.conf";
       };
       macao = {
         autoStart = false;
-        config    = "config /root/openvpn/macao.conf";
+        config    = "config ${confs}/share/macao.conf";
       };
       macedonia = {
         autoStart = false;
-        config    = "config /root/openvpn/macedonia.conf";
+        config    = "config ${confs}/share/macedonia.conf";
       };
       malta = {
         autoStart = false;
-        config    = "config /root/openvpn/malta.conf";
+        config    = "config ${confs}/share/malta.conf";
       };
       mexico = {
         autoStart = false;
-        config    = "config /root/openvpn/mexico.conf";
+        config    = "config ${confs}/share/mexico.conf";
       };
       moldova = {
         autoStart = false;
-        config    = "config /root/openvpn/moldova.conf";
+        config    = "config ${confs}/share/moldova.conf";
       };
       monaco = {
         autoStart = false;
-        config    = "config /root/openvpn/monaco.conf";
+        config    = "config ${confs}/share/monaco.conf";
       };
       mongolia = {
         autoStart = false;
-        config    = "config /root/openvpn/mongolia.conf";
+        config    = "config ${confs}/share/mongolia.conf";
       };
       montenegro = {
         autoStart = false;
-        config    = "config /root/openvpn/montenegro.conf";
+        config    = "config ${confs}/share/montenegro.conf";
       };
       morocco = {
         autoStart = false;
-        config    = "config /root/openvpn/morocco.conf";
+        config    = "config ${confs}/share/morocco.conf";
       };
       netherlands = {
         autoStart = false;
-        config    = "config /root/openvpn/netherlands.conf";
+        config    = "config ${confs}/share/netherlands.conf";
       };
       new_zealand = {
         autoStart = false;
-        config    = "config /root/openvpn/new_zealand.conf";
+        config    = "config ${confs}/share/new_zealand.conf";
       };
       nigeria = {
         autoStart = false;
-        config    = "config /root/openvpn/nigeria.conf";
+        config    = "config ${confs}/share/nigeria.conf";
       };
       norway = {
         autoStart = false;
-        config    = "config /root/openvpn/norway.conf";
+        config    = "config ${confs}/share/norway.conf";
       };
       panama = {
         autoStart = false;
-        config    = "config /root/openvpn/panama.conf";
+        config    = "config ${confs}/share/panama.conf";
       };
       philippines = {
         autoStart = false;
-        config    = "config /root/openvpn/philippines.conf";
+        config    = "config ${confs}/share/philippines.conf";
       };
       poland = {
         autoStart = false;
-        config    = "config /root/openvpn/poland.conf";
+        config    = "config ${confs}/share/poland.conf";
       };
       portugal = {
         autoStart = false;
-        config    = "config /root/openvpn/portugal.conf";
+        config    = "config ${confs}/share/portugal.conf";
       };
       qatar = {
         autoStart = false;
-        config    = "config /root/openvpn/qatar.conf";
+        config    = "config ${confs}/share/qatar.conf";
       };
       romania = {
         autoStart = false;
-        config    = "config /root/openvpn/romania.conf";
+        config    = "config ${confs}/share/romania.conf";
       };
       saudi_arabia = {
         autoStart = false;
-        config    = "config /root/openvpn/saudi_arabia.conf";
+        config    = "config ${confs}/share/saudi_arabia.conf";
       };
       serbia = {
         autoStart = false;
-        config    = "config /root/openvpn/serbia.conf";
+        config    = "config ${confs}/share/serbia.conf";
       };
       singapore = {
         autoStart = false;
-        config    = "config /root/openvpn/singapore.conf";
+        config    = "config ${confs}/share/singapore.conf";
       };
       slovakia = {
         autoStart = false;
-        config    = "config /root/openvpn/slovakia.conf";
+        config    = "config ${confs}/share/slovakia.conf";
       };
       south_africa = {
         autoStart = false;
-        config    = "config /root/openvpn/south_africa.conf";
+        config    = "config ${confs}/share/south_africa.conf";
       };
       spain = {
         autoStart = false;
-        config    = "config /root/openvpn/spain.conf";
+        config    = "config ${confs}/share/spain.conf";
       };
       sri_lanka = {
         autoStart = false;
-        config    = "config /root/openvpn/sri_lanka.conf";
+        config    = "config ${confs}/share/sri_lanka.conf";
       };
       sweden = {
         autoStart = false;
-        config    = "config /root/openvpn/sweden.conf";
+        config    = "config ${confs}/share/sweden.conf";
       };
       switzerland = {
         autoStart = false;
-        config    = "config /root/openvpn/switzerland.conf";
+        config    = "config ${confs}/share/switzerland.conf";
       };
       taiwan = {
         autoStart = false;
-        config    = "config /root/openvpn/taiwan.conf";
+        config    = "config ${confs}/share/taiwan.conf";
       };
       turkey = {
         autoStart = false;
-        config    = "config /root/openvpn/turkey.conf";
+        config    = "config ${confs}/share/turkey.conf";
       };
       uk_london = {
         autoStart = false;
-        config    = "config /root/openvpn/uk_london.conf";
+        config    = "config ${confs}/share/uk_london.conf";
       };
       uk_manchester = {
         autoStart = false;
-        config    = "config /root/openvpn/uk_manchester.conf";
+        config    = "config ${confs}/share/uk_manchester.conf";
       };
       ukraine = {
         autoStart = false;
-        config    = "config /root/openvpn/ukraine.conf";
+        config    = "config ${confs}/share/ukraine.conf";
       };
       uk_southampton = {
         autoStart = false;
-        config    = "config /root/openvpn/uk_southampton.conf";
+        config    = "config ${confs}/share/uk_southampton.conf";
       };
       united_arab_emirates = {
         autoStart = false;
-        config    = "config /root/openvpn/united_arab_emirates.conf";
+        config    = "config ${confs}/share/united_arab_emirates.conf";
       };
       us_atlanta = {
         autoStart = false;
-        config    = "config /root/openvpn/us_atlanta.conf";
+        config    = "config ${confs}/share/us_atlanta.conf";
       };
       us_california = {
         autoStart = false;
-        config    = "config /root/openvpn/us_california.conf";
+        config    = "config ${confs}/share/us_california.conf";
       };
       us_chicago = {
         autoStart = false;
-        config    = "config /root/openvpn/us_chicago.conf";
+        config    = "config ${confs}/share/us_chicago.conf";
       };
       us_denver = {
         autoStart = false;
-        config    = "config /root/openvpn/us_denver.conf";
+        config    = "config ${confs}/share/us_denver.conf";
       };
       us_east = {
         autoStart = false;
-        config    = "config /root/openvpn/us_east.conf";
+        config    = "config ${confs}/share/us_east.conf";
       };
       us_florida = {
         autoStart = false;
-        config    = "config /root/openvpn/us_florida.conf";
+        config    = "config ${confs}/share/us_florida.conf";
       };
       us_houston = {
         autoStart = false;
-        config    = "config /root/openvpn/us_houston.conf";
+        config    = "config ${confs}/share/us_houston.conf";
       };
       us_las_vegas = {
         autoStart = false;
-        config    = "config /root/openvpn/us_las_vegas.conf";
+        config    = "config ${confs}/share/us_las_vegas.conf";
       };
       us_new_york = {
         autoStart = false;
-        config    = "config /root/openvpn/us_new_york.conf";
+        config    = "config ${confs}/share/us_new_york.conf";
       };
       us_seattle = {
         autoStart = false;
-        config    = "config /root/openvpn/us_seattle.conf";
+        config    = "config ${confs}/share/us_seattle.conf";
       };
       us_silicon_valley = {
         autoStart = false;
-        config    = "config /root/openvpn/us_silicon_valley.conf";
+        config    = "config ${confs}/share/us_silicon_valley.conf";
       };
       us_texas = {
         autoStart = false;
-        config    = "config /root/openvpn/us_texas.conf";
+        config    = "config ${confs}/share/us_texas.conf";
       };
       us_washington_dc = {
         autoStart = false;
-        config    = "config /root/openvpn/us_washington_dc.conf";
+        config    = "config ${confs}/share/us_washington_dc.conf";
       };
       us_west = {
         autoStart = false;
-        config    = "config /root/openvpn/us_west.conf";
+        config    = "config ${confs}/share/us_west.conf";
       };
       venezuela = {
         autoStart = false;
-        config    = "config /root/openvpn/venezuela.conf";
+        config    = "config ${confs}/share/venezuela.conf";
       };
       vietnam = {
         autoStart = false;
-        config    = "config /root/openvpn/vietnam.conf";
+        config    = "config ${confs}/share/vietnam.conf";
       };
     };
   }

@@ -1,6 +1,6 @@
 { config, ... }:
 
 {
-  # boot.kernelModules = [ "wl" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.rtw89 ];
+  boot.kernelModules = [ "rtw89" ];
+  # boot.extraModulePackages = [ config.boot.kernelPackages.rtw89 ];
 }

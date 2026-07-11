@@ -56,29 +56,29 @@
       hostNames     = [ "drifting" "drifting.sixears.co.uk" "192.168.0.3" ];
       publicKeyFile = ../sshkeys/drifting.pub;
     };
-    poison = {
-      hostNames     = [ "poison" "poison.sixears.co.uk" "192.168.0.11" ];
-      publicKeyFile = ../sshkeys/poison.pub;
+    freeze = {
+      hostNames     = [ "freeze" "freeze.sixears.co.uk" "192.168.0.201" ];
+      publicKeyFile = ../sshkeys/freeze.pub;
     };
-    trance = {
-      hostNames     = [ "trance" "trance.sixears.co.uk" "192.168.0.8" ];
-      publicKeyFile = ../sshkeys/trance.pub;
+    grain = {
+      hostNames     = [ "grain" "grain.sixears.co.uk" "192.168.0.4" ];
+      publicKeyFile = ../sshkeys/grain.pub;
     };
-    slider = {
-      hostNames     = [ "slider" "slider.sixears.co.uk" "192.168.0.13" ];
-      publicKeyFile = ../sshkeys/slider.pub;
+    ground = {
+      hostNames     = [ "ground" "ground.sixears.co.uk" "192.168.0.109" ];
+      publicKeyFile = ../sshkeys/ground.pub;
     };
-    stone = {
-      hostNames     = [ "stone" "stone.sixears.co.uk" "192.168.0.19" ];
-      publicKeyFile = ../sshkeys/stone.pub;
+    killing = {
+      hostNames     = [ "killing" "killing.sixears.co.uk" "192.168.0.98" ];
+      publicKeyFile = ../sshkeys/killing.pub;
     };
-    york = {
-      hostNames     = [ "york" "york.sixears.co.uk" "192.168.0.22" ];
-      publicKeyFile = ../sshkeys/york.pub;
+    incubus = {
+      hostNames     = [ "incubus" "incubus.sixears.co.uk" "192.168.0.8" ];
+      publicKeyFile = ../sshkeys/incubus.pub;
     };
-    slick = {
-      hostNames     = [ "slick" "slick.sixears.co.uk" "192.168.0.2" ];
-      publicKeyFile = ../sshkeys/slick.pub;
+    mule = {
+      hostNames     = [ "mule" "mule.sixears.co.uk" "192.168.0.11" ];
+      publicKeyFile = ../sshkeys/mule.pub;
     };
     night = {
       hostNames     = [ "night" "night.sixears.co.uk" "192.168.0.24"
@@ -92,6 +92,22 @@
                         "[panasonic]:2222" "[192.168.0.30]:2222" ];
       publicKeyFile = ../sshkeys/panasonic.pub;
     };
+    slick = {
+      hostNames     = [ "slick" "slick.sixears.co.uk" "192.168.0.2" ];
+      publicKeyFile = ../sshkeys/slick.pub;
+    };
+    slider = {
+      hostNames     = [ "slider" "slider.sixears.co.uk" "192.168.0.13" ];
+      publicKeyFile = ../sshkeys/slider.pub;
+    };
+    stone = {
+      hostNames     = [ "stone" "stone.sixears.co.uk" "192.168.0.19" ];
+      publicKeyFile = ../sshkeys/stone.pub;
+    };
+    trance = {
+      hostNames     = [ "trance" "trance.sixears.co.uk" "192.168.0.8" ];
+      publicKeyFile = ../sshkeys/trance.pub;
+    };
     red = {
       hostNames     = [ "red" "red.sixears.co.uk" "192.168.0.5" ];
       publicKeyFile = ../sshkeys/red.pub;
@@ -104,22 +120,12 @@
       hostNames     = [ "shunt" "shunt.sixears.co.uk" "192.168.0.81" ];
       publicKeyFile = ../sshkeys/shunt.pub;
     };
-    killing = {
-      hostNames     = [ "killing" "killing.sixears.co.uk" "192.168.0.98" ];
-      publicKeyFile = ../sshkeys/killing.pub;
+    york = {
+      hostNames     = [ "york" "york.sixears.co.uk" "192.168.0.22" ];
+      publicKeyFile = ../sshkeys/york.pub;
     };
-    ground = {
-      hostNames     = [ "ground" "ground.sixears.co.uk" "192.168.0.109" ];
-      publicKeyFile = ../sshkeys/ground.pub;
-    };
-    grain = {
-      hostNames     = [ "grain" "grain.sixears.co.uk" "192.168.0.4" ];
-      publicKeyFile = ../sshkeys/grain.pub;
-    };
-    freeze = {
-      hostNames     = [ "freeze" "freeze.sixears.co.uk" "192.168.0.201" ];
-      publicKeyFile = ../sshkeys/freeze.pub;
-    };
+
+    # --------------------------------------------------------------------------
 
     bitbucket = {
       hostNames     = [ "bitbucket.org"

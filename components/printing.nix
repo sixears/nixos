@@ -1,7 +1,11 @@
 { config, lib, pkgs, ... }:
 
+# go to, e.g., https://developers.hp.com/sites/default/files/hplip-3.24.4-plugin.run
+# in firefox; save that to (e.g.,) /tmp/hplip-3.24.4-plugin.run
+# and then run nixos-prefetch-url file:///tmp/hplip-3.24.4-plugin.run
+
 {
- imports = [ ./fcron.nix ./unfree.nix ];
+  imports = [ ./fcron.nix ./unfree.nix ];
 
   services.printing.enable     = true;
   # for reasons beyond my ken, I still had to directly install the ppd direct

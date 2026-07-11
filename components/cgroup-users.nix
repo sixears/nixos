@@ -1,4 +1,4 @@
-{...}:
+{ pkgs, ...}:
 
 # https://grok.com/c/85cc4fe6-2585-4944-b054-6387c312bd2a
 
@@ -27,13 +27,13 @@
 
 {
   # Install cgroup-tools for manual cgroup management
-  environment.systemPackages = [ pkgs.cgroup-tools ];
+  environment.systemPackages = [ pkgs.libcgroup ];
 
   # Create a group for users allowed to manage cgroups
   users.groups.cgroup-users = {};
 
   # Assign specific users to the cgroup-users group
-  users.users.<username> = {
+  users.users.martyn = {
     extraGroups = [ "cgroup-users" ];
   };
 
@@ -42,6 +42,6 @@
     # Create a user-owned directory under /sys/fs/cgroup for user cgroups
     "d /sys/fs/cgroup/user-cgroups 0755 root cgroup-users - -"
     # Ensure the directory and its subdirectories/files are writable by the group
-    "Z /sys/fs/cgroup/user-cgroups 0755 root cgroup-users - -"
+    "Z /sys/fs/cgroup/user-cgroups 0775 root cgroup-users - -"
   ];
 }

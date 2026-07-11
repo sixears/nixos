@@ -1,6 +1,6 @@
 {
   nixpkgs-nixos-25-05-2025-08-15,
-  bashHeader-2025-08-15,
+  bashHeader-2025-10-21,
   myPkgs-2025-08-15,
   nixos-system,
   ...
@@ -8,7 +8,7 @@
 
 let
   nixpkgs     = nixpkgs-nixos-25-05-2025-08-15;
-  bashHeader  = bashHeader-2025-08-15;
+  bashHeader  = bashHeader-2025-10-21;
   myPkgs      = myPkgs-2025-08-15;
 in
   nixos-system
@@ -33,7 +33,9 @@ in
         hostname     = "incubus";
         domainname   = "sixears.co.uk";
         etherMac     = "a8:2b:dd:45:76:8d";
-        # wifiMac      = "e4:aa:ea:cc:91:31";
+        # no, set this per wifi connection
+        wifiMac      = "fe:35:3d:c6:08:88";
+        ip4addr      = "192.168.0.8";
         stateVersion = "25.05";
         systemPackages = pkgs: [
           # (hpkgs.acct)
@@ -80,7 +82,6 @@ in
 
           ../users/people/heather.nix
           ../users/people/heather-lumix-copy.nix
-          ../users/people/heather-rsync-pictures.nix
           ../users/people/syncthing-heather.nix
           ../users/people/martyn.nix
           ../users/people/syncthing-martyn.nix

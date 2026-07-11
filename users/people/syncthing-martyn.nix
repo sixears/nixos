@@ -1,11 +1,12 @@
 { config, ... }:
 
 let
-  userSyncthing   = import ./syncthing.nix { inherit config; };
+  port            = 8484;
+  userSyncthing   = import ./syncthing.nix { inherit config port; };
   mkUserSyncthing = userSyncthing.mkUserSyncthing;
 in
   {
-    config.networking.firewall.allowedTCPPorts = [ 8484
+    config.networking.firewall.allowedTCPPorts = [ port
                                                    # different listen port for
                                                    # each host, to allow for
                                                    # port-forwarding through

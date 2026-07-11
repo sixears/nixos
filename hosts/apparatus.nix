@@ -65,7 +65,7 @@ in
             # ../dns-server-opendns.nix
 
             ../dns-server/cloudflare.nix
-            ../components/openvpn.nix
+            ../openvpn/no-autostart.nix
 
             # create this with the mkopenvpnconfs script
             ../openvpn/new-york.nix

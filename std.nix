@@ -33,7 +33,10 @@ in
     # `nixos-generate-config`.
     hardware.enableRedistributableFirmware = lib.mkDefault true;
 
-    boot.initrd.availableKernelModules = [ "usb_storage" "sd_mod" ];
+    boot = {
+      initrd.availableKernelModules = [ "usb_storage" "sd_mod" ];
+      supportedFilesystems = [ "ntfs" ];
+    };
 
     environment.systemPackages = systemPackages pkgs;
 
@@ -147,6 +150,8 @@ in
 
     # ------------------------------------------------------
 
+    services.prometheus.enable = false;
+
     imports = (imports pkgs) ++ [
       (import ./std-pkgs.nix { inherit pkgs bash-header hlib; })
 
@@ -164,15 +169,19 @@ in
       ./components/fcron.nix
       ./components/mosh.nix
       ./components/msmtp.nix
-      ./components/prometheus.nix
+      # this seems to contribute load, and I never use it, so...
+      # ./components/prometheus.nix
       ./components/openssh.nix
       ./components/sshkeys.nix
       ./components/smartd.nix
       ./components/sysstat.nix
+      # used only by finbar?
       ./components/disthttpd.nix
       ./components/sys-info.nix
 
-      # !!! red-specific services - MOVE THESE TO red.nix? !!!
+      # 2025-11-22 - we don't need this, we use sudo systemctl start openvpn-*
+      # (import ./components/vpn.nix  { inherit pkgs bash-header; })
+      # !!! red-specific SERvices - MOVE THESE TO red.nix? !!!
     ] ++ filesystems ++ std-filesystems;
   }
 

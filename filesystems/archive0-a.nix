@@ -9,7 +9,5 @@
     "/BLU-RAY"           = { device = "/archive0/BLU-RAY"           ; options = [ "bind" ]; };
     "/Children's Movies" = { device = "/archive0/Children's Movies" ; options = [ "bind" ]; };
     "/MUSIC-DVD"         = { device = "/archive0/MUSIC-DVD"         ; options = [ "bind" ]; };
-    "/MUSIC-FILMS"       = { device = "/archive0/MUSIC-FILMS"       ; options = [ "bind" ]; };
-    "/MUSIC-VIDEO"       = { device = "/archive0/MUSIC-VIDEO"       ; options = [ "bind" ]; };
   };
 }

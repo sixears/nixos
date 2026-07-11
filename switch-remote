@@ -3,3 +3,5 @@
 set -eu -o pipefail
 
 nixos-rebuild --verbose --flake ~+/#"$1" --use-remote-sudo switch --target-host "$1"
+echo "setting wifi passwords..."
+ssh -t "$1" -- /run/wrappers/bin/sudo -- /run/current-system/sw/bin/wifi-pw-write /root/wifi-pw.txt

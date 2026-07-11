@@ -3,11 +3,11 @@
 {
   # Suspend-then-hibernate everywhere
   services.logind = {
-    lidSwitch = "suspend";
-    extraConfig = ''
-      HandlePowerKey=hibernate
-      IdleAction=hibernate
-      IdleActionSec=${idle-suspend-time}
-    '';
+    settings.Login = {
+      HandleLidSwitch = "suspend";
+      HandlePowerKey  = "hibernate";
+      IdleAction      = "hibernate";
+      IdleActionSec   = "${idle-suspend-time}";
+    };
   };
 }

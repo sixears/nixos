@@ -1,5 +1,5 @@
 { hostname, domainname, stateVersion, logicalCores ? 4, etherMac, wifiMac
-, systemPackages, system, filesystems, imports, bash-header, hlib }:
+, ip4addr, systemPackages, system, filesystems, imports, bash-header, hlib }:
 
 # CPU: 2.5-3.1GHz Intel Core i7-6500U 15W
 # https://www.cpubenchmark.net/cpu.php?cpu=Intel+Core+i7-6500U+%40+2.50GHz&id=2607
@@ -15,7 +15,7 @@
 
   (import ../storage/sda.nix)
   (import ../components/ethernet.nix { inherit etherMac; })
-  (import ../components/wifi.nix     { inherit wifiMac; })
+  (import ../components/wifi.nix     { inherit ip4addr wifiMac; })
   (import ../std.nix {
     inherit hostname domainname stateVersion logicalCores systemPackages system
             bash-header hlib filesystems imports;

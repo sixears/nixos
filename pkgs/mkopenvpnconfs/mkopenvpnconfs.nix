@@ -13,16 +13,19 @@ Cmd[wget]=${pkgs.wget}/bin/wget
 
 no_clean=false
 # see https://www.privateinternetaccess.com/helpdesk/guides/routers/dd-wrt-3/dd-wrt-v40559-openvpn-setup
-zipfn=openvpn-strong.zip
-zip_url=https://www.privateinternetaccess.com/openvpn/$zipfn
+ZipFN=""
+ZipURL=""
 
 TmpDir="/tmp" # has to be global so mktemp can assign to it
+Overwrite=false
+StatCheck=true
+Autostart=""
 
 # ------------------------------------------------------------------------------
 
 Usage="$(''${Cmd[cat]} <<EOF
 
-usage: $Progname CREDFN TARGET-DIR OPTION*
+usage: $Progname CREDFN TARGET-DIR ZIPFN OPTION*
 
 Create openvpn configuration for embedding into nixos conf.
 
@@ -34,6 +37,8 @@ TARGET-DIR is a non-extant directory into which to write the conf files
 options:
   -N | --no-stat-check - don't check for sanity of the credentials file
   -a | --autostart     - autostart this vpn (note:lower-case, underscores)
+  -O | --overwrite     - if the target dir pre-exists; remove it
+                         (absent this, die if the target dir pre-exists)
   --no-clean           - don't clean up temporary directory
 
 Standard Options:
@@ -48,7 +53,7 @@ EOF
 main () {
   local credfn="$1" target_dir="$2"
 
-  if $stat_check; then
+  if $StatCheck; then
     if [[ ! -e $credfn ]]; then
       die 10 "'$credfn' does not exist"
     fi
@@ -71,16 +76,24 @@ main () {
   fi
 
   if [[ -e "$target_dir" ]]; then
-   die_unless_dryrun 13 "not overwriting extant '$target_dir'"
+    if $Overwrite; then
+      gocmd 29 rm --force --recursive "$target_dir"
+    else
+      die_unless_dryrun 13 "not overwriting extant '$target_dir'"
+    fi
   fi
 
   target_dir="$(gocmd 26 realpath "$target_dir")"; check_ realpath
-  credfn="$(gocmd 27 realpath "$credfn")"; check_ realpath
+  if $StatCheck; then
+    credfn="$(gocmd 27 realpath "$credfn")"; check_ realpath
+  else
+    credfn="$(gocmd 28 realpath --canonicalize-missing "$credfn")"; check_ realpath
+  fi
 
   mktemp --exit 14 --dir TmpDir
   go 25 cd "$TmpDir"
-  gocmd 15 wget "$zip_url"
-  gocmd 16 unzip -q "$zipfn"
+  [[ -n $ZipURL ]] && gocmd 15 wget "$ZipURL"
+  gocmd 16 unzip -q "$ZipFN"
   gocmd 17 mkdir "$target_dir"
 
   local date
@@ -96,16 +109,16 @@ EOF
     local j="''${i,,?}"
     local k="''${j// /_}"
     local l="''${k%.ovpn}"
-    gocmd 20 mkopenvpnconf "$i" "$target_dir/$l.conf" "$credfn" "$autostart"
+    gocmd 20 mkopenvpnconf "$i" "$target_dir/$l.conf" "$credfn" "$Autostart"
   done
   go 21 echo -e '  };\n}'
 }
 
 # -- cli -----------------------------------------------------------------------
 
-getopt_args=( -o vNa:
+getopt_args=( -o vNa:Ou
               --long verbose,dry-run,help
-              --long noclean,no-clean,no-stat-check,autostart:
+              --long noclean,no-clean,no-stat-check,autostart:,overwrite,update
               -n "$Progname" -- "$@" )
 OPTS=$( ''${Cmd[getopt]} "''${getopt_args[@]}" )
 
@@ -114,16 +127,20 @@ OPTS=$( ''${Cmd[getopt]} "''${getopt_args[@]}" )
 # copy the values of OPTS (getopt quotes them) into the shell's $@
 eval set -- "$OPTS"
 
-stat_check=true
-autostart=""
-
 args=()
 
 while true; do
   case "$1" in
-    -N | --no-stat-check ) no_stat_check=false ; shift   ;;
-    -a | --autostart     ) autostart="$2"      ; shift 2 ;;
-    --no-clean           ) no_clean=true       ; shift   ;;
+    -N | --no-stat-check ) StatCheck=false ; shift   ;;
+    -a | --autostart     ) Autostart="$2"  ; shift 2 ;;
+    -O | --overwrite     ) Overwrite=true  ; shift   ;;
+    --no-clean           ) no_clean=true   ; shift   ;;
+    -u | --update        )
+      ZipFN=openvpn-strong.zip
+      ZipURL=https://www.privateinternetaccess.com/openvpn/$ZipFN
+      shift
+      ;;
+
     # don't forget to update $Usage!!
 
     -v | --verbose  ) Verbose=$((Verbose+1)) ; shift   ;;
@@ -135,7 +152,23 @@ while true; do
 done
 
 case "''${#args[@]}" in
-  2 ) main "''${args[@]}" ;;
+  2 )
+    if [[ -n $ZipURL ]]; then
+      main "''${args[@]}"
+    else
+      dieusage "a missing zipfn argument requires --update"
+    fi
+    ;;
+
+  3 )
+    if [[ -z $ZipURL ]]; then
+      capture ZipFN gocmd 30 realpath "$3"
+      main "''${args[@]}"
+    else
+      dieusage "--update is incompatible with a zipfn argument"
+    fi
+    ;;
+
   * ) usage               ;;
 esac
 

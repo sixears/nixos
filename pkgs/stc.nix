@@ -126,6 +126,9 @@ local_port() {
   read_config_file_value /configuration/gui/address address
   if [[ $address =~ :([0-9]+)$ ]]; then
     __port_varname=''${BASH_REMATCH[1]}
+    if [[ -z "''${1:-}" ]]; then
+      echo "$__port_varname"
+    fi
   else
     die 25 "cannot parse port from address '$address'"
   fi
@@ -133,7 +136,7 @@ local_port() {
 
 # --------------------------------------
 
-get_port() { if [[ $Port -eq 0 ]]; then local_port Port; fi; }
+get_port() { if [[ $Port -eq 0 ]]; then local_port Port "$@"; fi; }
 
 # --------------------------------------
 
@@ -391,7 +394,7 @@ copy_devices() {
   url="https://''$host_to:$port_to/rest/config/devices"
   curl_args=( --insecure --request PUT --header "X-API-Key: $remote_api_key"
               --header 'Content-Type: application/json'
-              --data XXX
+              --data "$devices"
               "$url"
             )
   gocmd 28 curl "''${curl_args[@]}"
@@ -444,13 +447,16 @@ local_device_id() {
 # --------------------------------------
 
 set_device_name() {
-  local host="$1" port="$2"
+  # this relies on the local device being the only one in the folder defaults;
+  # that doesn't seem reliable
 
-  if [[ $Port -eq 0 ]]; then
-    usage_error "--port|-p is required (got '$Port')"
-  elif [[ -n $host ]]; then
+  local host="$1"
+
+  if [[ -n $host ]]; then
     usage_error "--host|-h is not supported (got '$host')"
   fi
+
+  get_port
 
   local device_id
   local_device_id device_id
@@ -553,7 +559,7 @@ case "''${args[0]}" in
                     local_device_id                                           ;;
 
   set-device-name ) check_arg_count 0
-                    set_device_name "$host" "$Port"                           ;;
+                    set_device_name "$host"                                   ;;
 
   api-key         )
     declare api_key

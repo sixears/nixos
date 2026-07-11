@@ -49,7 +49,7 @@ in
 
             ../components/desktop.nix
             ../components/pulseaudio.nix
-            ../components/openvpn.nix
+            ../openvpn/no-autostart.nix
 
             ../components/keyboardio.nix
 

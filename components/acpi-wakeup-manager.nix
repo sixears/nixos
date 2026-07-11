@@ -1,8 +1,10 @@
 { pkgs, ... }:
 
 let
-  let wakeup-manager = import ../pkgs/acpi-wakeup-manager.nix { inherit pkgs; };
+  wakeup-manager = import ../pkgs/acpi-wakeup-manager.nix { inherit pkgs; };
 in
   {
-    environment.systemPackages = [ wakeup-manager ];
+    imports = [ ./fcron.nix ];
+
+    services.fcron.systab = "@ 60s ${wakeup-manager}";
   }

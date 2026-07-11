@@ -1,8 +1,6 @@
 [connection]
 id=Architecture
-uuid=c194628e-f741-4495-a118-f9e027096931
 type=wifi
-timestamp=1757426114
 
 [wifi]
 mode=infrastructure
@@ -13,12 +11,15 @@ auth-alg=open
 key-mgmt=wpa-psk
 
 [ipv4]
-address1=192.168.0.90/24,192.168.0.1
+address1=$IP4ADDR/24
 dns=192.168.0.24;192.168.0.7;
 dns-options=edns0;
 dns-search=sixears.co.uk;
+gateway=192.168.0.1
 method=manual
 
 [ipv6]
 addr-gen-mode=stable-privacy
 method=auto
+
+[proxy]

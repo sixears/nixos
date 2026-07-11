@@ -69,8 +69,9 @@ in
 		sleep=${pkgs.coreutils}/bin/sleep
 
 		selector='.[] | select(.properties."application.name"=="Firefox")|.index'
+    pactl_cmd=( \$pactl --format=json list sink-inputs )
 		while true; do
-		  for i in \$( \$pactl --format=json list sink-inputs | \$jq "\$selector"  ); do
+		  for i in \$( ''\${pactl_cmd[@]} | \$jq "\$selector" ); do
 		    \$pactl set-sink-input-volume "\$i" 100% || true
 		    \$sleep 2s
 		  done

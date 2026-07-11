@@ -1,4 +1,4 @@
-{}:
+{...}:
 
 # disable XHC (USB) service from acpi wakeup to prevent
 # USB devices waking up a suspended kernel.
@@ -12,7 +12,7 @@
       "disable-spurious-wakeup" =
         {
           "/proc/acpi/wakeup" =
-            w = { argument = "XHC"; };
+            { "w+" = { argument = "XHCI"; }; };
         };
     };
 }

@@ -1,15 +1,22 @@
 {
-  nixpkgs-nixos-24-05-2024-06-20,
-  bashHeader-2024-06-20,
-  myPkgs-2024-06-20,
+  nixpkgs-nixos-24-11-2025-03-24,
+#  nixpkgs-nixos-24-05-2024-06-20,
+#  bashHeader-2024-06-20,
+  bashHeader-2024-12-11,
+  myPkgs-2024-12-11,
+#  myPkgs-2024-06-20,
   nixos-system,
   ...
 }:
 
 let
-  nixpkgs    = nixpkgs-nixos-24-05-2024-06-20;
-  bashHeader = bashHeader-2024-06-20;
-  myPkgs     = myPkgs-2024-06-20;
+#  nixpkgs    = nixpkgs-nixos-24-05-2024-06-20;
+  nixpkgs     = nixpkgs-nixos-24-11-2025-03-24;
+  bashHeader  = bashHeader-2024-12-11;
+#  bashHeader = bashHeader-2024-06-20;
+#  myPkgs     = myPkgs-2024-06-20;
+  myPkgs      = myPkgs-2024-12-11;
+
 in
   nixos-system
     {
@@ -34,6 +41,7 @@ in
         domainname   = "sixears.co.uk";
         etherMac     = "64:72:69:66:74:69";
         wifiMac      = "9e:3f:86:01:96:a9";
+        ip4addr      = "192.168.0.3";
         stateVersion = "19.03";
         systemPackages = pkgs: [
           (pkgs.ghc)
@@ -72,12 +80,18 @@ in
           # this doesn't easily co-exist with home-backup.nix
           ../components/local-home-backup.nix
 
+          # USB auto-mounting
+          ../components/udisks2.nix
+
             (import ../components/desktop.nix { inherit pkgs my-pkgs; })
-          ../components/pulseaudio.nix
+# as of 24.11, default is to use pipewire
+#          ../components/pulseaudio.nix
           ../components/scanning.nix
 
           ../components/finbar.nix
-          ../components/openvpn.nix
+          ../openvpn/no-autostart.nix
+
+          ../components/cgroup-users.nix
 
           ../users/people/abigail.nix
           ../users/people/abigail-lumix-copy.nix

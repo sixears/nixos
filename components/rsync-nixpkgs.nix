@@ -7,6 +7,8 @@
     ];
 
   services.rsyncd.settings = {
-    nixpkgs = { path = "/nix/var/nixpkgs"; };
+    sections = {
+      nixpkgs = { path = "/nix/var/nixpkgs"; };
+    };
   };
 }

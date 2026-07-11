@@ -1,14 +1,16 @@
 {
-  nixpkgs-nixos-24-11-2024-12-11,
-  bashHeader-2024-12-11,
+  nixpkgs-nixos-26-05-2026-06-26,
+#  nixpkgs-nixos-24-11-2024-12-11,
+  bashHeader-2025-10-21,
   myPkgs-2024-12-11,
   nixos-system,
   ...
 }:
 
 let
-  nixpkgs     = nixpkgs-nixos-24-11-2024-12-11;
-  bashHeader  = bashHeader-2024-12-11;
+  nixpkgs     = nixpkgs-nixos-26-05-2026-06-26;
+#  nixpkgs     = nixpkgs-nixos-24-11-2024-12-11;
+  bashHeader  = bashHeader-2025-10-21;
   myPkgs      = myPkgs-2024-12-11;
 in
   nixos-system
@@ -48,7 +50,7 @@ in
           filesystems = [
             # nvme0n1
             ../filesystems/efi-a.nix
-            ../filesystems/std-a.nix
+            ../filesystems/std-a-noswap.nix
             ../filesystems/local.nix
             # 120GB SSD
             ../filesystems/efi-b.nix
@@ -112,13 +114,15 @@ in
 #            ../components/gdddns.nix # GoDaddy DNS updater (with our public IP)
             ../components/dyn-addr.nix # public DNS updater (with our public IP)
 
+            ../components/boot-fbcon-rotate-1.nix
+
             ../components/mirrorfs.nix
             ../components/local-home-backup.nix
             ../components/vsftpd.nix
-            ../components/openvpn.nix
+            ../openvpn/no-autostart.nix
             ../components/nix-serve.nix
 
-            ../components/adb.nix # Android Debug Bridge
+            # ../components/adb.nix # Android Debug Bridge
             ../components/nixos-head-auto-update.nix
             # ../components/rsync-deluge.nix
             ../components/rsync-nixpkgs.nix
@@ -131,6 +135,7 @@ in
             ../components/media.nix
             ../components/finbar.nix
             (import ../components/desktop.nix { inherit pkgs my-pkgs; })
+##            ../components/psacct.nix
 
             # for rtunnel
             ../users/people/abigail.nix
@@ -142,6 +147,11 @@ in
             # ../components/minio.nix
             # (import ../users/system/cam.nix { inherit pkgs hlib hpkgs; })
             # ../components/docker.nix
+            ../components/docker-oci.nix
+
+            ../components/streamdeck.nix
+
+            ../components/zram.nix
           ];
         });
     }

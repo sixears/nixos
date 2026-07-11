@@ -1,5 +1,5 @@
 { hostname, domainname, stateVersion, logicalCores ? 8, etherMac, wifiMac
-, systemPackages, system, filesystems, imports, bash-header, hlib }:
+, ip4addr, systemPackages, system, filesystems, imports, bash-header, hlib }:
 
 # CPU: 2.8-GHz Intel Core i7-1165G7 (9-29W)
 #      [4 cores, 8 threads]
@@ -12,7 +12,7 @@
   (import ./networking/broadcom.nix)
   (import ../storage/nvme0.nix)
   (import ../components/ethernet.nix { inherit etherMac; })
-  (import ../components/wifi.nix     { inherit wifiMac; })
+  (import ../components/wifi.nix     { inherit ip4addr wifiMac; })
   (import ../std.nix {
     inherit hostname domainname stateVersion logicalCores systemPackages system
             bash-header hlib filesystems imports;

@@ -47,20 +47,14 @@
             , comments = [] : List Text
             }
 
-            -- Laptops ---------------------------------------------------------
+          , { fqdn = "mule.sixears.co.uk."
+            , ipv4 = "192.168.0.11"
+            , desc = "Home-made test linux host for Xax"
+            , mac  = Some "a8:a1:59:15:d6:53"
+            , comments = [] : List Text
+            }
 
-          , { fqdn = "curse.sixears.co.uk."
-            , ipv4 = "192.168.0.14"
-            , desc = "HP Pavilion 15-ab105na JJ"
-            , mac= Some "70:5a:0f:18:46:2a"
-            , comments = [] : List Text
-            }
-          , { fqdn = "curse-wl.sixears.co.uk."
-            , ipv4 = "192.168.0.14"
-            , desc = "HP Pavilion 15-ab105na JJ"
-            , mac= Some "48:e2:44:d5:2e:cf"
-            , comments = [] : List Text
-            }
+            -- Laptops ---------------------------------------------------------
 
           , { fqdn = "slider.sixears.co.uk."
             , ipv4 = "192.168.0.13"
@@ -93,7 +87,7 @@
           , { fqdn = "drifting.sixears.co.uk."
             , ipv4 = "192.168.0.3"
             , desc = "Dell Inspiron 7306 2n1 Ax"
-            , mac= Some "9e:3f:86:01:96:a9"
+            , mac  = Some "9e:3f:86:01:96:a9"
             , comments = [] : List Text
             }
 
@@ -125,30 +119,18 @@
             , comments = [ "Hx, Ice Blue" ] : List Text
             }
 
-          , { fqdn = "trance.sixears.co.uk."
+          , { fqdn = "incubus.sixears.co.uk."
             , ipv4 = "192.168.0.8"
-            , desc = "Lenovo Yoga S730 Laptop Ethernet"
-            , mac= Some "00:e0:4c:68:04:ab"
-            , comments = [] : List Text
-            }
-          , { fqdn = "trance-wl.sixears.co.uk."
-            , ipv4 = "192.168.0.8"
-            , desc = "Lenovo Yoga S730 Laptop Wireless"
-            , mac= Some "b4:69:21:59:80:a3"
-            , comments = [] : List Text
+            , desc = "Lenovo ThinkPad E14 Gen 7"
+            , mac= Some "a8:2b:dd:45:76:8d"
+            , comments = [ "Hx" ] : List Text
             }
 
-          , { fqdn = "poison.sixears.co.uk."
-            , ipv4 = "192.168.0.11"
-            , desc = "Asus X555Y Ax"
-            , mac= Some "9c:5c:8e:3c:52:37"
-            , comments = [] : List Text
-            }
-          , { fqdn = "poison-wl.sixears.co.uk."
-            , ipv4 = "192.168.0.11"
-            , desc = "Asus X555Y WLAN Ax"
-            , mac= Some "50:6f:69:73:6f:6e"
-            , comments = [] : List Text
+          , { fqdn = "incubus-wl.sixears.co.uk."
+            , ipv4 = "192.168.0.8"
+            , desc = "Lenovo ThinkPad E14 Gen 7 (WLAN)"
+            , mac= Some "29:91:11:12:e9:ce"
+            , comments = [ "Hx" ] : List Text
             }
 
           , { fqdn = "grain.sixears.co.uk."
@@ -228,6 +210,13 @@
             , comments = [] : List Text
             }
 
+          , { fqdn = "electro.sixears.co.uk."
+            , ipv4 = "192.168.0.15"
+            , desc = "Fairphone 5 8GB / 256GB / Transparent (Mx) / S/N a2d396d5  / IMEI 355214503007393 / IMEI 355124503007401"
+            , mac= Some "54:08:3b:c6:5b:17"
+            , comments = [] : List Text
+            }
+
           , { fqdn = "conspiracy.sixears.co.uk."
             , ipv4 = "192.168.0.55"
             , desc = "Motorola G7 Power (Ax)"
@@ -264,7 +253,7 @@
             }
 
           , { fqdn = "bukka.sixears.co.uk."
-            , ipv4 = "192.168.0."
+            , ipv4 = "192.168.0.54"
             , desc = "OnePlus Nord 3 5G / 16GB / 256GB / Tempest Grey (Xax) / S/N 4XD64PJFZTY95DLB / IMEI 86232062155057 / IMEI 86232062155040"
             , mac= Some "2c:a7:ef:8e:18:f9"
             , comments = [] : List Text
@@ -498,6 +487,13 @@
             , ipv4 = "192.168.0.199"
             , desc = "Ubiquiti UAP-AC-M (kitchen) WAP Mesh"
             , mac = Some "d8:b3:70:b0:a9:3e" -- LAN
+            , comments = [] : List Text
+           }
+
+         , { fqdn = "v.sixears.co.uk."
+            , ipv4 = "192.168.0.198"
+            , desc = "Ubiquiti UAP-AC-PRO WAP"
+            , mac = Some "d8:b3:70:c6:87:a5" -- LAN
             , comments = [] : List Text
            }
 

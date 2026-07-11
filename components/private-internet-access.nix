@@ -1,28 +1,35 @@
+# 2025-11-22 - we don't need this, we use sudo systemctl start openvpn-*
 { pkgs, ... }:
 
 let
   vpnZipUrl = "https://www.privateinternetaccess.com/openvpn/openvpn-strong.zip";
+  name      = "private-internet-access";
+  unpackDir = "share/${name}";
+
+  # Fetch the zip archive
+  vpnZip = pkgs.fetchzip {
+    url = vpnZipUrl;
+    # sha found with
+    # nix-prefetch-url https://www.privateinternetaccess.com/openvpn/openvpn-strong.zip
+    # generated 2025-11-10
+    sha256 = "1amdkrwiz5xklhgmax7iiakycac6d9z16xqm0zmfpnvknjz9jdpz";
+    stripRoot = false; # all files are at the top level of the zip
+  };
 
   # Fetch and unpack the zip file
   vpnConfigs = pkgs.runCommand "vpn-configs" {
-    # Fetch the zip file
-    fetchzip = pkgs.fetchzip {
-      url = vpnZipUrl;
-      # Optional: add sha256 for cache correctness
-      sha256 = "0v1h7s4k9v..."; # Replace with actual sha256
-    };
+    # Input: the downloaded zip
+    buildInputs = [ pkgs.unzip ];
 
-    # Directory for unpacked configs
-    unpackDir = "${name}/unpacked";
-
+    src = vpnZip;
   } ''
-    mkdir -p $out/${unpackDir}
-    cp -r ${fetchzip}/* $out/${unpackDir}
+    mkdir -p $out
+    cp $src/*.ovpn -d $out/
   '';
 
 in {
   # Example: copy configs to /etc/vpn (or any directory)
-  environment.etc."vpn" = {
+  environment.etc.${name} = {
     source = vpnConfigs;
   };
 }

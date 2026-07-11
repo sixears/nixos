@@ -1,12 +1,13 @@
 { config, ... }:
 
 let
-  userSyncthing   = import ./syncthing.nix { inherit config; };
+  # we use 8989 because 8888 is the lighttpd service for dev dists
+  port            = 8989;
+  userSyncthing   = import ./syncthing.nix { inherit config port; };
   mkUserSyncthing = userSyncthing.mkUserSyncthing;
 in
   {
-    # we use 8989 because 8888 is the lighttpd service for dev dists
-    config.networking.firewall.allowedTCPPorts = [ 8989 ];
+    config.networking.firewall.allowedTCPPorts = [ port ];
 
     imports = [ ../../components/syncthing.nix ];
     config.systemd.services = mkUserSyncthing "jj";

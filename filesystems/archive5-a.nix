@@ -4,6 +4,7 @@
   fileSystems = {
     "/archive5" = { label = "a-archive5"; fsType = "xfs"; };
 
-    "/nsa"      = { device = "/archive5/nsa"; options = [ "bind" ]; };
+    "/nsa"      = { device = "/archive5/nsa";
+                    options = [ "bind" ]; fsType = "none"; };
   };
 }

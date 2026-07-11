@@ -1,15 +1,19 @@
 {
+  nixpkgs-nixos-26-05-2026-06-26,
+#  nixpkgs-nixos-25-05-2025-08-15,
+  bashHeader-2025-10-21,
+  myPkgs-2024-12-11,
+  # needed for kernel 6.9
   nixpkgs-nixos-24-05-2024-06-20,
-  bashHeader-2024-06-20,
-  myPkgs-2024-06-20,
   nixos-system,
   ...
 }:
 
 let
-  nixpkgs     = nixpkgs-nixos-24-05-2024-06-20;
-  bashHeader  = bashHeader-2024-06-20;
-  myPkgs      = myPkgs-2024-06-20;
+  nixpkgs     = nixpkgs-nixos-26-05-2026-06-26;
+#  nixpkgs     = nixpkgs-nixos-25-05-2025-08-15;
+  bashHeader  = bashHeader-2025-10-21;
+  myPkgs      = myPkgs-2024-12-11;
 in
   nixos-system
     {
@@ -35,6 +39,7 @@ in
           etherMac     = "c4:c6:e6:1c:cf:f7";
           # as ordained by lenovo
           wifiMac      = "b0:47:e9:dc:95:42";
+          ip4addr      = "192.168.0.10";
           stateVersion = "23.11";
 
           systemPackages = pkgs: [
@@ -46,6 +51,8 @@ in
             (import ../wifi-conns/bowery-secure-init.nix {inherit pkgs;})
 
             (hpkgs.acct)
+
+##            (import ../pkgs/openvpn { inherit pkgs system; })
           ];
           filesystems = [
             ../filesystems/std.nix
@@ -56,8 +63,18 @@ in
           ];
           imports = pkgs: [
 
-            ## Try the latest kernel to help with logind/acpi failures & crashes
-            ../components/kernel-latest.nix
+            ## 6.12 in nixos-24.11 causes lockup at suspend
+#            ../components/kernel-latest.nix
+
+##          wifi fails with 6.9
+##            (import ../components/kernel-6-09.nix
+##              { inherit system; nixpkgs = nixpkgs-nixos-24-05-2024-06-20; })
+
+##            (import ../components/kernel-6-12.nix
+##              { inherit system; nixpkgs = nixpkgs-nixos-24-05-2024-06-20; })
+##            (import ../components/kernel-6-12.nix
+##              { inherit system nixpkgs; })
+              ../components/kernel-acpi-debug.nix
 
 ##            (import ../components/xserver.nix {
 ##              inherit pkgs bash-header my-pkgs;
@@ -70,14 +87,18 @@ in
             ../components/laptop.nix
             ../components/suspend.nix
             ../components/printing.nix
-            ../components/deluge-killer.nix
+##            ../components/deluge-killer.nix
             # this doesn't easily co-exist with home-backup.nix
             ../components/local-home-backup.nix
 
             (import ../components/desktop.nix { inherit pkgs my-pkgs; })
-            ../components/pulseaudio.nix
+# as of 24.11, default is to use pipewire
+##            ../components/pulseaudio.nix
             ../components/scanning.nix
-            ../components/openvpn.nix
+##            ../openvpn/no-autostart.nix
+            (import ../pkgs/openvpn.nix { inherit pkgs system; })
+            # 2025-11-22 - we don't need this, we use sudo systemctl start openvpn-*
+            # ../components/private-internet-access.nix
             ../components/nix-serve.nix
             ../dns-server/cloudflare.nix
 #            ../components/zsa.nix
@@ -87,11 +108,22 @@ in
 #            ../components/finbar.nix
             ../components/keyboardio.nix
 
+            ## ../components/cgroup-users.nix
+            # ../components/fprint.nix
+            ../components/fido.nix
+
+            # iphone mount
+            ../components/usbmuxd.nix
+
 #           this crashes when it goes into auto-suspend :-(
 #            (import ../components/suspend-then-hibernate.nix {
 #              suspend-hibernate-time  = "1h";
 #              idle-suspend-time       = "30m";
 #            })
+# embed this in kernel-x-xx.nix
+#            ../components/acpi-debugging.nix
+
+            (import ../components/acpi-wakeup-manager.nix { inherit pkgs; })
 
             (import ../components/hibernate.nix { idle-suspend-time = "30m"; })
 

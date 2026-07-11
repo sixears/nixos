@@ -1,5 +1,8 @@
 #!/run/current-system/sw/bin/bash
 
+# if you see complaints under switch about unsafe git directories...
+# sudo git config --global --add safe.directory /home/martyn/nixos
+
 set -u -o pipefail
 
 wrappersbin=/run/wrappers/bin
@@ -81,7 +84,7 @@ impure=false
 very_verbose=false
 substituters=( https://cache.nixos.org/ )
 
-options=( -o vnirdTh:IVNSC
+options=( -o vnirdTh:IVNSCR
           --long show-trace,dirty,isolated,remote,hostname:,impure,very-verbose
           --long bincache,sudo,no-cache
           --long verbose,dry-run,help )
@@ -94,20 +97,21 @@ eval set -- "$OPTS"
 
 while true; do
   case "$1" in
-    -i | --isolated   ) isolated=true        ; shift   ;;
-    -r | --remote     ) remote=true          ; shift   ;;
-    -d | --dirty      ) dirty=true           ; shift   ;;
-    -T | --show-trace ) show_trace=true      ; shift   ;;
-    -h | --hostname   ) hostnames=( "$2" )   ; shift 2 ;;
-    -I | --impure     ) impure=true          ; shift   ;;
-    -C | --no-cache   ) no_cache=true        ; shift   ;;
-    -N | --bincache   ) substituters+=( http://nixos-bincache.sixears.co.uk:5000/ ); shift ;;
-    -S | --sudo       ) pfx_cmd=( $sudo -- ) ; shift   ;;
+    -i | -R | --isolated ) isolated=true        ; shift   ;;
+    -r | --remote        ) remote=true          ; shift   ;;
+    -d | --dirty         ) dirty=true           ; shift   ;;
+    -T | --show-trace    ) show_trace=true      ; shift   ;;
+    -h | --hostname      ) hostnames=( "$2" )   ; shift 2 ;;
+    -I | --impure        ) impure=true          ; shift   ;;
+    -C | --no-cache      ) no_cache=true        ; shift   ;;
+    -S | --sudo          ) pfx_cmd=( $sudo -- ) ; shift   ;;
+    -N | --bincache      )
+      substituters+=( http://nixos-bincache.sixears.co.uk:5000/ ); shift ;;
 
-    -v | --verbose    ) verbose=true         ; shift   ;;
-    -V | --very-verbose ) very_verbose=true  ; shift   ;;
-    -n | --dry-run    ) dry_run=true         ; shift   ;;
-         --help       ) usage                          ;;
+    -v | --verbose       ) verbose=true         ; shift   ;;
+    -V | --very-verbose  ) very_verbose=true    ; shift   ;;
+    -n | --dry-run       ) dry_run=true         ; shift   ;;
+         --help          ) usage                          ;;
     # !!! don't forget to update usage !!!
     -- ) shift; break ;;
     * ) break ;;
@@ -186,6 +190,10 @@ for hostname in "${hostnames[@]}"; do
     go 10 "${pfx_cmd[@]}" bash -c "$bash_cmd"
   fi
 done
+
+if [[ $command == switch ]]; then
+  go 11 sudo -- /run/current-system/sw/bin/wifi-pw-write /root/wifi-pw.txt
+fi
 # https://nixos.wiki/wiki/Nixos-rebuild
 ## /usr/bin/env -i SSH_AUTH_SOCK=/tmp/martyn/ssh-XXXXXX6Lxt15/agent.2771 PATH=/run/current-system/sw/bin /run/current-system/sw/bin/nixos-rebuild --option allow-dirty false --verbose --flake /home/martyn/nixos/#grain --target-host grain --use-remote-sudo switch
 # nixos-rebuild  --verbose --flake ~+/#night --target-host night --use-remote-sudo switch

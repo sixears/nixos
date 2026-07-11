@@ -1,5 +1,5 @@
 { hostname, domainname, stateVersion, logicalCores ? 14, etherMac, wifiMac
-, systemPackages, system, filesystems, imports, bash-header, hlib }:
+, ip4addr, systemPackages, system, filesystems, imports, bash-header, hlib }:
 
 # CPU: 1.7-GHz Intel Core i7-1250 (9-29W)
 #      [8 efficient+2 performance cores/8 efficient+4 performance threads]
@@ -13,7 +13,7 @@
   (import ../virtualization/intel.nix)
   (import ../storage/nvme0.nix)
   (import ../components/ethernet.nix { inherit etherMac; })
-  (import ../components/wifi.nix     { inherit wifiMac; })
+  (import ../components/wifi.nix     { inherit ip4addr wifiMac; })
   (import ../std.nix {
     inherit hostname domainname stateVersion logicalCores systemPackages system
             bash-header hlib filesystems imports;
@@ -23,4 +23,7 @@
     # and that the current policy is "powersave"
     cpuFreqGovernor = "powersave";
   })
+
+  (import ./acpi-suppress-gpe6E.nix)
+  (import ../components/acpi-disable-xhc.nix)
 ]

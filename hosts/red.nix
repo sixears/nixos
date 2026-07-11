@@ -71,7 +71,7 @@ in
             (import ../components/desktop.nix { inherit pkgs my-pkgs; })
             ../components/pulseaudio.nix
             ../components/scanning.nix
-            ../components/openvpn.nix
+            ../openvpn/no-autostart.nix
             ../components/nix-serve.nix
             ../dns-server/cloudflare.nix
 #            ../components/zsa.nix

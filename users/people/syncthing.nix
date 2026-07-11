@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, port, ... }:
 
 {
   mkUserSyncthing = user: {
@@ -14,7 +14,7 @@
         User = user;
         Group = "users";
         PermissionsStartOnly = true;
-        ExecStart = "${config.services.syncthing.package}/bin/syncthing -no-restart -no-browser -logflags=0";
+        ExecStart = "${config.services.syncthing.package}/bin/syncthing serve --no-restart --no-browser --logflags=0 --gui-address=:${toString port} --data=/local/${user}/syncthing-data --config=/home/${user}/.config/syncthing";
       };
     };
   };
