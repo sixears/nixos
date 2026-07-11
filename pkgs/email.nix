@@ -24,8 +24,9 @@ fi
 unset SHLVL PWD _
 
 app="''${1:-rainloop}"
+uri="https://mail.mxlogin.com/#!/sixears.org/apps/$app/"
 
-${pkgs.librewolf}/bin/librewolf 'https://mail.mxlogin.com/#!/sixears.org/apps/$app/'
+${pkgs.librewolf}/bin/librewolf "$uri"
 ''
 
 # Local Variables:
