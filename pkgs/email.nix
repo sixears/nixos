@@ -23,7 +23,7 @@ fi
 
 unset SHLVL PWD _
 
-app="${1:-rainloop}"
+app="''${1:-rainloop}"
 
 ${pkgs.librewolf}/bin/librewolf 'https://mail.mxlogin.com/#!/sixears.org/apps/$app/'
 ''
