@@ -10,7 +10,7 @@ source ${bash-header}
 # We don't relly want SHLVL, PWD or _; but we get them anyway if we re-exec: so
 # don't re-exec if we see them, though we'll drop them below for cleanliness
 
-keep_env=( SHLVL PWD _ )
+keep_env=( DISPLAY SHLVL PWD _ )
 keep_env_re="^($(IFS='|';echo "''${keep_env[*]}")=)"
 if ''${Cmd[env]} | ''${Cmd[grep]} -qEv "$keep_env_re"; then
   # Polluting environment detected!  Re-exec with a limited set
