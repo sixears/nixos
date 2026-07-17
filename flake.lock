@@ -1323,8 +1323,8 @@
         "yaml-plus-src-1-0-1-1": "yaml-plus-src-1-0-1-1"
       },
       "locked": {
-        "lastModified": 1783506576,
-        "narHash": "sha256-cpRLcEEgmiLrGzay+qsX4iBn9/7rRAD+GNVP4Cv26nI=",
+        "lastModified": 1784186771,
+        "narHash": "sha256-WcsLzeSmX38FGQp0Tmd7fLS/qKMrlMD5qRt0QmOmKNU=",
         "path": "/home/martyn/src/hpkgs1",
         "type": "path"
       },
