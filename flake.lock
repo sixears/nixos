@@ -1508,19 +1508,19 @@
         "type": "github"
       }
     },
-    "fpath-src-1-3-5-0_3": {
+    "fpath-src-1-3-7-0": {
       "flake": false,
       "locked": {
-        "lastModified": 1702537615,
-        "narHash": "sha256-OgYZDyNKoXfL/6v7VHWJUt+uuSB/AtyYkM+KtZUkoVI=",
+        "lastModified": 1787924091,
+        "narHash": "sha256-bGrARs97eHftRLjTjkURW9923AW9wP14hT2tIqrTW10=",
         "owner": "sixears",
         "repo": "fpath",
-        "rev": "07100b7008fc9030ea7904fe8b4e35eb58db6b25",
+        "rev": "39d84fd12b4e02ee7d33fade13962575bf03e55e",
         "type": "github"
       },
       "original": {
         "owner": "sixears",
-        "ref": "r1.3.5.0",
+        "ref": "r1.3.7.0",
         "repo": "fpath",
         "type": "github"
       }
@@ -1559,19 +1559,19 @@
         "type": "github"
       }
     },
-    "fstat-src-1-0-2-26_3": {
+    "fstat-src-1-0-4-0": {
       "flake": false,
       "locked": {
-        "lastModified": 1668928643,
-        "narHash": "sha256-P15f4DxEeuao+tl3/gp+gksQW1rldfOq1iNUrNO7IBA=",
+        "lastModified": 1787826972,
+        "narHash": "sha256-S8dkU9hbuYOlzY2LFy69frFAaQNWSnuXg7RAgBl3weM=",
         "owner": "sixears",
         "repo": "fstat",
-        "rev": "a600afb7daae6212988e7217392a3ec8064f2404",
+        "rev": "373683c90c57b384acacae710286a5986a6ce7bf",
         "type": "github"
       },
       "original": {
         "owner": "sixears",
-        "ref": "r1.0.2.26",
+        "ref": "r1.0.4.0",
         "repo": "fstat",
         "type": "github"
       }
@@ -1804,8 +1804,8 @@
         "file-split-src-1-0-2-1": "file-split-src-1-0-2-1",
         "finite-list-src-0-0-1-0": "finite-list-src-0-0-1-0",
         "flake-utils": "flake-utils_5",
-        "fpath-src-1-3-5-0": "fpath-src-1-3-5-0",
-        "fstat-src-1-0-2-26": "fstat-src-1-0-2-26",
+        "fpath-src-1-3-7-0": "fpath-src-1-3-7-0",
+        "fstat-src-1-0-4-0": "fstat-src-1-0-4-0",
         "handbrake-src-1-0-3-1": "handbrake-src-1-0-3-1",
         "has-callstack-src-1-0-2-0": "has-callstack-src-1-0-2-0",
         "hix-src-0-1-7-0": "hix-src-0-1-7-0",
@@ -1825,8 +1825,8 @@
         "mockio-plus-src-0-3-16-0": "mockio-plus-src-0-3-16-0",
         "mockio-src-0-0-6-0": "mockio-src-0-0-6-0",
         "monaderror-io-src-1-2-8-0": "monaderror-io-src-1-2-8-0",
-        "monadio-plus-src-2-6-3-0": "monadio-plus-src-2-6-3-0",
-        "more-unicode-src-0-0-26-0": "more-unicode-src-0-0-26-0",
+        "monadio-plus-src-2-6-8-0": "monadio-plus-src-2-6-8-0",
+        "more-unicode-src-0-0-27-0": "more-unicode-src-0-0-27-0",
         "natural-src-0-1-2-0": "natural-src-0-1-2-0",
         "network-plus-src-0-0-1-0": "network-plus-src-0-0-1-0",
         "nixpkgs": "nixpkgs",
@@ -1843,18 +1843,18 @@
         "single-src-0-0-1-0": "single-src-0-0-1-0",
         "srt-adjust-src-1-0-0-7": "srt-adjust-src-1-0-0-7",
         "stdmain-src-1-6-4-0": "stdmain-src-1-6-4-0",
-        "tasty-plus-src-1-5-3-0": "tasty-plus-src-1-5-3-0",
+        "tasty-plus-src-1-5-4-0": "tasty-plus-src-1-5-4-0",
         "textual-plus-src-1-1-4-0": "textual-plus-src-1-1-4-0",
         "tfmt-src-0-3-1-0": "tfmt-src-0-3-1-0",
         "trifecta-plus-src-0-0-1-0": "trifecta-plus-src-0-0-1-0",
         "tuple-plus-src-0-0-1-0": "tuple-plus-src-0-0-1-0",
-        "vidtools-src-0-0-0-0": "vidtools-src-0-0-0-0",
+        "vidtools-src-0-0-2-0": "vidtools-src-0-0-2-0",
         "while-src-0-0-0-1": "while-src-0-0-0-1",
         "yaml-plus-src-1-0-1-1": "yaml-plus-src-1-0-1-1"
       },
       "locked": {
-        "lastModified": 1784186771,
-        "narHash": "sha256-WcsLzeSmX38FGQp0Tmd7fLS/qKMrlMD5qRt0QmOmKNU=",
+        "lastModified": 1788366177,
+        "narHash": "sha256-uwNgMqxZ9kV1Ympj+pOFUrzLxcpo9Mfm6pZ+dpPUtuk=",
         "path": "/home/martyn/src/hpkgs1",
         "type": "path"
       },
@@ -1886,8 +1886,8 @@
         "exited-src-1-0-4-23": "exited-src-1-0-4-23_2",
         "file-split-src-1-0-2-1": "file-split-src-1-0-2-1_2",
         "flake-utils": "flake-utils_12",
-        "fpath-src-1-3-5-0": "fpath-src-1-3-5-0_2",
-        "fstat-src-1-0-2-26": "fstat-src-1-0-2-26_2",
+        "fpath-src-1-3-5-0": "fpath-src-1-3-5-0",
+        "fstat-src-1-0-2-26": "fstat-src-1-0-2-26",
         "handbrake-src-1-0-3-1": "handbrake-src-1-0-3-1_2",
         "has-callstack-src-1-0-2-0": "has-callstack-src-1-0-2-0_2",
         "hix-src-0-1-6-0": "hix-src-0-1-6-0",
@@ -1969,8 +1969,8 @@
         "file-split-src-1-0-2-1": "file-split-src-1-0-2-1_3",
         "finite-list-src-0-0-1-0": "finite-list-src-0-0-1-0_2",
         "flake-utils": "flake-utils_15",
-        "fpath-src-1-3-5-0": "fpath-src-1-3-5-0_3",
-        "fstat-src-1-0-2-26": "fstat-src-1-0-2-26_3",
+        "fpath-src-1-3-5-0": "fpath-src-1-3-5-0_2",
+        "fstat-src-1-0-2-26": "fstat-src-1-0-2-26_2",
         "handbrake-src-1-0-3-1": "handbrake-src-1-0-3-1_3",
         "has-callstack-src-1-0-2-0": "has-callstack-src-1-0-2-0_3",
         "hix-src-0-1-7-0": "hix-src-0-1-7-0_2",
@@ -1990,8 +1990,8 @@
         "mockio-plus-src-0-3-16-0": "mockio-plus-src-0-3-16-0_3",
         "mockio-src-0-0-6-0": "mockio-src-0-0-6-0_3",
         "monaderror-io-src-1-2-8-0": "monaderror-io-src-1-2-8-0_2",
-        "monadio-plus-src-2-6-3-0": "monadio-plus-src-2-6-3-0_2",
-        "more-unicode-src-0-0-26-0": "more-unicode-src-0-0-26-0_2",
+        "monadio-plus-src-2-6-3-0": "monadio-plus-src-2-6-3-0",
+        "more-unicode-src-0-0-26-0": "more-unicode-src-0-0-26-0",
         "natural-src-0-1-2-0": "natural-src-0-1-2-0_2",
         "network-plus-src-0-0-1-0": "network-plus-src-0-0-1-0_2",
         "nixpkgs": "nixpkgs_3",
@@ -2008,7 +2008,7 @@
         "single-src-0-0-1-0": "single-src-0-0-1-0_3",
         "srt-adjust-src-1-0-0-7": "srt-adjust-src-1-0-0-7_3",
         "stdmain-src-1-6-4-0": "stdmain-src-1-6-4-0_2",
-        "tasty-plus-src-1-5-3-0": "tasty-plus-src-1-5-3-0_2",
+        "tasty-plus-src-1-5-3-0": "tasty-plus-src-1-5-3-0",
         "textual-plus-src-1-1-4-0": "textual-plus-src-1-1-4-0_3",
         "tfmt-src-0-3-1-0": "tfmt-src-0-3-1-0_2",
         "trifecta-plus-src-0-0-1-0": "trifecta-plus-src-0-0-1-0_3",
@@ -2813,19 +2813,19 @@
         "type": "github"
       }
     },
-    "monadio-plus-src-2-6-3-0_2": {
+    "monadio-plus-src-2-6-8-0": {
       "flake": false,
       "locked": {
-        "lastModified": 1769279993,
-        "narHash": "sha256-xvFvyaICugcWZN+fafy6tsQ6znEmkFJlbpR1+K64sDk=",
+        "lastModified": 1787827298,
+        "narHash": "sha256-xYF8MioAZnxF+sWDuQEDE9O/Re314FlnVHzNnni3h9M=",
         "owner": "sixears",
         "repo": "monadio-plus",
-        "rev": "62635bdd8792e4ec8eec44b632e6ae05f96d09c6",
+        "rev": "9a0b9204885bee54d3a30a71a55937216eeb7acb",
         "type": "github"
       },
       "original": {
         "owner": "sixears",
-        "ref": "r2.6.3.0",
+        "ref": "r2.6.8.0",
         "repo": "monadio-plus",
         "type": "github"
       }
@@ -2864,19 +2864,19 @@
         "type": "github"
       }
     },
-    "more-unicode-src-0-0-26-0_2": {
+    "more-unicode-src-0-0-27-0": {
       "flake": false,
       "locked": {
-        "lastModified": 1757341732,
-        "narHash": "sha256-Rfqb8oyVWUs+LkXTKOrFM4Pbf9G2Fptod75A/tczO5w=",
+        "lastModified": 1787544024,
+        "narHash": "sha256-8z4lT6dZnLWcXCB3CCg8+jiu73CmTx0TUTofLF8tiQk=",
         "owner": "sixears",
         "repo": "more-unicode",
-        "rev": "21bb28ec02d4287a96c838756d817f3a4eb39f86",
+        "rev": "c6d4cc3633fc35ee68342f8d94bf05898b271254",
         "type": "github"
       },
       "original": {
         "owner": "sixears",
-        "ref": "r0.0.26.0",
+        "ref": "r0.0.27.0",
         "repo": "more-unicode",
         "type": "github"
       }
@@ -2961,7 +2961,7 @@
         ]
       },
       "locked": {
-        "lastModified": 1786667550,
+        "lastModified": 1786706467,
         "narHash": "sha256-rtGn4zgOolk/AZiY73fMdLHhNJBf8f2t7QfjDluwOtQ=",
         "path": "/home/martyn/nix/pkgs",
         "type": "path"
@@ -3933,19 +3933,19 @@
         "type": "github"
       }
     },
-    "tasty-plus-src-1-5-3-0_2": {
+    "tasty-plus-src-1-5-4-0": {
       "flake": false,
       "locked": {
-        "lastModified": 1783442988,
-        "narHash": "sha256-xdcA1QpVqPdlCcC6o7lEq34OkkDMIWMLBXqvAyKYtEg=",
+        "lastModified": 1787475527,
+        "narHash": "sha256-tpK6QgaxQOiNIwaeC5wfZ/uSJ95v1xLspNzk6mxxgWQ=",
         "owner": "sixears",
         "repo": "tasty-plus",
-        "rev": "b8132460f45d78b2b2424f173a59493ebb48c1a1",
+        "rev": "9eb53db8f2b15665329d897bf8733f25a2159bf3",
         "type": "github"
       },
       "original": {
         "owner": "sixears",
-        "ref": "r1.5.3.0",
+        "ref": "r1.5.4.0",
         "repo": "tasty-plus",
         "type": "github"
       }
@@ -4154,17 +4154,21 @@
         "type": "github"
       }
     },
-    "vidtools-src-0-0-0-0": {
+    "vidtools-src-0-0-2-0": {
       "flake": false,
       "locked": {
-        "lastModified": 1783495168,
-        "narHash": "sha256-65yguICxD2Isx2ydcXe0NpI4r/yMRK98Y9abOMsaYGk=",
-        "path": "/home/martyn/src/vidtools",
-        "type": "path"
+        "lastModified": 1785867511,
+        "narHash": "sha256-Ws6Y9G/Dgy7h38nIjCCq53tTgzlS41XN78Usvn+yN90=",
+        "owner": "sixears",
+        "repo": "vidtools",
+        "rev": "89e1b096843913fb3130991d2c87eb015b193a7e",
+        "type": "github"
       },
       "original": {
-        "path": "/home/martyn/src/vidtools",
-        "type": "path"
+        "owner": "sixears",
+        "ref": "r0.0.2.0",
+        "repo": "vidtools",
+        "type": "github"
       }
     },
     "while-src-0-0-0-1": {
