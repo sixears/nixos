@@ -2,7 +2,7 @@
   nixpkgs-nixos-26-05-2026-06-26,
 #  nixpkgs-nixos-25-05-2025-08-15,
   bashHeader-2025-10-21,
-  myPkgs-2024-12-11,
+  myPkgs-2026-08-04,
   # needed for kernel 6.9
   nixpkgs-nixos-24-05-2024-06-20,
   nixos-system,
@@ -13,7 +13,7 @@ let
   nixpkgs     = nixpkgs-nixos-26-05-2026-06-26;
 #  nixpkgs     = nixpkgs-nixos-25-05-2025-08-15;
   bashHeader  = bashHeader-2025-10-21;
-  myPkgs      = myPkgs-2024-12-11;
+  myPkgs      = myPkgs-2026-08-04;
 in
   nixos-system
     {

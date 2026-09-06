@@ -26,4 +26,15 @@ in
 
     services.fcron.systab =
       "@runas(${user}) 60s ${touch} ${home}/.touch-$(${hostname} -s)";
+
+    security.sudo.extraRules =
+      [
+        { commands = [ { command  = "/run/wrappers/bin/mount";
+                         options  = [ "NOPASSWD" ]; }
+                       { command  = "/run/wrappers/bin/umount";
+                         options  = [ "NOPASSWD" ]; }
+                     ];
+          users    = [ "xander" ];
+        }
+      ];
   }

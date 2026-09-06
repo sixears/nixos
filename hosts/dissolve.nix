@@ -81,6 +81,7 @@ in
             ../users/people/martyn.nix
             ../users/people/xander.nix
             ../users/people/syncthing-martyn.nix
+            ../components/wifi-eduroam-xander.nix
           ];
         });
     }
