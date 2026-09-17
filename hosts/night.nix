@@ -3,15 +3,23 @@
 #  -) mythtv
 #  -) podcasts
 #  -) gitit
-{ nixpkgs-nixos-25-05-2025-08-15, bashHeader-2025-08-15, myPkgs-2025-08-15
+{ # nixpkgs-nixos-25-05-2025-08-15
+  nixpkgs-nixos-26-05-2026-06-26
+# , bashHeader-2025-08-15
+, bashHeader-2025-10-21
+# , myPkgs-2025-08-15
+, myPkgs-2026-08-04
+, master-2026-09-16
 , nixpkgs-2020-09-25
 # , nixpkgs-2022-04-22
-, nixos-system, ... }:
+, nixos-system
+, ... }:
 
 let
-  nixpkgs    = nixpkgs-nixos-25-05-2025-08-15;
-  bashHeader = bashHeader-2025-08-15;
-  myPkgs     = myPkgs-2025-08-15;
+  nixpkgs    = nixpkgs-nixos-26-05-2026-06-26;
+  bashHeader = bashHeader-2025-10-21;
+  myPkgs     = myPkgs-2026-08-04;
+  master     = master-2026-09-16;
 in
   nixos-system
     {
@@ -32,6 +40,11 @@ in
                     inherit system;
                     config = { inherit allowUnfreePredicate; };
                   };
+                master-x =
+                  import "${master}" {
+                    inherit system;
+                    config = { inherit allowUnfreePredicate; };
+                  };
 ##                r2022-04-22 =
 ##                  import "${nixpkgs-2022-04-22}" {
 ##                    inherit system;
@@ -41,7 +54,7 @@ in
                 # import everything from ../overlays/
                 lib.importNixesNoArgs ../overlays
             ++ [(final: prev: {
-                   inherit (r2020-09-25) plex;   # v1.20
+                   inherit (master-x) plex;   # v1.43.4
 #                   inherit (r2022-04-22) mythtv; # v31.0
                  }
                 )];
@@ -86,7 +99,7 @@ in
             ../filesystems/local-d.nix
 
             # Seagate ST8000 7.28TiB / 8Tb
-#            ../filesystems/archive3-b.nix
+            ../filesystems/archive3-b.nix
 
             # Toshiba N300 HDWN180 7.28TiB / 8Tb
             ../filesystems/archive1-a.nix
@@ -120,7 +133,7 @@ in
             ../components/media.nix
             ../components/get_iplayer.nix
             ../components/plex.nix   # should be v1.20
-            ../components/mythtv.nix # should be v31.0
+            # ../components/mythtv.nix # should be v31.0
             # ../components/jellyfin.nix
             # Pre-24.11
             # ../components/tvheadend.nix

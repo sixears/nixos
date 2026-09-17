@@ -1,6 +1,8 @@
 # https://github.com/NixOS/nixpkgs/tags
 {
   inputs = {
+    master-2026-09-16.url = github:NixOS/nixpkgs/a5fbff87;
+
     nixpkgs-nixos-26-05-2026-06-26.url = github:NixOS/nixpkgs/667d5cf1;
 
     nixpkgs-nixos-25-05-2025-08-15.url = github:NixOS/nixpkgs/3385ca0c;
@@ -27,8 +29,8 @@
 #x#    nixpkgs-2023-01-14.url = github:NixOS/nixpkgs/3ae365af; # master
 #x#    nixpkgs-2022-04-22.url = github:NixOS/nixpkgs/9887f024; # 22.05
     nixpkgs-2020-09-25.url = github:NixOS/nixpkgs/52075a82; # master
-#    hpkgs1.url  = github:sixears/hpkgs1/r0.0.10.0;
-    hpkgs1.url  = path:/home/martyn/src/hpkgs1;
+    hpkgs1.url  = github:sixears/hpkgs1/r0.0.62.0;
+#    hpkgs1.url  = path:/home/martyn/src/hpkgs1;
     bashHeader-2024-06-20  = {
       url    = github:sixears/bash-header/c68d4608;
       inputs = { nixpkgs.follows = "nixpkgs-nixos-24-05-2024-06-20"; };
@@ -85,6 +87,7 @@
   };
 
   outputs = inputs @ { self, hpkgs1
+            , master-2026-09-16
             , bashHeader-2025-10-21
             , nixpkgs-nixos-26-05-2026-06-26, myPkgs-2026-08-04
             , nixpkgs-nixos-25-05-2025-08-15, bashHeader-2025-08-15, myPkgs-2025-08-15
@@ -130,6 +133,8 @@
             lib.importNixesByName ./hosts {
               inherit
                 nixos-system
+
+                master-2026-09-16
 
                 bashHeader-2025-10-21
 

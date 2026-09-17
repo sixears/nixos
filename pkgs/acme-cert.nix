@@ -26,7 +26,7 @@ shopt -s nullglob
 shopt -s dotglob
 
 basename=${pkgs.coreutils}/bin/basename
-getopt=${pkgs.utillinux}/bin/getopt
+getopt=${pkgs.util-linux}/bin/getopt
 
 cat=${pkgs.coreutils}/bin/cat
 chmod=${pkgs.coreutils}/bin/chmod

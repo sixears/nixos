@@ -5,11 +5,11 @@ set -eu -o pipefail
 basename=${pkgs.coreutils}/bin/basename
 cut=${pkgs.coreutils}/bin/cut
 false=${pkgs.coreutils}/bin/false
-getopt=${pkgs.utillinux}/bin/getopt
+getopt=${pkgs.util-linux}/bin/getopt
 grep=${pkgs.gnugrep}/bin/grep
 hdparm=${pkgs.hdparm}/bin/hdparm
 id=${pkgs.coreutils}/bin/id
-lsblk=${pkgs.utillinux}/bin/lsblk
+lsblk=${pkgs.util-linux}/bin/lsblk
 perl=${pkgs.perl}/bin/perl
 smartctl=${pkgs.smartmontools}/bin/smartctl
 sudo=/run/wrappers/bin/sudo

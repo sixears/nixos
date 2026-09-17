@@ -109,11 +109,11 @@ in
     # regrettably, this seems to be destined never to be supported in nixos
     # https://github.com/NixOS/nixpkgs/issues/9848
     security.wrappers.mount = {
-      source = "${pkgs.utillinux}/bin/mount";
+      source = "${pkgs.util-linux}/bin/mount";
       owner = "root"; group = "root"; setuid = true;
     };
     security.wrappers.umount = {
-      source = "${pkgs.utillinux}/bin/umount";
+      source = "${pkgs.util-linux}/bin/umount";
       owner = "root"; group = "root"; setuid = true;
     };
 

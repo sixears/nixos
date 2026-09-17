@@ -4,9 +4,9 @@ basename=${pkgs.coreutils}/bin/basename
 dconf=${pkgs.dconf}/bin/dconf
 ibus=${pkgs.ibus}/bin/ibus
 id=${pkgs.coreutils}/bin/id
-setxkbmap=${pkgs.xorg.setxkbmap}/bin/setxkbmap
+setxkbmap=${pkgs.setxkbmap}/bin/setxkbmap
 tty=${pkgs.coreutils}/bin/tty
-xmodmap=${pkgs.xorg.xmodmap}/bin/xmodmap
+xmodmap=${pkgs.xmodmap}/bin/xmodmap
 
 script="$($basename "$0")"
 $tty -s && echo "running $script..." 1>&2

@@ -2,6 +2,6 @@
 
 {
   fileSystems = {
-    "/var/lib/plex" = { device = "/local/plex"; options = [ "bind" ]; };
+    "/var/lib/plex" = { device = "/local/plex"; options = [ "bind" ]; fsType = "none"; };
   };
 }

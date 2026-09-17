@@ -23,7 +23,7 @@ builtin shopt -s dotglob
 
 basename=${pkgs.coreutils}/bin/basename
 false=${pkgs.coreutils}/bin/false
-getopt=${pkgs.utillinux}/bin/getopt
+getopt=${pkgs.util-linux}/bin/getopt
 true=${pkgs.coreutils}/bin/true
 
 progname="$($basename "$0")"
@@ -35,7 +35,7 @@ head=${pkgs.coreutils}/bin/head
 grep=${pkgs.gnugrep}/bin/grep
 perl=${pkgs.perl}/bin/perl
 sort=${pkgs.coreutils}/bin/sort
-xrandr=${pkgs.xorg.xrandr}/bin/xrandr
+xrandr=${pkgs.xrandr}/bin/xrandr
 
 # ------------------------------------------------------------------------------
 

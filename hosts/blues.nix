@@ -1,19 +1,15 @@
 {
-  nixpkgs-nixos-25-05-2025-08-15,
-#  nixpkgs-nixos-24-11-2024-12-11,
-  bashHeader-2025-08-15,
-#  bashHeader-2024-12-11,
-  myPkgs-2025-08-15,
-#  myPkgs-2024-12-11,
+  nixpkgs-nixos-26-05-2026-06-26,
+  bashHeader-2025-10-21,
+  myPkgs-2026-08-04,
   nixos-system,
   ...
 }:
 
 let
-  nixpkgs     = nixpkgs-nixos-25-05-2025-08-15;
-#  nixpkgs     = nixpkgs-nixos-24-11-2024-12-11;
-  bashHeader  = bashHeader-2025-08-15;
-  myPkgs      = myPkgs-2025-08-15;
+  nixpkgs     = nixpkgs-nixos-26-05-2026-06-26;
+  bashHeader  = bashHeader-2025-10-21;
+  myPkgs      = myPkgs-2026-08-04;
 in
   nixos-system
     {
@@ -38,6 +34,7 @@ in
         domainname   = "sixears.co.uk";
         etherMac     = "9c:eb:e8:5e:18:2e";
         wifiMac      = "e4:aa:ea:cc:91:31";
+        ip4addr      = "192.168.0.90";
         stateVersion = "19.03";
         systemPackages = pkgs: [
           # (hpkgs.acct)
@@ -59,6 +56,7 @@ in
                   {
                     device = "/dev/disk/by-path/pci-0000:03:00.3-usb-0:1.4:1.0-scsi-0:0:0:1-part1";
                     options = [ "user" "utf8" "umask=000" "noauto" "exec" "sync" ];
+                    fsType  = "auto";
                   };
               };
           }

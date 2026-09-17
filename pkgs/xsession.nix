@@ -3,13 +3,13 @@
 cat=${pkgs.coreutils}/bin/cat
 hostname=${pkgs.nettools}/bin/hostname
 mv=${pkgs.coreutils}/bin/mv
-xrandr=${pkgs.xorg.xrandr}/bin/xrandr
-xset=${pkgs.xorg.xset}/bin/xset
+xrandr=${pkgs.xrandr}/bin/xrandr
+xset=${pkgs.xset}/bin/xset
 xkb=${xkb}/bin/xkb
-xrdb=${pkgs.xorg.xrdb}/bin/xrdb
+xrdb=${pkgs.xrdb}/bin/xrdb
 xmonad=${xmonad-with-pkgs}/bin/xmonad
 xscreensaver=${pkgs.xscreensaver}/bin/xscreensaver
-xmodmap=${pkgs.xorg.xmodmap}/bin/xmodmap
+xmodmap=${pkgs.xmodmap}/bin/xmodmap
 
 # ------------------------------------------------------------------------------
 

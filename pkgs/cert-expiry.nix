@@ -23,7 +23,7 @@ shopt -s dotglob
 
 basename=${pkgs.coreutils}/bin/basename
 cat=${pkgs.coreutils}/bin/cat
-getopt=${pkgs.utillinux}/bin/getopt
+getopt=${pkgs.util-linux}/bin/getopt
 
 date=${pkgs.coreutils}/bin/date
 openssl=${pkgs.openssl}/bin/openssl
